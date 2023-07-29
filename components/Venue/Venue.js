@@ -8,10 +8,10 @@ import "./Venue.css";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/autoplay";
-import Venue1 from "./../../images/Venue1.jpeg";
-import Venue2 from "./../../images/Venue2.jpeg";
-import Venue3 from "./../../images/Venue3.jpeg";
-import Venue4 from "./../../images/Venue4.jpeg";
+import Venue1 from "public/assets/images/Venue1.jpeg";
+import Venue2 from "public/assets/images/Venue2.jpeg";
+import Venue3 from "public/assets/images/Venue3.jpeg";
+import Venue4 from "public/assets/images/Venue4.jpeg";
 function Venue() {
   const myLoader = ({ src, width, quality }) => {
     return `https://example.com/${src}?w=${width}&q=${quality || 75}`;

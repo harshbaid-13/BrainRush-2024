@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import About1 from "./../../images/About1.jpeg";
-import About2 from "./../../images/About2.jpeg";
-import About3 from "./../../images/About3.jpeg";
+import About1 from "public/assets/images/About1.jpeg";
+import About2 from "public/assets/images/About2.jpeg";
+import About3 from "public/assets/images/About3.jpeg";
 import Heading from "./../Heading/Heading";
 
 function About() {

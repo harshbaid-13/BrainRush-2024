@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 // import whatsapp from "src/images/whatsapp.svg";
-import gourav from "/images/gourav.jpeg";
+import gourav from "public/assets/images/gourav.jpeg";
 import Heading from "./../Heading/Heading";
 // import "./Venue.css";
 

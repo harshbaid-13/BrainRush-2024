@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./poster.css";
-import POSTER from "../../images/poster.jpeg";
+import POSTER from "public/assets/images/poster.jpeg";
 import Image from "next/image";
 
 function Poster() {
