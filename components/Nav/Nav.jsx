@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 
 const Nav = () => {
     const { data: session } = useSession();
+    
     const [providers, setProviders] = useState(null);
     useEffect(() => {
         const setProvidersFunc = async () => {
