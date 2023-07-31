@@ -1,4 +1,5 @@
 import ConfirmationRequest from "@models/confirmationRequest";
+import Team from "@models/team";
 import User from "@models/user";
 import { connectToDatabase } from "@utils/db";
 import sendConfirmationEmail from "@utils/sendConfirmationEmail";
@@ -8,12 +9,12 @@ const { NextResponse } = require("next/server");
 export async function POST(request) {
   try {
     await connectToDatabase();
-    const { teamName, leaderEmail, teamMemberEmail } = await request.json();
-    const teamLeader = await User.findOne({ email: leaderEmail });
+    const { userId, teamMemberEmail } = await request.json();
     const requestSentAlready = await ConfirmationRequest.findOne({
-      teamName,
-      leader: teamLeader,
+      leader: userId,
     });
+    const teamLeader = await User.findById(userId);
+    const team = await Team.findOne({ leader: userId });
     if (requestSentAlready) {
       return NextResponse.json({
         success: false,
@@ -21,11 +22,19 @@ export async function POST(request) {
         message: "Delete Previous Request First to Send New Request",
       });
     }
-    sendConfirmationEmail(teamLeader, teamName, teamMemberEmail);
+    if (team.teamMemberConfirmation) {
+      return NextResponse.json({
+        success: false,
+        status: 400,
+        message: "Team Full",
+      });
+    }
+
+    sendConfirmationEmail(teamLeader, team, teamMemberEmail);
 
     const confirmationRequest = await ConfirmationRequest.create({
-      teamName,
-      leader: teamLeader,
+      teamId: team._id,
+      teamLeader,
       teamMemberEmail,
     });
 
@@ -44,20 +53,27 @@ export async function POST(request) {
   }
 }
 
-export async function GET(request) {
+export async function PUT(request) {
   try {
     await connectToDatabase();
-    const userId = "64c7a09f6b2e2b78bffa22ba";
-    const loggedInUser = await User.findById(userId);
-    const totalRequests = await ConfirmationRequest.find({
-      teamMemberEmail: loggedInUser.email,
+    const { teamId, userId } = await request.json();
+    const confirmationRequest = await ConfirmationRequest.findOne({
+      teamId,
     });
+
+    const team = await Team.findByIdAndUpdate(
+      teamId,
+      { teamMember: userId, teamMemberConfirmation: true },
+      { new: true }
+    );
+
+    await confirmationRequest.deleteOne();
 
     return NextResponse.json({
       success: true,
       status: 200,
-      message: "Requests Retrieved Successfully",
-      data: totalRequests,
+      message: "Team Member Added Successfully",
+      data: team,
     });
   } catch (error) {
     console.error("Error ", error);
