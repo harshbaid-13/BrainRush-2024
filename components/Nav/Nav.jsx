@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 
 const Nav = () => {
     const { data: session } = useSession();
+    
     const [providers, setProviders] = useState(null);
     useEffect(() => {
         const setProvidersFunc = async () => {
@@ -16,6 +17,7 @@ const Nav = () => {
     }, [])
     return (
         <>
+            { }
             <header className="text-gray-600 body-font">
                 <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
                     <a href='/' className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
@@ -23,10 +25,9 @@ const Nav = () => {
                         <span className="ml-3 text-xl">Kodikas</span>
                     </a>
                     <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-                        <Link href={"/profile"} className="mr-5 hover:text-gray-900">Profile</Link>
-                        <a className="mr-5 hover:text-gray-900">kuch bhi 1</a>
-                        <a className="mr-5 hover:text-gray-900">kuch bhi 2</a>
-                        <a className="mr-5 hover:text-gray-900">kuch bhi 3</a>
+                        <Link href={"/profile"} className="mr-5 hover:text-logoYellow">Profile</Link>
+                        <Link href={"/teams"} className="mr-5 hover:text-logoYellow">Teams</Link>
+                        {/* <Link href={"#venue"} className="mr-5 hover:text-logoYellow">Venue</Link> */}
                     </nav>
                     {session?.user ? (
                         <div className="flex gap-3 md:gap-5">

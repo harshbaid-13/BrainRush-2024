@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import Heading from "./../Heading/Heading";
 import data from "team_data.js";
-import whatsapp from "/images/whatsapp.png";
+import whatsapp from "public/assets/images/whatsapp.png";
 
 // import gourav from "src/images/gourav.jpeg";
 
