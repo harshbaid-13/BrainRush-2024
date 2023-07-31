@@ -5,21 +5,20 @@ const { NextResponse } = require("next/server");
 export async function PUT(request) {
   try {
     await connectToDatabase();
-    const { email, name, department, year } = await request.json();
+    const { userId, name, department, year } = await request.json();
 
-    const userToUpdate = await User.findOne({ email });
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { name, department, year },
+      { new: true }
+    );
 
-    if (!userToUpdate) {
-      return NextResponse.json({ message: "User not found" }, { status: 404 });
-    }
-
-    // Update
-    userToUpdate.name = name;
-    userToUpdate.department = department;
-    userToUpdate.year = year;
-    await userToUpdate.save();
-
-    return NextResponse.json({ message: "User data updated successfully" });
+    return NextResponse.json({
+      status: 200,
+      success: true,
+      message: "User data updated successfully",
+      data: user,
+    });
   } catch (error) {
     console.error("Error updating user data:", error);
     return NextResponse.json(

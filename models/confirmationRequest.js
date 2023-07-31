@@ -2,11 +2,12 @@ import { Schema, model, models } from "mongoose";
 
 const confirmationRequestSchema = new Schema(
   {
-    teamName: {
-      type: String,
-      required: [true, "Team Name is required"],
+    teamId: {
+      type: Schema.Types.ObjectId,
+      ref: "Team",
+      required: [true, "Team Id is required"],
     },
-    leader: {
+    teamLeader: {
       type: Schema.Types.ObjectId,
       ref: "User",
       required: [true, "Team Leader is required"],
@@ -14,10 +15,6 @@ const confirmationRequestSchema = new Schema(
     teamMemberEmail: {
       type: String,
       required: [true, "Team Member Email is required"],
-    },
-    teamMemberConfirmation: {
-      type: Boolean,
-      default: false,
     },
   },
   { timestamps: true }
