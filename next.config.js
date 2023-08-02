@@ -9,6 +9,7 @@ const nextConfig = {
       "lh3.googleusercontent.com",
       "see.fontimg.com",
       "user-images.githubusercontent.com",
+      "wa.me"
     ],
   },
   webpack(config) {

@@ -9,7 +9,7 @@ import Heading from "./../Heading/Heading";
 
 const Contact = () => {
   return (
-    <section className="relative z-10 overflow-hidden bg-background pb-20 pt-9 px-4 md:px-32 lg:py-[120px]">
+    <section className="relative z-10 overflow-hidden  pb-20 pt-9 px-4 md:px-32 lg:py-[120px]">
       <Heading title="Contact " subtitle="Us" />
       <div className="container mx-auto">
         <div className="-mx-4 flex flex-wrap lg:justify-between">

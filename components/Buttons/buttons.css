@@ -1,6 +1,6 @@
 .custom-button-li {
   list-style: none;
-  --c: #ffbd59;
+  --c: #E37029;
   color: var(--c);
   border: 0.1em solid var(--c);
   border-radius: 0.5em;

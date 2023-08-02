@@ -1,13 +1,17 @@
 import React from "react";
+import Heading from "@components/Heading/Heading";
 
 const FAQ = () => {
   return (
-    <div className="max-w-screen-xl text-logoYellow mx-auto px-5 bg-background min-h-sceen">
+    <div className="max-w-screen-xl text-logoYellow mx-auto px-5  min-h-sceen">
       <div className="flex flex-col items-center">
-        <h2 className="font-bold text-8xl mt-5 tracking-tight">FAQ</h2>
+        {/* <h2 className="font-bold text-8xl mt-5 tracking-tight">FAQ</h2>
         <p className="text-neutral-500 text-white text-xl mt-3">
           Frequenty asked questions
-        </p>
+        </p> */}
+         <Heading title={"FAQ"} header ={"Frequenty asked questions"} hearerspan="
+" subheader=""subheaderspan1="" subheaderspan2="" />
+
       </div>
       <div className="grid mb-6 lg:mb-16 md:grid-cols-1 divide-y divide-neutral-200 max-w-6xl mx-auto mt-8">
         <div className="py-5">

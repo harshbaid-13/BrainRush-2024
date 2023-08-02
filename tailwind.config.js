@@ -14,7 +14,7 @@ module.exports = {
       },
     },
     colors: {
-      logoYellow: "#ffbd59",
+      logoYellow: "#E37029",
       background: "#0f172a",
       navcol: "#F1B860",
 
