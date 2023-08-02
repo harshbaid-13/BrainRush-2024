@@ -7,10 +7,8 @@ const { NextResponse } = require("next/server");
 export async function POST(request) {
   try {
     await connectToDatabase();
-    const { teamName, leaderEmail } = await request.json();
-    const teamLeader = await User.findOne({ email: leaderEmail });
-    console.log({ teamLeader });
-    let teamMember;
+    const { teamName, userId } = await request.json();
+    const teamLeader = await User.findById(userId);
 
     const existingTeam = await Team.findOne({ teamName });
 
@@ -24,7 +22,6 @@ export async function POST(request) {
     const createTeam = await Team.create({
       teamName: teamName,
       leader: teamLeader,
-      teamMember: teamMember,
     });
 
     return NextResponse.json({
