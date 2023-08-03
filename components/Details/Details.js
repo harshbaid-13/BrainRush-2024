@@ -87,7 +87,7 @@ const Details = () => {
                     className="border-2-2 border-logoYellow absolute h-full border"
                     style={{
                       right: "50%",
-                      border: "2px solid #FFBD59",
+                      border: "2px solid #E37029",
                       borderRadius: "1%",
                     }}
                   />
@@ -95,7 +95,7 @@ const Details = () => {
                     className="border-2-2 border-logoYellow absolute h-full border"
                     style={{
                       left: "50%",
-                      border: "2px solid #FFBD59",
+                      border: "2px solid #E37029",
                       borderRadius: "1%",
                     }}
                   />

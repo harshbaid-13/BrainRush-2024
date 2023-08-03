@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import Heading from "./../Heading/Heading";
+// import Heading from "./../Heading/Heading";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper";
 import "./Venue.css";
@@ -19,9 +19,9 @@ function Venue() {
   return (
     <>
       <div id="venue">
-        <Heading title="Our " subtitle="Venue" />
+        {/* <Heading title="Our " subtitle="Venue" /> */}
 
-        <div className="bg-background">
+        <div className="">
           <div className="flex flex-col items-center justify-center">
             <div className="relative">
               {/* <h1 className="text-[13vw] font-bold text-center text-grey-secondary">

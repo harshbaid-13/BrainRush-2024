@@ -31,7 +31,7 @@ const Nav = () => {
                     </nav>
                     {session?.user ? (
                         <div className="flex gap-3 md:gap-5">
-                            <Link href='/profile'>
+                            <Link href='/myrequest'>
                                 <Image src={session?.user.image} width={37} height={37} alt='Profile' className='rounded-full' />
                             </Link>
                             <button className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0" onClick={signOut} >Sign Out

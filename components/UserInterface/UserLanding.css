@@ -1,0 +1,31 @@
+.teamRequestcontainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.teamRequest {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.requestButton {
+    align-items: center;
+    margin-right: 4rem;
+    /* float: right; */
+    width: 14%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hover {
+    border: 8px solid;
+    border-radius: 3rem;
+    border: 6px solid #ffbd59;
+}
+
+.hover:hover {
+    --_i: 100%;
+
+    transition: .3s, -webkit-mask-size .3s .3s;
+}
