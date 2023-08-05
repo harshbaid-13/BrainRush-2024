@@ -1,8 +1,9 @@
 import React from 'react'
 import Image from "next/image";
-import About1 from "public/assets/images/About1.jpeg";
-import About2 from "public/assets/images/About2.jpeg";
-import About3 from "public/assets/images/About3.jpeg";
+import 'animate.css';
+import About1 from "public/assets/images/About1.JPG";
+import About2 from "public/assets/images/About2.JPG";
+import About3 from "public/assets/images/About3.JPG";
 export default function AboutMain() {
   return (
     <>
@@ -12,15 +13,15 @@ export default function AboutMain() {
               <div className="-mx-3 flex items-center sm:-mx-4">
                 <div className="w-full px-3 sm:px-4 xl:w-1/2">
                   <div className="py-3 sm:py-4">
-                    <Image src={About1} alt="" className="w-full rounded-2xl" />
+                    <Image src={About1} alt="" className="w-full rounded-2xl animate__animated animate__zoomIn animate__faster" />
                   </div>
                   <div className="py-3 sm:py-4">
-                    <Image src={About2} alt="" className="w-full rounded-2xl" />
+                    <Image src={About2} alt="" className="w-full rounded-2xl animate__animated animate__zoomIn animate__faster" />
                   </div>
                 </div>
                 <div className="w-full px-3 sm:px-4 xl:w-1/2">
                   <div className="relative z-10 my-4">
-                    <Image src={About3} alt="" className="w-full rounded-2xl" />
+                    <Image src={About3} alt="" className="w-full rounded-2xl animate__animated animate__zoomIn animate__faster" />
                     <span className="absolute -right-7 -bottom-7 z-[-1]">
                       <svg
                         width="134"
@@ -619,7 +620,7 @@ export default function AboutMain() {
                   The 6 tremendously successful runs, BRAINRUSH 2k23 promises to
                   be truly enlightening, illuminating and loaded with adventure.
                 </p>
-                <h1 className="text-logoYellow font-bold sm:text-4xl text-2xl">
+                <h1 className="text-logoYellow font-bold sm:text-4xl text-2xl date " >
                   Date: 27th April, 2023
                 </h1>
               </div>
