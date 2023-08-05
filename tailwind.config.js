@@ -17,7 +17,8 @@ module.exports = {
       logoYellow: "#E37029",
       background: "#0f172a",
       navcol: "#F1B860",
-
+      purple: { 500: "rgb(24, 13, 238)", 800: "#fff" },
+      pink: { 500: "rgb(216, 100, 27)" },
       white: "#fff",
       gray: {
         50: "#f9fafb",
