@@ -6,7 +6,9 @@ export async function PUT(request) {
   try {
     await connectToDatabase();
     const { userId, name, department, year } = await request.json();
-
+console.log({name})
+console.log({department})
+console.log({year})
     const user = await User.findByIdAndUpdate(
       userId,
       { name, department, year },

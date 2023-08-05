@@ -11,7 +11,7 @@ function Heading(props) {
         fontFamily: "'Source Code Pro', monospace !important;",
         color: "#131B2C",
         textTransform: "uppercase",
-        // textShadow:" -1px 3px 6px rgba(227,112,41,0.79); !important"
+        textShadow:" -1px 3px 6px rgba(227,112,41,0.79); !important"
       }}
     >
       {props.title}
