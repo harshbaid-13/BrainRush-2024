@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Open+Sans:wght@500&family=Source+Code+Pro:wght@600&display=swap');
-
 .aboutHeader {
     margin-top: -8rem;
     display: flex;
@@ -7,6 +6,8 @@
     align-items: center;
     justify-content: center;
     /* text-shadow: -1px 3px 6px rgba(227, 112, 41, 0.79); */
+    font-family: 'Lobster', cursive;
+    font-family: 'Playfair Display', serif;
 }
 
 .aboutHeader h2 {
@@ -15,8 +16,6 @@
     color: #E37029;
     font-size: 3rem;
     font-weight: bold;
-    font-family: 'Open Sans', sans-serif;
-
 }
 
 .aboutHeader p {
@@ -31,19 +30,27 @@
     margin-bottom: 1rem;
     display: flex;
     justify-content: space-around;
+    font-family: 'Edu SA Beginner', cursive;
+    /* font-family: 'Lobster', cursive; */
+    /* font-family: 'Playfair Display', serif; */
 }
 
 .notActiveClass {
     color: #fff;
     font-weight: bold;
-
 }
 
 .activeClass {
     color: #E37029;
     font-weight: bold;
+    /* border-bottom: 2px solid;
+    border-color: #E37029; */
 }
 
 hr {
     color: #fff;
+}
+
+.date {
+    font-family: 'Lobster', cursive;
 }

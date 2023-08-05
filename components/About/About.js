@@ -28,8 +28,8 @@ function About() {
   }
   return (
     <>
-      <section className="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] px-5 sm:px-20">
-        <Heading title = {about?"About Us":venue?"Our Venue":"Our Schedule"} header ={"Know Details About"} hearerspan="Kodikas-2K23" subheader="Lorem ipsum dolor sit amet, consectetur adipiscing elit."subheaderspan1="In convallis tortor eros. Donec vitae tortor lacus." subheaderspan2="Phasellus aliquam ante in maximus." />
+      <section className="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] px-5 sm:px-20 ">
+        <Heading title = {about?"About Us":venue?"Our Venue":"Our Schedule"} header ={"Know more About"} hearerspan="Kodikas 2K23" subheader="Lorem ipsum dolor sit amet, consectetur adipiscing elit."subheaderspan1="In convallis tortor eros. Donec vitae tortor lacus." subheaderspan2="Phasellus aliquam ante in maximus." />
         
 
         <div>
@@ -38,16 +38,16 @@ function About() {
               setAbout(true);
               setSchedule(false);
               setVenue(false);
-            }} className={about?"activeClass":"notActiveClass"}>About Us</div>
+            }} className={about?"activeClass hover:border-b-logoYellow text-xl focus:border-b-logoYellow ":"notActiveClass hover:border-b-logoYellow text-xl focus:border-b-logoYellow "}>About Us</div>
             <div onClick={()=>{
               setAbout(false);
               setSchedule(false);
-              setVenue(true);}}className={venue?"activeClass":"notActiveClass"}>Our Venue</div>
+              setVenue(true);}}className={venue?"activeClass hover:border-b-logoYellow text-xl focus:border-b-logoYellow":"notActiveClass hover:border-b-logoYellow text-xl  focus:border-b-logoYellow"}>Our Venue</div>
             <div onClick={()=>{
               setAbout(false);
               setSchedule(true);
               setVenue(false);
-            }} className={schedule?"activeClass":"notActiveClass"}>Our Schedule</div>
+            }} className={schedule?"activeClass hover:border-b-logoYellow text-xl focus:border-b-logoYellow":"notActiveClass hover:border-b-logoYellow text-xl  focus:border-b-logoYellow"}>Our Schedule</div>
           </div>
           <hr/>
         </div>
