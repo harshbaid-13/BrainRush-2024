@@ -1,3 +1,4 @@
+//remove team member by leader
 import { NextResponse } from "next/server";
 import Team from "@models/team";
 import { connectToDatabase } from "@utils/db";
