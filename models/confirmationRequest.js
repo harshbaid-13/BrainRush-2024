@@ -2,10 +2,10 @@ import { Schema, model, models } from "mongoose";
 
 const confirmationRequestSchema = new Schema(
   {
-    teamId: {
+    team: {
       type: Schema.Types.ObjectId,
       ref: "Team",
-      required: [true, "Team Id is required"],
+      required: [true, "Team is required"],
     },
     teamLeader: {
       type: Schema.Types.ObjectId,

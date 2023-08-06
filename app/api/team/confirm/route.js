@@ -33,7 +33,7 @@ export async function POST(request) {
     sendConfirmationEmail(teamLeader, team, teamMemberEmail);
 
     const confirmationRequest = await ConfirmationRequest.create({
-      teamId: team._id,
+      team,
       teamLeader,
       teamMemberEmail,
     });
@@ -74,6 +74,30 @@ export async function PUT(request) {
       status: 200,
       message: "Team Member Added Successfully",
       data: team,
+    });
+  } catch (error) {
+    console.error("Error ", error);
+    return NextResponse.json(
+      { message: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(request) {
+  try {
+    await connectToDatabase();
+    const { teamId, userId } = await request.json();
+    const confirmationRequest = await ConfirmationRequest.findOne({
+      teamId,
+    });
+
+    await confirmationRequest.deleteOne();
+
+    return NextResponse.json({
+      success: true,
+      status: 200,
+      message: "Request Deleted Successfully",
     });
   } catch (error) {
     console.error("Error ", error);
