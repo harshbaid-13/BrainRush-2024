@@ -2,6 +2,7 @@
 import React from "react";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import page from "@app/teams/page.jsx";
 import "./page.css";
 
 const Profile = () => {
@@ -37,52 +38,7 @@ const Profile = () => {
   };
   const successSubmit = () => {
     if (submit) {
-      return (
-        <>
-          <div
-            id="alert-4"
-            class="flex items-center p-4 mb-4 text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300"
-            role="alert"
-          >
-            <svg
-              class="flex-shrink-0 w-4 h-4"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-            </svg>
-            <span class="sr-only">Info</span>
-            <div class="ml-3 text-sm font-medium">
-              Thank you, Your profile have been successfully updated.
-            </div>
-            <button
-              type="button"
-              class="ml-auto -mx-1.5 -my-1.5 bg-yellow-50 text-yellow-500 rounded-lg focus:ring-2 focus:ring-yellow-400 p-1.5 hover:bg-yellow-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-yellow-300 dark:hover:bg-gray-700"
-              data-dismiss-target="#alert-4"
-              aria-label="Close"
-            >
-              <span class="sr-only">Close</span>
-              <svg
-                class="w-3 h-3"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 14"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                />
-              </svg>
-            </button>
-          </div>
-        </>
-      );
+      return <page />;
     }
   };
 
@@ -92,6 +48,7 @@ const Profile = () => {
         <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
           Complete Your Profile
         </h2>
+
         <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
           Got a technical issue? Want to send feedback about a beta feature?
           Need details about our Business plan? Let us know.
@@ -99,7 +56,7 @@ const Profile = () => {
         <form action="#" class="space-y-8" onSubmit={submitHandler}>
           <div>
             <label for="email" class="block mb-2 text-sm font-medium">
-              Your Name
+              Your Name<span className="text-red text-2xl">*</span>
             </label>
             <input
               type="text"
@@ -115,7 +72,7 @@ const Profile = () => {
           </div>
           <div>
             <label for="subject" class="block mb-2 text-sm font-medium ">
-              Your Email
+              Your Email<span className="text-red text-2xl">*</span>
             </label>
             <input
               type="email"
@@ -128,23 +85,25 @@ const Profile = () => {
           </div>
           <div>
             <label for="subject" class="block mb-2 text-sm font-medium ">
-              Contact Number
+              Contact Number<span className="text-red text-2xl">*</span>
             </label>
             <input
               type="tel"
-              id="email"
+              id="phone"
+              name="phone"
+              placeholder="123-456-7890"
+              pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+              required
               class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
-              placeholder="Your Contact Number"
               value={contact}
               onChange={(e) => {
                 setContact(e.target.value);
               }}
-              required
             />
           </div>
           <div>
             <label for="Department" class="block mb-2 text-sm font-medium ">
-              Department
+              Department<span className="text-red text-2xl">*</span>
             </label>
 
             <select
@@ -155,8 +114,9 @@ const Profile = () => {
               onChange={(e) => {
                 setDepartment(e.target.value);
               }}
+              required
             >
-              {/* <option disabled >Select</option> */}
+              <option>Select</option>
               <option value="CSE">CSE</option>
               <option value="CSE-DS">CSE-DS</option>
               <option value="AIML">AIML</option>
@@ -168,7 +128,7 @@ const Profile = () => {
           </div>
           <div>
             <label for="Year" class="block mb-2 text-sm font-medium ">
-              Year
+              Year<span className="text-red text-2xl">*</span>
             </label>
 
             <select
@@ -179,8 +139,9 @@ const Profile = () => {
               onChange={(e) => {
                 setYear(e.target.value);
               }}
+              required
             >
-              {/* <option disabled >Select</option> */}
+              <option>Select</option>
               <option value={2027}>1st</option>
               <option value={2026}>2nd</option>
               <option value={2025}>3rd</option>
