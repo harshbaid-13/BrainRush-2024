@@ -1,0 +1,13 @@
+.teamButton {
+    /* box-shadow: 10px 10px 17px -8px rgba(21, 121, 235, 1); */
+    border-radius: 1rem;
+    transition: 200ms;
+
+}
+
+.teamButton:hover {
+    box-shadow: 10px 10px 17px -8px rgba(149, 21, 235, 1);
+    box-shadow: 0 0 11px rgba(149, 21, 235, 1);
+    /* transition: 7ms; */
+
+}
