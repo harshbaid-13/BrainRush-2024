@@ -1,23 +1,28 @@
 import { NextResponse } from "next/server";
 import Team from "@models/team";
+import User from "@models/user";
 import { connectToDatabase } from "@utils/db";
 
 //display one team
 export async function GET(request, { params }) {
   try {
     await connectToDatabase();
-    let team = await Team.findOne({ leader: params.id })
-      .populate("leader")
-      .populate("teamMember");
+    let isLeader = true;
+    let team = await Team.findOne({ leader: params.id }).populate([
+      "leader",
+      "teamMember",
+    ]);
     if (!team) {
-      team = await Team.findOne({ teamMember: params.id })
-        .populate("leader")
-        .populate("teamMember");
+      isLeader = false;
+      team = await Team.findOne({ teamMember: params.id }).populate([
+        "leader",
+        "teamMember",
+      ]);
     }
     if (!team) {
       return NextResponse.json({ success: false, message: "Team not found" });
     }
-    return NextResponse.json({ success: true, data: team });
+    return NextResponse.json({ success: true, data: team, isLeader });
   } catch (error) {
     console.error("Error fetching team:", error);
     return NextResponse.json(
