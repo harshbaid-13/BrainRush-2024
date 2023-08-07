@@ -11,7 +11,7 @@ export async function POST(request) {
     await connectToDatabase();
     const { userId, teamMemberEmail } = await request.json();
     const requestSentAlready = await ConfirmationRequest.findOne({
-      leader: userId,
+      teamLeader: userId,
     });
     const teamLeader = await User.findById(userId);
     const team = await Team.findOne({ leader: userId });
