@@ -10,7 +10,7 @@ export async function GET(request, { params }) {
     const loggedInUser = await User.findById(userId);
     const totalRequests = await ConfirmationRequest.find({
       teamMemberEmail: loggedInUser.email,
-    }).populate("teamLeader");
+    }).populate(["team", "teamLeader"]);
 
     return NextResponse.json({
       success: true,
