@@ -1,3 +1,4 @@
+import Team from "@models/team";
 import User from "@models/user";
 import { connectToDatabase } from "@utils/db";
 import ConfirmationRequest from "@models/confirmationRequest";
@@ -10,7 +11,7 @@ export async function GET(request, { params }) {
     const loggedInUser = await User.findById(userId);
     const totalRequests = await ConfirmationRequest.find({
       teamMemberEmail: loggedInUser.email,
-    }).populate("teamLeader");
+    }).populate(["teamLeader", "team"]);
 
     return NextResponse.json({
       success: true,

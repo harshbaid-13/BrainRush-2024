@@ -14,9 +14,12 @@
 .aboutHeader h2 {
     text-align: center;
     /* color: white; */
-    color: #E37029;
+    font-size: 72px;
+    background: -webkit-linear-gradient(rgb(24, 13, 238), rgb(216, 100, 27));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-size: 3rem;
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 .aboutHeader p {
