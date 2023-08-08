@@ -34,11 +34,13 @@ const Team = () => {
                     {e.emoji}
                   </div>
                   <img
-                    class="mx-auto mb-4 w-36 h-36 rounded-full  "
+                    class="mx-auto mb-4 w-36 h-36  "
                     style={{
-                      // borderRadius: "50",
-                      border: "5px solid",
-                      borderImage: "linear-gradient(45deg, purple, orange) 1",
+                      borderRadius: "50% !important",
+                      border:
+                        "5px solid linear-gradient(45deg, purple, orange) !important",
+                      // borderImage:
+                      //   "linear-gradient(45deg, purple, orange) 1 !important",
                     }}
                     src={e.photo}
                     alt="Bonnie Avatar"

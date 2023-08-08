@@ -1,3 +1,4 @@
+import Team from "@models/team";
 import User from "@models/user";
 import { connectToDatabase } from "@utils/db";
 import ConfirmationRequest from "@models/confirmationRequest";
