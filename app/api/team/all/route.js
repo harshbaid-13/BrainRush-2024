@@ -4,7 +4,7 @@ import Team from "@models/team";
 export async function GET() {
   try {
     await connectToDatabase();
-    const teams = await Team.find();
+    const teams = await Team.find().populate(["leader", "teamMember"]);
     return NextResponse.json({
       success: true,
       message: "All registered teams",
