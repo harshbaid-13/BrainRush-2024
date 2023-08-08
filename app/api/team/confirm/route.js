@@ -61,6 +61,16 @@ export async function PUT(request) {
       teamId,
     });
 
+    const userTeamExist = await Team.findOne({ leader: userId });
+
+    if (userTeamExist) {
+      return NextResponse.json({
+        success: false,
+        status: 400,
+        message: "You have a team already",
+      });
+    }
+
     const team = await Team.findByIdAndUpdate(
       teamId,
       { teamMember: userId, teamMemberConfirmation: true },
@@ -72,7 +82,7 @@ export async function PUT(request) {
     return NextResponse.json({
       success: true,
       status: 200,
-      message: "Team Member Added Successfully",
+      message: "Team Request Accepted Successfully",
       data: team,
     });
   } catch (error) {
