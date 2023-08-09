@@ -11,7 +11,7 @@ const FAQ = () => {
         </p> */}
         <Heading
           title={"FAQ"}
-          header={"Frequenty asked questions"}
+          header={"Frequently asked questions"}
           hearerspan="
 "
           subheader=""
@@ -41,7 +41,7 @@ const FAQ = () => {
               </span>
             </summary>
             <p className="text-neutral-600  text-gray-400 mt-3 group-open:animate-fadeIn">
-              Yes , The registration fee is ₹75 per team.
+              Yes , The registration fee is ₹50 per team.
             </p>
           </details>
         </div>

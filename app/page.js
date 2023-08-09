@@ -12,6 +12,7 @@ import Team from "@/components/Team/Team";
 import Venue from "@/components/Venue/Venue";
 import UserLanding from "@components/UserInterface/UserLanding";
 import Marquee from "@components/Marquee/Marquee";
+// import Details from "@/components/Details/Details";
 
 export default function Home() {
   return (
@@ -21,6 +22,9 @@ export default function Home() {
       <About />
 
       <Team />
+      <Details />
+
+      {/* <Team /> */}
       {/* <Contact /> */}
       <FAQ />
       {/* <UserLanding /> */}

@@ -632,7 +632,7 @@ export default function AboutMain() {
                 be truly enlightening, illuminating and loaded with adventure.
               </p>
               <h1 className="text-logoYellow font-bold sm:text-4xl text-2xl date ">
-                Date: 27th April, 2023
+                Date: 25th August, 2023
               </h1>
             </div>
           </div>

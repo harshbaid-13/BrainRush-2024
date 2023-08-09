@@ -11,10 +11,9 @@ const Team = () => {
   return (
     <>
       <Heading
-        title={"Organising Team"}
+        title={""}
         header={"Our Dedicated"}
-        hearerspan="Team Members
-"
+        hearerspan="Team Members"
         subheader="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis"
         subheaderspan1="tortor eros. Donec vitae tortor lacus. Phasellus aliquam ante in maximus."
         subheaderspan2=""
@@ -29,12 +28,12 @@ const Team = () => {
           <div class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {data.map((e) => {
               return (
-                <div class="text-center text-gray-500 p-3 dark:text-gray-400 rounded-lg">
-                  {/* <div className="absolute top-0 left-40 h-16 w-16 text-4xl  rounded-full z-2">
+                <div class="text-center text-gray-500 p-3 dark:text-gray-400 rounded-lg relativet">
+                  <div className="absolute top-0 left-40 h-16 w-16 text-4xl   z-2">
                     {e.emoji}
-                  </div> */}
+                  </div>
                   <img
-                    class="mx-auto mb-4 w-36 h-36  relative"
+                    class="mx-auto mb-4 w-36 h-36 rounded-full "
                     style={{
                       borderRadius: "50% !important",
                       border:
