@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import data from "data.js";
 import Image from "next/image";
 import Buttons from "./../Buttons/Buttons";
+import Heading from "./../Heading/Heading";
 const Details = () => {
   const [Modal, setModal] = useState(-1);
   const [Show, setShow] = useState("flex");
@@ -12,6 +13,14 @@ const Details = () => {
   };
   return (
     <>
+      <Heading
+        title={"Our Schedule"}
+        // header={"Our Dedicated"}
+        // hearerspan="Team Members"
+        // subheader="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis"
+        // subheaderspan1="tortor eros. Donec vitae tortor lacus. Phasellus aliquam ante in maximus."
+        // subheaderspan2=""
+      />
       {Modal != -1 && (
         <div>
           <div
@@ -76,7 +85,7 @@ const Details = () => {
               Working Process of Fest
             </p> */}
               <p className="text-sm md:text-base text-gray-50 mb-4">
-                Here&apos;s your guide to BrainRush 2K23. Go through all the
+                Here&apos;s your guide to Kodikas 2K23. Go through all the
                 steps to know the exact process of the events.
               </p>
             </div>
