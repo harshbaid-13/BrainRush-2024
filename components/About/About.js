@@ -5,8 +5,8 @@ import "./About.css"
 import { useState } from "react";
 import AboutMain from "./AboutMain";
 import Venue from "@components/Venue/Venue";
-import Details from "@components/Details/Details";
-
+// import Details from "@components/Details/Details";
+import Team from "@components/Team/Team";
 function About() {
   const[about, setAbout] = useState(true);
   const[venue, setVenue] = useState(false);
@@ -23,13 +23,13 @@ function About() {
     }
     else if(schedule === true){
       // headTitle = "Our Schedule";
-      return <Details/>
+      return <Team/>
     }
   }
   return (
     <>
-      <section className="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] px-5 sm:px-20 ">
-        <Heading title = {about?"About Us":venue?"Our Venue":"Our Schedule"} header ={"Know more About"} hearerspan="Kodikas 2K23" subheader="Lorem ipsum dolor sit amet, consectetur adipiscing elit."subheaderspan1="In convallis tortor eros. Donec vitae tortor lacus." subheaderspan2="Phasellus aliquam ante in maximus." />
+      <section className="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] px-5 sm:px-20  ">
+        <Heading title = {about?"About Us":venue?"Our Venue":"Organising Team"} header ={"Know more About"} hearerspan="Kodikas 2K23" subheader="Lorem ipsum dolor sit amet, consectetur adipiscing elit."subheaderspan1="In convallis tortor eros. Donec vitae tortor lacus." subheaderspan2="Phasellus aliquam ante in maximus." />
         
 
         <div>
@@ -47,7 +47,7 @@ function About() {
               setAbout(false);
               setSchedule(true);
               setVenue(false);
-            }} className={schedule?"activeClass hover:border-b-logoYellow text-xl focus:border-b-logoYellow":"notActiveClass hover:border-b-logoYellow text-xl  focus:border-b-logoYellow"}>Our Schedule</div>
+            }} className={schedule?"activeClass hover:border-b-logoYellow text-xl focus:border-b-logoYellow":"notActiveClass hover:border-b-logoYellow text-xl  focus:border-b-logoYellow"}>Our Team</div>
           </div>
           <hr/>
         </div>

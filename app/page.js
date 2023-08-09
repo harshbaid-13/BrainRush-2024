@@ -11,14 +11,16 @@ import Footer from "@/components/Footer/Footer";
 import Team from "@/components/Team/Team";
 import Venue from "@/components/Venue/Venue";
 import UserLanding from "@components/UserInterface/UserLanding";
+// import Details from "@/components/Details/Details";
 
 export default function Home() {
   return (
     <>
       <Hero />
       <About />
-      
-      <Team />
+      <Details/>
+
+      {/* <Team /> */}
       {/* <Contact /> */}
       <FAQ /> 
       {/* <UserLanding /> */}

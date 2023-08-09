@@ -11,10 +11,9 @@ const Team = () => {
   return (
     <>
       <Heading
-        title={"Organising Team"}
+        title={""}
         header={"Our Dedicated"}
-        hearerspan="Team Members
-"
+        hearerspan="Team Members"
         subheader="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis"
         subheaderspan1="tortor eros. Donec vitae tortor lacus. Phasellus aliquam ante in maximus."
         subheaderspan2=""
@@ -30,11 +29,11 @@ const Team = () => {
             {data.map((e) => {
               return (
                 <div class="text-center text-gray-500 p-3 dark:text-gray-400 rounded-lg relativet">
-                  <div className="absolute top-0 left-40 h-16 w-16 text-4xl  rounded-full z-2">
+                  <div className="absolute top-0 left-40 h-16 w-16 text-4xl   z-2">
                     {e.emoji}
                   </div>
                   <img
-                    class="mx-auto mb-4 w-36 h-36  "
+                    class="mx-auto mb-4 w-36 h-36 rounded-full "
                     style={{
                       borderRadius: "50% !important",
                       border:
@@ -47,10 +46,10 @@ const Team = () => {
                   />
 
                   <h3 class="mb-1 text-2xl font-bold tracking-tight text-logoYellow hover:underline decoration-logoYellow dark:text-white">
-                    <a href="#">{e.name}</a>
+                    <a href={e.whatsapp}>{e.name}</a>
                   </h3>
                   <p className="text-gray-400 dark:text-white">{e.year}</p>
-                  <ul class="flex justify-center mt-4 space-x-4">
+                  {/* <ul class="flex justify-center mt-4 space-x-4">
                     <li>
                       <a
                         href={e.whatsapp}
@@ -69,7 +68,7 @@ const Team = () => {
                         </svg>
                       </a>
                     </li>
-                  </ul>
+                  </ul> */}
                 </div>
               );
             })}
