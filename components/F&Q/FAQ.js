@@ -3,15 +3,21 @@ import Heading from "@components/Heading/Heading";
 
 const FAQ = () => {
   return (
-    <div className="max-w-screen-xl text-logoYellow mx-auto px-5  min-h-sceen">
+    <div className="max-w-screen-xl text-gray-50 mx-auto px-5  min-h-sceen">
       <div className="flex flex-col items-center">
         {/* <h2 className="font-bold text-8xl mt-5 tracking-tight">FAQ</h2>
         <p className="text-neutral-500 text-white text-xl mt-3">
           Frequenty asked questions
         </p> */}
-         <Heading title={"FAQ"} header ={"Frequenty asked questions"} hearerspan="
-" subheader=""subheaderspan1="" subheaderspan2="" />
-
+        <Heading
+          title={"FAQ"}
+          header={"Frequenty asked questions"}
+          hearerspan="
+"
+          subheader=""
+          subheaderspan1=""
+          subheaderspan2=""
+        />
       </div>
       <div className="grid mb-6 lg:mb-16 md:grid-cols-1 divide-y divide-neutral-200 max-w-6xl mx-auto mt-8">
         <div className="py-5">
@@ -34,7 +40,7 @@ const FAQ = () => {
                 </svg>
               </span>
             </summary>
-            <p className="text-neutral-600  text-white mt-3 group-open:animate-fadeIn">
+            <p className="text-neutral-600  text-gray-400 mt-3 group-open:animate-fadeIn">
               Yes , The registration fee is ₹75 per team.
             </p>
           </details>
@@ -88,17 +94,15 @@ const FAQ = () => {
               </span>
             </summary>
             <p className="text-neutral-600 text-white mt-3 group-open:animate-fadeIn">
-            Teams can be formed from the same department and same year , no Cross-Department registration is allowed.
+              Teams can be formed from the same department and same year , no
+              Cross-Department registration is allowed.
             </p>
           </details>
         </div>
         <div className="py-5">
           <details className="group">
             <summary className="flex justify-between items-center font-medium cursor-pointer list-none">
-              <span>
-                {" "}
-                Will there be any breaks during the event?
-              </span>
+              <span> Will there be any breaks during the event?</span>
               <span className="transition group-open:rotate-180">
                 <svg
                   fill="none"
@@ -116,7 +120,8 @@ const FAQ = () => {
               </span>
             </summary>
             <p className="text-neutral-600 text-white mt-3 group-open:animate-fadeIn">
-            Yes, there will be scheduled breaks during the event to give you a chance to rest and recharge.
+              Yes, there will be scheduled breaks during the event to give you a
+              chance to rest and recharge.
             </p>
           </details>
         </div>
@@ -141,7 +146,8 @@ const FAQ = () => {
               </span>
             </summary>
             <p className="text-neutral-600 text-white mt-3 group-open:animate-fadeIn">
-            Yes the teams which qualify the first round will be given refreshments during the lunch break.
+              Yes the teams which qualify the first round will be given
+              refreshments during the lunch break.
             </p>
           </details>
         </div>
@@ -166,7 +172,7 @@ const FAQ = () => {
               </span>
             </summary>
             <p className="text-neutral-600 text-white mt-3 group-open:animate-fadeIn">
-            The winners will be announced on the day of the event itself.
+              The winners will be announced on the day of the event itself.
             </p>
           </details>
         </div>
@@ -255,7 +261,7 @@ const FAQ = () => {
             </p>
           </details>
   </div> */}
-        <div className="py-5"> 
+        <div className="py-5">
           <details className="group">
             <summary className="flex justify-between items-center font-medium cursor-pointer list-none">
               <span>

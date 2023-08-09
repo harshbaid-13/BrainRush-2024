@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Open+Sans:wght@500&family=Source+Code+Pro:wght@600&display=swap');
 
 .aboutHeader {
-    margin-top: -5rem;
+    margin-top: -4rem;
     display: flex;
     flex-direction: column;
     align-items: center;

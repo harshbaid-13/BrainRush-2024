@@ -11,16 +11,18 @@ import Footer from "@/components/Footer/Footer";
 import Team from "@/components/Team/Team";
 import Venue from "@/components/Venue/Venue";
 import UserLanding from "@components/UserInterface/UserLanding";
+import Marquee from "@components/Marquee/Marquee";
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <Marquee />
       <About />
-      
+
       <Team />
       {/* <Contact /> */}
-      <FAQ /> 
+      <FAQ />
       {/* <UserLanding /> */}
       <h1 className="flex justify-center">Kodikas 2K23 - Home Page</h1>
     </>

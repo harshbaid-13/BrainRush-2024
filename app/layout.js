@@ -17,12 +17,12 @@ export default function RootLayout({ children }) {
       <body
         className={inter.className}
         style={{
-          backgroundColor: "#111722",
+          backgroundColor: "rgb(7 16 33);",
         }}
       >
         <Provider>
           <Nav />
-          {/* <Hero /> */}
+
           {children}
         </Provider>
       </body>
