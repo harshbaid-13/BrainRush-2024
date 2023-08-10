@@ -69,7 +69,7 @@ const Teams = () => {
   }
   return (
     <>
-      <section class="text-gray-600  px-2 body-font">
+      <section class="text-gray-600  px-2 body-font mx-20">
         <div class="container px-5 py-24 mx-auto flex flex-wrap">
           <div class="flex flex-wrap -m-4">
             <div class="p-4 lg:w-1/2 md:w-full teamButton">
@@ -103,7 +103,7 @@ const Teams = () => {
                   <Link href="teams/join-team">
                     <button
                       type="submit"
-                      class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+                      class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-headerText to-subHeaderText group-hover:from-headerText group-hover:to-subHeaderText hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
                     >
                       <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                         Team Request
@@ -147,7 +147,7 @@ const Teams = () => {
                   <Link href="/teams/create-team">
                     <button
                       type="submit"
-                      class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+                      class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-headerText to-subHeaderText group-hover:from-headerText group-hover:to-subHeaderText hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
                     >
                       <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                         Create Team

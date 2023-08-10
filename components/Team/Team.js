@@ -32,13 +32,13 @@ const Team = () => {
                   {/* <div className="absolute top-0 left-40 h-16 w-16 text-4xl   z-2">
                     {e.emoji}
                   </div> */}
-                  <Image
-                    class="object-contain mx-auto p-1 ring-2 ring-gray-300  dark:ring-gray-500 rounded-full"
+                  <img
+                    class="object-contain mx-auto p-1 ring-4 ring-subHeaderText  rounded-full"
                     // src="/docs/images/people/profile-picture-5.jpg"
                     // alt="Bordered avatar"
                     src={e.photo}
-                    width={100}
-                    height={100}
+                    // width={100}
+                    // height={100}
                     alt=""
                   />
                   {/* <img
@@ -52,12 +52,12 @@ const Team = () => {
                     }}
                   /> */}
 
-                  <h3 class="mb-1 text-2xl font-bold tracking-tight text-purple-500 hover:underline decoration-logoYellow ">
+                  <h3 class="mb-1 text-2xl font-bold tracking-tight text-headerText hover:underline decoration-logoYellow ">
                     <Link href={e.whatsapp} target="_blank">
                       {e.name}
                     </Link>
                   </h3>
-                  <p className="text-gray-800">{e.year}</p>
+                  <p className="text-subHeaderText">{e.year}</p>
                   {/* <ul class="flex justify-center mt-4 space-x-4">
                     <li>
                       <a

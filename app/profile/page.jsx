@@ -45,11 +45,11 @@ const Profile = () => {
   return (
     <section class="">
       <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-pink-500 ">
+        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-headerText ">
           Complete Your Profile
         </h2>
 
-        <p class="mb-8 lg:mb-16 font-light text-center font-bold text-gray-800 sm:text-xl">
+        <p class="mb-8 lg:mb-16 text-center font-medium text-subHeaderText sm:text-xl">
           Got a technical issue? Want to send feedback about a beta feature?
           Need details about our Business plan? Let us know.
         </p>
@@ -165,7 +165,7 @@ const Profile = () => {
           </div>
           <button
             type="submit"
-            class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+            class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-headerText to-subHeaderText group-hover:from-headerText group-hover:to-subHeaderText hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
             // onClick={() => {
             //   submitHandler;
             //   setSubmit(true);

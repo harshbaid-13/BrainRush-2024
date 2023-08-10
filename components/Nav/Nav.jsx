@@ -3,10 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { useEffect, useState } from "react";
+import "./Nav.css";
 
 const Nav = () => {
   const { data: session } = useSession();
-
+  const userId = session?.user?.id;
+  const [requests, setRequests] = useState([]);
   const [providers, setProviders] = useState(null);
   useEffect(() => {
     const setProvidersFunc = async () => {
@@ -15,13 +17,22 @@ const Nav = () => {
     };
     setProvidersFunc();
   }, []);
+
+  const getRequests = async () => {
+    const response = await fetch(`/api/team/confirm/${userId}`);
+    const data = await response.json();
+    setRequests(data.data);
+  };
+  useEffect(() => {
+    getRequests();
+  }, [userId]);
   return (
     <>
-      <header className="text-white body-font" style={{ padding: "0 3.5rem" }}>
-        <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <header className="text-white body-font" id="navHeader">
+        <div className="container mx-auto flex  p-5  md:flex-row items-center">
           <a
             href="/"
-            className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+            className="flex title-font  font-medium items-center text-gray-900 mb-1 md:mb-0"
           >
             <Image
               src={"/assets/images/logo.png"}
@@ -30,20 +41,26 @@ const Nav = () => {
               alt="Logo"
               className="object-contain"
             />
-            <span className="ml-3 text-3xl text-gray-800 font-bold">
+            <span
+              className="ml-3 text-2xl text-headerText font-bold "
+              id="logoTag"
+            >
               Kodikas-2K23
             </span>
           </a>
-          <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+          <nav
+            className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center "
+            id="navMenu"
+          >
             <Link
               href={"/profile"}
-              className="mr-5 font-bold text-2xl text-gray-600 hover:underline decoration-pink-500 hover:text-pink-500"
+              className="mx-2 font-bold text-2xl text-headerText hover:underline decoration-pink-500 hover:text-pink-500 "
             >
               Profile
             </Link>
             <Link
               href={"/teams"}
-              className="mr-5 font-bold text-2xl text-gray-600 hover:text-pink-500 hover:underline decoration-pink-500"
+              className="mx-2 font-bold text-2xl text-headerText hover:text-pink-500 hover:underline decoration-pink-500"
             >
               Teams
             </Link>
@@ -69,14 +86,14 @@ const Nav = () => {
                   className="rounded-full relative"
                 />
                 <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-pink-500 top-2 right-29 ">
-                  20
+                  {requests?.length === 0 ? 0 : requests?.length}
                 </div>
               </Link>
               <button
                 onClick={signOut}
-                class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+                class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-headerText to-subHeaderText group-hover:from-headerText group-hover:to-subHeaderText hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
               >
-                <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                <span class="relative px-2 py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                   Sign Out
                 </span>
                 <svg
@@ -97,11 +114,11 @@ const Nav = () => {
               {providers &&
                 Object.values(providers).map((provider) => (
                   <button
-                    className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+                    className="relative inline-flex items-center justify-center p-0.5 mb-2  overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-headerText to-subHeaderText group-hover:from-headerText group-hover:to-subHeaderText hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
                     key={provider.name}
                     onClick={() => signIn(provider.id)}
                   >
-                    <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                    <span class="relative px-3 py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                       Sign In
                     </span>
 
