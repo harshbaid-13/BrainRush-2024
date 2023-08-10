@@ -616,22 +616,22 @@ export default function AboutMain() {
               {/* <h2 className="text-logoYellow mb-8 text-4xl  ">
                   About BRAINRUSH
             </h2> */}
-              <p className="text-gray-50 mb-8 text-base">
+              <p className="text-gray-800 mb-8 text-base">
                 The annual intra-college gameshow is organised by the department
                 of Computer Science & Engineering of MCKV Institute of
                 Engineering, in association with IIC,MCKVIE.
               </p>
-              <p className="text-gray-50 mb-12 text-base">
+              <p className="text-gray-800 mb-12 text-base">
                 BRAINRUSH promises to test the analytical skills, attentiveness
                 and inquisitiveness of the students. It is a a game of sheer
                 intelligence and knowledge that provides a platform for testing
                 and sharpening the skill- set of the student.
               </p>
-              <p className="text-gray-50 mb-12 text-base">
+              <p className="text-gray-800 mb-12 text-base">
                 The 6 tremendously successful runs, BRAINRUSH 2k23 promises to
                 be truly enlightening, illuminating and loaded with adventure.
               </p>
-              <h1 className="text-logoYellow font-bold sm:text-4xl text-2xl date ">
+              <h1 className="text-purple-500 font-bold sm:text-4xl text-2xl date ">
                 Date: 25th August, 2023
               </h1>
             </div>

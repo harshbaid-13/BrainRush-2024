@@ -3,7 +3,14 @@ import Heading from "@components/Heading/Heading";
 
 const FAQ = () => {
   return (
-    <div className="max-w-screen-xl text-gray-50 mx-auto px-5  min-h-sceen">
+    <div
+      className="max-w-screen-full text-gray-50  px-5  min-h-sceen"
+      // style={{
+      //   //  background: rgb(255,248,227);
+      //   background:
+      //     "linear-gradient(163deg, rgba(255,248,227,1) 3%, rgba(117,234,231,1) 46%, rgba(159,204,237,1) 95%);",
+      // }}
+    >
       <div className="flex flex-col items-center">
         {/* <h2 className="font-bold text-8xl mt-5 tracking-tight">FAQ</h2>
         <p className="text-neutral-500 text-white text-xl mt-3">
@@ -22,7 +29,7 @@ const FAQ = () => {
       <div className="grid mb-6 lg:mb-16 md:grid-cols-1 divide-y divide-neutral-200 max-w-6xl mx-auto mt-8">
         <div className="py-5">
           <details className="group">
-            <summary className="flex justify-between items-center font-medium cursor-pointer list-none">
+            <summary className="flex justify-between items-center text-purple-500 font-medium cursor-pointer list-none">
               <span> Is there a registration fee for the event?</span>
               <span className="transition group-open:rotate-180">
                 <svg
@@ -40,14 +47,14 @@ const FAQ = () => {
                 </svg>
               </span>
             </summary>
-            <p className="text-neutral-600  text-gray-400 mt-3 group-open:animate-fadeIn">
+            <p className="text-neutral-600  text-gray-300 mt-3 group-open:animate-fadeIn">
               Yes , The registration fee is ₹50 per team.
             </p>
           </details>
         </div>
         <div className="py-5">
           <details className="group">
-            <summary className="flex justify-between items-center font-medium cursor-pointer list-none">
+            <summary className="flex justify-between items-center text-purple-500 font-medium cursor-pointer list-none">
               <span>
                 Can I register for the event as an individual if I don&apos;t
                 have a team?
@@ -68,14 +75,14 @@ const FAQ = () => {
                 </svg>
               </span>
             </summary>
-            <p className="text-neutral-600 text-white mt-3 group-open:animate-fadeIn">
+            <p className="text-neutral-600 text-gray-300 mt-3 group-open:animate-fadeIn">
               No, you cannot register as an individual.
             </p>
           </details>
         </div>
         <div className="py-5">
           <details className="group">
-            <summary className="flex justify-between items-center font-medium cursor-pointer list-none">
+            <summary className="flex justify-between items-center text-purple-500 font-medium cursor-pointer list-none">
               <span>Who can be my teammates?</span>
               <span className="transition group-open:rotate-180">
                 <svg
@@ -93,7 +100,7 @@ const FAQ = () => {
                 </svg>
               </span>
             </summary>
-            <p className="text-neutral-600 text-white mt-3 group-open:animate-fadeIn">
+            <p className="text-neutral-600 text-gray-300 mt-3 group-open:animate-fadeIn">
               Teams can be formed from the same department and same year , no
               Cross-Department registration is allowed.
             </p>
@@ -101,7 +108,7 @@ const FAQ = () => {
         </div>
         <div className="py-5">
           <details className="group">
-            <summary className="flex justify-between items-center font-medium cursor-pointer list-none">
+            <summary className="flex justify-between text-purple-500 items-center font-medium cursor-pointer list-none">
               <span> Will there be any breaks during the event?</span>
               <span className="transition group-open:rotate-180">
                 <svg
@@ -119,7 +126,7 @@ const FAQ = () => {
                 </svg>
               </span>
             </summary>
-            <p className="text-neutral-600 text-white mt-3 group-open:animate-fadeIn">
+            <p className="text-neutral-600 text-gray-300 mt-3 group-open:animate-fadeIn">
               Yes, there will be scheduled breaks during the event to give you a
               chance to rest and recharge.
             </p>
@@ -127,7 +134,7 @@ const FAQ = () => {
         </div>
         <div className="py-5">
           <details className="group">
-            <summary className="flex justify-between items-center font-medium cursor-pointer list-none">
+            <summary className="flex justify-between text-purple-500 items-center font-medium cursor-pointer list-none">
               <span> Will refreshments be provided?</span>
               <span className="transition group-open:rotate-180">
                 <svg
@@ -145,7 +152,7 @@ const FAQ = () => {
                 </svg>
               </span>
             </summary>
-            <p className="text-neutral-600 text-white mt-3 group-open:animate-fadeIn">
+            <p className="text-neutral-600 text-gray-300 mt-3 group-open:animate-fadeIn">
               Yes the teams which qualify the first round will be given
               refreshments during the lunch break.
             </p>
@@ -153,7 +160,7 @@ const FAQ = () => {
         </div>
         <div className="py-5">
           <details className="group">
-            <summary className="flex justify-between items-center font-medium cursor-pointer list-none">
+            <summary className="flex justify-between text-purple-500 items-center font-medium cursor-pointer list-none">
               <span> How will the winners be announced?</span>
               <span className="transition group-open:rotate-180">
                 <svg
@@ -171,7 +178,7 @@ const FAQ = () => {
                 </svg>
               </span>
             </summary>
-            <p className="text-neutral-600 text-white mt-3 group-open:animate-fadeIn">
+            <p className="text-neutral-600 text-gray-300 mt-3 group-open:animate-fadeIn">
               The winners will be announced on the day of the event itself.
             </p>
           </details>
@@ -263,7 +270,7 @@ const FAQ = () => {
   </div> */}
         <div className="py-5">
           <details className="group">
-            <summary className="flex justify-between items-center font-medium cursor-pointer list-none">
+            <summary className="flex justify-between text-purple-500 items-center font-medium cursor-pointer list-none">
               <span>
                 What should I do if I have technical difficulties during the
                 event?
@@ -284,7 +291,7 @@ const FAQ = () => {
                 </svg>
               </span>
             </summary>
-            <p className="text-neutral-600 text-white mt-3 group-open:animate-fadeIn">
+            <p className="text-neutral-600 text-gray-300 mt-3 group-open:animate-fadeIn">
               If you experience any technical difficulties during the event,
               please contact the event organizers immediately through the event
               platform or through the contact form on the website. We will do

@@ -18,11 +18,12 @@ module.exports = {
       background: "#0f172a",
       navcol: "#F1B860",
       purple: { 500: "rgb(24, 13, 238)", 800: "#fff" },
-      pink: { 500: "rgb(216, 100, 27)" },
+      pink: { 500: "#B2194A" },
       white: "#fff",
       gray: {
         50: "#f9fafb",
         100: "#f3f4f6",
+        300: "gray",
         400: "#9ca3af",
         500: "#6b7280",
         600: "#4b5563",

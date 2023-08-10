@@ -7,7 +7,12 @@ const Marquee = () => {
       <div class="marquee">
         <div class="track">
           <div class="content" style={{ color: "white" }}>
-            &nbsp;<span></span>Create Your Team{" "}
+            &nbsp; Create Your Team &nbsp; Create Your Team &nbsp; Create Your
+            Team &nbsp; Create Your Team &nbsp; Create Your Team &nbsp; Create
+            Your Team &nbsp; Create Your Team &nbsp; Create Your Team &nbsp;
+            Create Your Team &nbsp; Create Your Team &nbsp; Create Your Team
+            &nbsp; Create Your Team &nbsp; Create Your Team &nbsp; Create Your
+            Team &nbsp; Create Your Team{" "}
           </div>
         </div>
       </div>
