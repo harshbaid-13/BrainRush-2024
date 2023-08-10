@@ -631,7 +631,7 @@ export default function AboutMain() {
                 The 6 tremendously successful runs, BRAINRUSH 2k23 promises to
                 be truly enlightening, illuminating and loaded with adventure.
               </p>
-              <h1 className="text-purple-500 font-bold sm:text-4xl text-2xl date ">
+              <h1 className="text-subHeaderText font-bold sm:text-4xl text-2xl date ">
                 Date: 25th August, 2023
               </h1>
             </div>

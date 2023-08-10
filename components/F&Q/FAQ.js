@@ -29,7 +29,7 @@ const FAQ = () => {
       <div className="grid mb-6 lg:mb-16 md:grid-cols-1 divide-y divide-neutral-200 max-w-6xl mx-auto mt-8">
         <div className="py-5">
           <details className="group">
-            <summary className="flex justify-between items-center text-purple-500 font-medium cursor-pointer list-none">
+            <summary className="flex justify-between items-center text-subHeaderText font-bold cursor-pointer list-none">
               <span> Is there a registration fee for the event?</span>
               <span className="transition group-open:rotate-180">
                 <svg
@@ -54,7 +54,7 @@ const FAQ = () => {
         </div>
         <div className="py-5">
           <details className="group">
-            <summary className="flex justify-between items-center text-purple-500 font-medium cursor-pointer list-none">
+            <summary className="flex justify-between items-center text-subHeaderText font-bold cursor-pointer list-none">
               <span>
                 Can I register for the event as an individual if I don&apos;t
                 have a team?
@@ -82,7 +82,7 @@ const FAQ = () => {
         </div>
         <div className="py-5">
           <details className="group">
-            <summary className="flex justify-between items-center text-purple-500 font-medium cursor-pointer list-none">
+            <summary className="flex justify-between items-center text-subHeaderText font-bold cursor-pointer list-none">
               <span>Who can be my teammates?</span>
               <span className="transition group-open:rotate-180">
                 <svg
@@ -108,7 +108,7 @@ const FAQ = () => {
         </div>
         <div className="py-5">
           <details className="group">
-            <summary className="flex justify-between text-purple-500 items-center font-medium cursor-pointer list-none">
+            <summary className="flex justify-between text-subHeaderText font-bold font-medium cursor-pointer list-none">
               <span> Will there be any breaks during the event?</span>
               <span className="transition group-open:rotate-180">
                 <svg
@@ -134,7 +134,7 @@ const FAQ = () => {
         </div>
         <div className="py-5">
           <details className="group">
-            <summary className="flex justify-between text-purple-500 items-center font-medium cursor-pointer list-none">
+            <summary className="flex justify-between text-subHeaderText font-bold items-center  cursor-pointer list-none">
               <span> Will refreshments be provided?</span>
               <span className="transition group-open:rotate-180">
                 <svg
@@ -160,7 +160,7 @@ const FAQ = () => {
         </div>
         <div className="py-5">
           <details className="group">
-            <summary className="flex justify-between text-purple-500 items-center font-medium cursor-pointer list-none">
+            <summary className="flex justify-between text-subHeaderText font-bold items-center  cursor-pointer list-none">
               <span> How will the winners be announced?</span>
               <span className="transition group-open:rotate-180">
                 <svg
@@ -270,7 +270,7 @@ const FAQ = () => {
   </div> */}
         <div className="py-5">
           <details className="group">
-            <summary className="flex justify-between text-purple-500 items-center font-medium cursor-pointer list-none">
+            <summary className="flex justify-between text-subHeaderText font-bold items-center  cursor-pointer list-none">
               <span>
                 What should I do if I have technical difficulties during the
                 event?

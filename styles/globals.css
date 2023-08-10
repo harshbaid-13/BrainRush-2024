@@ -7,17 +7,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@600&family=Lobster&family=Playfair+Display:ital,wght@1,400;1,500&display=swap');
 
 /* @import url('https://www.fontspace.com/coffee-healing-font-f79423'); */
-
+/* 
 * {
-    scrollbar-width: 0.5rem;
+    scrollbar-width: none;
     scrollbar-color: rgb(30, 41, 59);
+} */
+.example::-webkit-scrollbar {
+    display: none;
 }
 
+.example {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
 
 /* Chrome, Edge, and Safari */
 
 *::-webkit-scrollbar {
-    width: 0.5rem;
+    width: 0rem;
 }
 
 
@@ -27,8 +36,8 @@
 } */
 
 *::-webkit-scrollbar-thumb {
-    background-color: rgb(30, 41, 59) !important;
-    border-radius: 0.4rem;
+    background-color: rgb(237, 238, 241) !important;
+    border-radius: 0rem;
     /* border: 0.5px solid rgb(71 85 105 / 0.6); */
 }
 

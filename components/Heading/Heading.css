@@ -6,9 +6,9 @@
     font-weight: bolder !important;
     text-transform: uppercase !important;
 
-    background: -webkit-linear-gradient(rgb(24, 13, 238), rgb(215, 33, 9)) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
+    /* background: -webkit-linear-gradient(rgb(24, 13, 238), rgb(215, 33, 9)) !important; */
+    /* -webkit-background-clip: text !important; */
+    /* -webkit-text-fill-color: transparent !important; */
     /* // textShadow: " -1px 3px 6px white; !important", */
 
 }

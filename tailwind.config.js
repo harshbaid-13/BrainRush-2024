@@ -14,8 +14,9 @@ module.exports = {
       },
     },
     colors: {
-      logoYellow: "#E37029",
+      headerText: "rgb(9 64 94)",
       background: "#0f172a",
+      subHeaderText: " #c40743",
       navcol: "#F1B860",
       purple: { 500: "rgb(24, 13, 238)", 800: "#fff" },
       pink: { 500: "#B2194A" },
