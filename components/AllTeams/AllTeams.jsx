@@ -11,14 +11,19 @@ const AllTeams = () => {
     setTeams(data.data);
   };
 
+  console.log(teams);
+
   useEffect(() => {
     getTeams();
   }, []);
 
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg mx-20">
+      <table className="w-full h-10 text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead
+          className="h-20 text-xs text-gray-50 uppercase  dark:bg-gray-50 dark:text-gray-50"
+          style={{ background: "#6f7bd9" }}
+        >
           <tr>
             <th scope="col" className="px-6 py-3">
               Team Name
@@ -29,22 +34,37 @@ const AllTeams = () => {
             <th scope="col" className="px-6 py-3">
               Team Member
             </th>
+            <th scope="col" className="px-6 py-3">
+              Payment Status
+            </th>
           </tr>
         </thead>
         <tbody>
           {teams &&
             teams.map((team) => (
-              <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+              <tr className=" border-b 0 dark:border-gray-700">
                 <td
                   scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                 >
                   {team.teamName}
                 </td>
-                <td className="px-6 py-4">{team.leader.name}</td>
-                <td className="px-6 py-4">
-                  {team?.teamMember?.name ? team.teamMember.name : "Join me"}
+                <td className="px-6 py-4 text-gray-300">
+                  <span className="text-gray-900">{team.leader.name}</span>
+                  <br />
+                  {team.leader.email}
                 </td>
+                <td className="px-6 py-4 ">
+                  <span className="text-gray-900">
+                    {team?.teamMember?.name
+                      ? team.teamMember.name
+                      : "Not Selected"}
+                  </span>
+                  <br />
+
+                  {team?.teamMember?.name ? team.teamMember.email : ""}
+                </td>
+                <td className="px-6 py-4">{team?.payment ? "✅" : "❌"}</td>
               </tr>
             ))}
         </tbody>

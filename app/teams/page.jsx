@@ -6,6 +6,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import "./page.css";
 import Link from "next/link";
+import AllTeams from "@components/AllTeams/AllTeams";
 
 const Teams = () => {
   const { data: session } = useSession();
@@ -57,12 +58,7 @@ const Teams = () => {
     const data = await response.json();
     setRequests(data.data);
   };
-
-  const successSubmit = () => {
-    if (submit) {
-      return <page />;
-    }
-  };
+  // console.log({ data });
 
   useEffect(() => {
     getRequests();
@@ -77,7 +73,7 @@ const Teams = () => {
         <div class="container px-5 py-24 mx-auto flex flex-wrap">
           <div class="flex flex-wrap -m-4">
             <div class="p-4 lg:w-1/2 md:w-full teamButton">
-              <div class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col">
+              <div class="flex border-2 rounded-lg border-gray-200 teaminnerbutton border-opacity-50 p-8 sm:flex-row flex-col">
                 <div class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
                   <svg
                     fill="none"
@@ -92,7 +88,10 @@ const Teams = () => {
                   </svg>
                 </div>
                 <div class="flex-grow">
-                  <h2 class="text-white text-6xl title-font font-2xl mb-3">
+                  <h2
+                    class="text-pink-500 text-6xl title-font font-2xl mb-3"
+                    // style={{ color: "#6f7bd9 !important" }}
+                  >
                     Join Team
                   </h2>
 
@@ -138,7 +137,7 @@ const Teams = () => {
                   </svg>
                 </div>
                 <div class="flex-grow">
-                  <h2 class="text-white text-6xl title-font font-2xl mb-3">
+                  <h2 class="text-pink-500 text-6xl title-font font-2xl mb-3">
                     Create Team
                   </h2>
                   <p class="leading-relaxed text-base mb-5">
@@ -187,12 +186,13 @@ const Teams = () => {
           class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
           onClick={getQr}
         >
-          <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+          {/* <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
             Get Team QR
-          </span>
+          </span> */}
         </button>
         {/* <button className="text-white"></button> */}
       </div>
+      {/* <AllTeams /> */}
     </>
   );
 };

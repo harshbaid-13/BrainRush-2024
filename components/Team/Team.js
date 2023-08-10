@@ -10,14 +10,14 @@ import whatsapp from "public/assets/images/whatsapp.png";
 const Team = () => {
   return (
     <>
-      <Heading
+      {/* <Heading
         title={""}
         header={"Our Dedicated"}
         hearerspan="Team Members"
         subheader="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis"
         subheaderspan1="tortor eros. Donec vitae tortor lacus. Phasellus aliquam ante in maximus."
         subheaderspan2=""
-      />
+      /> */}
 
       <section class="">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
@@ -28,11 +28,20 @@ const Team = () => {
           <div class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {data.map((e) => {
               return (
-                <div class="text-center text-gray-500 p-3 dark:text-gray-400 rounded-lg relativet">
-                  <div className="absolute top-0 left-40 h-16 w-16 text-4xl   z-2">
+                <div class="text-center text-gray-500 p-3 dark:text-gray-400  relativet">
+                  {/* <div className="absolute top-0 left-40 h-16 w-16 text-4xl   z-2">
                     {e.emoji}
-                  </div>
-                  <img
+                  </div> */}
+                  <Image
+                    class="object-contain mx-auto p-1 ring-2 ring-gray-300  dark:ring-gray-500 rounded-full"
+                    // src="/docs/images/people/profile-picture-5.jpg"
+                    // alt="Bordered avatar"
+                    src={e.photo}
+                    width={100}
+                    height={100}
+                    alt=""
+                  />
+                  {/* <img
                     class="mx-auto mb-4 w-36 h-36 rounded-full "
                     style={{
                       borderRadius: "50% !important",
@@ -41,18 +50,18 @@ const Team = () => {
                       // borderImage:
                       //   "linear-gradient(45deg, purple, orange) 1 !important",
                     }}
-                    src={e.photo}
-                    alt="Bonnie Avatar"
-                  />
+                  /> */}
 
-                  <h3 class="mb-1 text-2xl font-bold tracking-tight text-logoYellow hover:underline decoration-logoYellow dark:text-white">
-                    <a href={e.whatsapp}>{e.name}</a>
+                  <h3 class="mb-1 text-2xl font-bold tracking-tight text-purple-500 hover:underline decoration-logoYellow ">
+                    <Link href={e.whatsapp} target="_blank">
+                      {e.name}
+                    </Link>
                   </h3>
-                  <p className="text-gray-400 dark:text-white">{e.year}</p>
+                  <p className="text-gray-800">{e.year}</p>
                   {/* <ul class="flex justify-center mt-4 space-x-4">
                     <li>
                       <a
-                        href={e.whatsapp}
+                       
                         class="text-[#00B315] hover:text-[#00F71D] dark:hover:text-white"
                       >
                         <svg

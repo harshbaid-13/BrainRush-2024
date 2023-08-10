@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Open+Sans:wght@500&family=Roboto:wght@500&family=Source+Code+Pro:wght@600&display=swap');
+
+.track .content {
+    font-size: 3rem;
+}
+
+.marquee {
+    position: relative;
+    width: 100vw;
+    max-width: 100%;
+    height: 73px;
+    transform: rotate(-1deg);
+    overflow-x: hidden;
+}
+
+.track {
+    /* translateX: x; */
+    /* background-color: rgb(240, 130, 28); */
+    background-color: #B2194A;
+    /* background: -webkit-linear-gradient(rgb(24, 13, 238), rgb(216, 100, 27)) !important; */
+    position: absolute;
+    white-space: nowrap;
+    will-change: transform;
+    animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}

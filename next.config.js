@@ -10,7 +10,7 @@ const nextConfig = {
       "see.fontimg.com",
       "user-images.githubusercontent.com",
       "api.qrserver.com",
-      "wa.me"
+      "res.cloudinary.com",
     ],
   },
   webpack(config) {

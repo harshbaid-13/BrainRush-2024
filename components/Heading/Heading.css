@@ -1,0 +1,23 @@
+.headingText {
+    /* margin: auto; */
+    font-size: 8rem !important;
+    font-family: 'Source Code Pro', monospace !important;
+    /* color: #131B2C; */
+    font-weight: bolder !important;
+    text-transform: uppercase !important;
+
+    background: -webkit-linear-gradient(rgb(24, 13, 238), rgb(215, 33, 9)) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    /* // textShadow: " -1px 3px 6px white; !important", */
+
+}
+
+@media only screen and (max-width:900px) {
+    .headingText {
+
+        font-size: 3.5rem !important;
+
+
+    }
+}

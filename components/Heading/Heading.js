@@ -1,28 +1,18 @@
 import React from "react";
+import "./Heading.css";
 
 function Heading(props) {
   return (
     <>
       <h1
-        className="text-gray-50 text-8xl font-bold sm:text-9xl text-center mb-20"
+        className="text-gray-50  font-bold  text-center mb-4 headingText"
         // style={{ fontFamily: "'Fira Code', monospace !important;" }}
-        style={{
-          fontFamily: "'Source Code Pro', monospace !important;",
-          color: "#131B2C",
-          textTransform: "uppercase",
-          textShadow: " -1px 3px 6px white; !important",
-        }}
       >
         {props.title}
         {props.subtitle}
       </h1>
 
       <div className="aboutHeader">
-        <h2>
-          {props.header}
-          <br />
-          {props.hearerspan}
-        </h2>
         <p>
           {props.subheader}
           <br />

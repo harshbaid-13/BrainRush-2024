@@ -17,12 +17,14 @@ export default function RootLayout({ children }) {
       <body
         className={inter.className}
         style={{
-          backgroundColor: "#111722",
+          background: "#fff",
+          // background:
+          //   "radial-gradient(circle, rgba(232,231,229,1) 0%, rgba(176,210,210,1) 46%, rgba(157,193,220,1) 95%);",
         }}
       >
         <Provider>
           <Nav />
-          {/* <Hero /> */}
+
           {children}
         </Provider>
       </body>

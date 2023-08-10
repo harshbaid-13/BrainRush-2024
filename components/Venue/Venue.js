@@ -119,7 +119,7 @@ function Venue() {
                   className="lg:w-10 w-[6vw]"
                   alt="icon"
                 />
-                <p className="text-white  lg:text-2xl font-semibold pl-2">
+                <p className="text-gray-800  lg:text-2xl font-semibold pl-2">
                   MCKV Institute of Engineering,Howrah
                 </p>
               </div>
