@@ -19,21 +19,21 @@ const Team = () => {
         subheaderspan2=""
       /> */}
 
-      <section class="">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
-          {/* <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
-          <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Our team</h2>
-          <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Explore the whole collection of open-source web components and elements built with the utility classes from Tailwind</p>
+      <section className="">
+        <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
+          {/* <div className="mx-auto mb-8 max-w-screen-sm lg:mb-16">
+          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Our team</h2>
+          <p className="font-light text-gray-500 sm:text-xl dark:text-gray-400">Explore the whole collection of open-source web components and elements built with the utility classes from Tailwind</p>
       </div>  */}
-          <div class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {data.map((e) => {
               return (
-                <div class="text-center text-gray-500 p-3 dark:text-gray-400  relativet">
+                <div className="text-center text-gray-500 p-3 dark:text-gray-400  relativet">
                   {/* <div className="absolute top-0 left-40 h-16 w-16 text-4xl   z-2">
                     {e.emoji}
                   </div> */}
                   <img
-                    class="object-contain mx-auto p-1 ring-4 ring-subHeaderText  rounded-full"
+                    className="object-contain mx-auto p-1 ring-4 ring-subHeaderText  rounded-full"
                     // src="/docs/images/people/profile-picture-5.jpg"
                     // alt="Bordered avatar"
                     src={e.photo}
@@ -42,7 +42,7 @@ const Team = () => {
                     alt=""
                   />
                   {/* <img
-                    class="mx-auto mb-4 w-36 h-36 rounded-full "
+                    className="mx-auto mb-4 w-36 h-36 rounded-full "
                     style={{
                       borderRadius: "50% !important",
                       border:
@@ -52,24 +52,24 @@ const Team = () => {
                     }}
                   /> */}
 
-                  <h3 class="mb-1 text-2xl font-bold tracking-tight text-headerText hover:underline decoration-logoYellow ">
+                  <h3 className="mb-1 text-2xl font-bold tracking-tight text-headerText hover:underline decoration-logoYellow ">
                     <Link href={e.whatsapp} target="_blank">
                       {e.name}
                     </Link>
                   </h3>
                   <p className="text-subHeaderText">{e.year}</p>
-                  {/* <ul class="flex justify-center mt-4 space-x-4">
+                  {/* <ul className="flex justify-center mt-4 space-x-4">
                     <li>
                       <a
                        
-                        class="text-[#00B315] hover:text-[#00F71D] dark:hover:text-white"
+                        className="text-[#00B315] hover:text-[#00F71D] dark:hover:text-white"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="30"
                           height="30"
                           fill="currentColor"
-                          class="bi bi-whatsapp"
+                          className="bi bi-whatsapp"
                           viewBox="0 0 16 16"
                         >
                           {" "}
@@ -111,10 +111,10 @@ const Team = () => {
         </ul>
       </div> */}
 
-      {/* <div class="flex flex-wrap justify-center overflow">
-                <div class="relative w-48 h-48">
-                    <img class="h-36 w-36 object-cover shadow-lg rounded-full object-top align-middle border-none" src="https://res.cloudinary.com/communichat/image/upload/v1679582400/a991cjzctpah2tuo2b2w.jpg" alt="user image" />
-                    <div class="absolute top-0 right-7 h-16 w-16 text-4xl  rounded-full z-2">&#128512;</div>
+      {/* <div className="flex flex-wrap justify-center overflow">
+                <div className="relative w-48 h-48">
+                    <img className="h-36 w-36 object-cover shadow-lg rounded-full object-top align-middle border-none" src="https://res.cloudinary.com/communichat/image/upload/v1679582400/a991cjzctpah2tuo2b2w.jpg" alt="user image" />
+                    <div className="absolute top-0 right-7 h-16 w-16 text-4xl  rounded-full z-2">&#128512;</div>
                 </div>
             </div>
             <Link href="http://wa.me/+919123737704"

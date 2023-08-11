@@ -19,18 +19,18 @@ export const TimerContainer = ({ days, hours, minutes, seconds }) => {
   }
 
   return (
-    <div className="-mt-16 rounded-xl">
+    <div className="-mt-20 rounded-xl">
       <div className="flex items-center space-x-1 justify-between mt-2 rounded-xl px-6 py-8 ">
         <NumberBox num={days} unit={"Days"} />
-        <span className="hidden text-3xl -mt-8 md:inline-block md:text-5xl font-normal text-gray-50 ">
+        <span className="text-3xl -mt-8 md:inline-block md:text-5xl font-normal text-gray-700 ">
           :
         </span>
         <NumberBox num={hours} unit={"Hours"} />
-        <span className="hidden text-3xl -mt-8 md:inline-block md:text-5xl font-normal text-gray-50 ">
+        <span className="text-3xl -mt-8 md:inline-block md:text-5xl font-normal text-gray-700">
           :
         </span>
         <NumberBox num={minutes} unit={"Minutes"} />
-        <span className="hidden text-3xl -mt-8 md:inline-block md:text-5xl font-normal text-gray-50 ">
+        <span className="text-3xl -mt-8 md:inline-block md:text-5xl font-normal text-gray-700">
           :
         </span>
         <NumberBox num={seconds} unit={"Seconds"} />
