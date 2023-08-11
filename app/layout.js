@@ -14,18 +14,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={inter.className}
-        style={{
-          // background: "#fff",
-          background:
-            "radial-gradient(circle, rgba(232,231,229,1) 0%, rgba(176,210,210,1) 46%, rgba(157,193,220,1) 95%);",
-        }}
-      >
+      <body>
         <Provider>
-          <Nav />
-
-          {children}
+          <div className="main">
+            <div className="gradient"></div>
+          </div>
+          <div className="relative z-10">
+            <Nav />
+            <div className="w-full h-auto mt-16">{children}</div>
+          </div>
         </Provider>
       </body>
     </html>

@@ -47,7 +47,7 @@ const FAQ = () => {
                 </svg>
               </span>
             </summary>
-            <p className="text-neutral-600  text-gray-300 mt-3 group-open:animate-fadeIn">
+            <p className="text-neutral-600  text-gray-900 mt-3 group-open:animate-fadeIn">
               Yes , The registration fee is ₹50 per team.
             </p>
           </details>
@@ -75,7 +75,7 @@ const FAQ = () => {
                 </svg>
               </span>
             </summary>
-            <p className="text-neutral-600 text-gray-300 mt-3 group-open:animate-fadeIn">
+            <p className="text-neutral-600 text-gray-900 mt-3 group-open:animate-fadeIn">
               No, you cannot register as an individual.
             </p>
           </details>
@@ -100,7 +100,7 @@ const FAQ = () => {
                 </svg>
               </span>
             </summary>
-            <p className="text-neutral-600 text-gray-300 mt-3 group-open:animate-fadeIn">
+            <p className="text-neutral-600 text-gray-900 mt-3 group-open:animate-fadeIn">
               Teams can be formed from the same department and same year , no
               Cross-Department registration is allowed.
             </p>
@@ -108,7 +108,7 @@ const FAQ = () => {
         </div>
         <div className="py-5">
           <details className="group">
-            <summary className="flex justify-between text-subHeaderText font-bold font-medium cursor-pointer list-none">
+            <summary className="flex justify-between text-subHeaderText font-bold cursor-pointer list-none">
               <span> Will there be any breaks during the event?</span>
               <span className="transition group-open:rotate-180">
                 <svg
@@ -126,7 +126,7 @@ const FAQ = () => {
                 </svg>
               </span>
             </summary>
-            <p className="text-neutral-600 text-gray-300 mt-3 group-open:animate-fadeIn">
+            <p className="text-neutral-600 text-gray-900 mt-3 group-open:animate-fadeIn">
               Yes, there will be scheduled breaks during the event to give you a
               chance to rest and recharge.
             </p>
@@ -152,7 +152,7 @@ const FAQ = () => {
                 </svg>
               </span>
             </summary>
-            <p className="text-neutral-600 text-gray-300 mt-3 group-open:animate-fadeIn">
+            <p className="text-neutral-600 text-gray-900 mt-3 group-open:animate-fadeIn">
               Yes the teams which qualify the first round will be given
               refreshments during the lunch break.
             </p>
@@ -178,7 +178,7 @@ const FAQ = () => {
                 </svg>
               </span>
             </summary>
-            <p className="text-neutral-600 text-gray-300 mt-3 group-open:animate-fadeIn">
+            <p className="text-neutral-600 text-gray-900 mt-3 group-open:animate-fadeIn">
               The winners will be announced on the day of the event itself.
             </p>
           </details>
@@ -291,7 +291,7 @@ const FAQ = () => {
                 </svg>
               </span>
             </summary>
-            <p className="text-neutral-600 text-gray-300 mt-3 group-open:animate-fadeIn">
+            <p className="text-neutral-600 text-gray-900 mt-3 group-open:animate-fadeIn">
               If you experience any technical difficulties during the event,
               please contact the event organizers immediately through the event
               platform or through the contact form on the website. We will do
