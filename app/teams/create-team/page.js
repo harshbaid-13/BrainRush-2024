@@ -37,28 +37,32 @@ const createTeam = () => {
 
   return (
     <>
-      <section class="">
-        <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-          <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-headerText ">
+      <section>
+        <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-headerText ">
             Create Your Team
           </h2>
 
-          <p class="mb-8 lg:mb-16 font-medium text-center text-subHeaderText sm:text-xl">
+          <p className="mb-8 lg:mb-16 font-medium text-center text-subHeaderText sm:text-xl">
             Got a technical issue? Want to send feedback about a beta feature?
             Need details about our Business plan? Let us know.
           </p>
-          <form action="#" class="space-y-8" onSubmit={handleCreateTeamSubmit}>
+          <form
+            action="#"
+            className="space-y-8"
+            onSubmit={handleCreateTeamSubmit}
+          >
             <div>
               <label
                 for="subject"
-                class="block mb-2 text-gray-600 text-sm font-medium "
+                className="block mb-2 text-gray-600 text-sm font-medium "
               >
                 Team Name<span className="text-red text-2xl">*</span>
               </label>
               <input
                 type="text"
                 id="email"
-                class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 placeholder-gray-700"
                 placeholder="Team Name"
                 required
                 value={teamName}
@@ -70,14 +74,14 @@ const createTeam = () => {
             <div>
               <label
                 for="subject"
-                class="block mb-2 text-gray-600 text-sm font-medium "
+                className="block mb-2 text-gray-600 text-sm font-medium "
               >
                 Team Member Email<span className="text-red text-2xl">*</span>
               </label>
               <input
                 type="email"
                 id="email"
-                class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 placeholder-gray-700"
                 placeholder="Team Member Email"
                 required
                 value={teamMemberEmail}
@@ -88,13 +92,13 @@ const createTeam = () => {
             </div>
             <button
               type="submit"
-              class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-headerText to-subHeaderText group-hover:from-headerText group-hover:to-subHeaderText hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+              className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
             >
-              <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+              <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-gradient-to-br from-btnColorDark to-btnColor rounded-md group-hover:bg-opacity-0">
                 Submit Details
               </span>
             </button>
-            {/* <button type="button" class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Purple to Pink</button> */}
+            {/* <button type="button" className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Purple to Pink</button> */}
           </form>
         </div>
         {/* {successSubmit()} */}

@@ -4,9 +4,9 @@ import "./Marquee.css";
 const Marquee = () => {
   return (
     <>
-      <div class="marquee">
-        <div class="track">
-          <div class="content" style={{ color: "white" }}>
+      <div className="marquee">
+        <div className="track">
+          <div className="content" style={{ color: "white" }}>
             &nbsp; Create Your Team &nbsp; Create Your Team &nbsp; Create Your
             Team &nbsp; Create Your Team &nbsp; Create Your Team &nbsp; Create
             Your Team &nbsp; Create Your Team &nbsp; Create Your Team &nbsp;
