@@ -1,14 +1,16 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import page from "@app/teams/page.jsx";
 import "./page.css";
+import { set } from "mongoose";
 
 const Profile = () => {
   // todo ek useeffect likhna hai to get user details jb profile pe ayega
   const { data: session } = useSession();
-  const [name, setName] = useState(session?.user?.name);
+  let userId = session?.user?.id;
+  const [name, setName] = useState("");
   const email = session?.user?.email;
   const [department, setDepartment] = useState(null);
   const [year, setYear] = useState(null);
@@ -21,7 +23,6 @@ const Profile = () => {
   // }
   // console.log(session.user)
 
-  const userId = session?.user?.id;
   const submitHandler = async () => {
     try {
       await fetch("/api/user", {
@@ -36,11 +37,36 @@ const Profile = () => {
       console.log(err);
     }
   };
+
+  const getUserDetails = async () => {
+    if (userId) {
+      console.log({ userId });
+      try {
+        const response = await fetch(`/api/user/${userId}`);
+        const { data } = await response.json();
+        console.log("userdata", data);
+        setName(data.name);
+        setDepartment(data.department);
+        setYear(data.year);
+        setContact(data.phoneNumber);
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    }
+  };
+
   const successSubmit = () => {
     if (submit) {
       return <page />;
     }
   };
+
+  useEffect(() => {
+    if (session?.user) {
+      userId = session.user.id;
+    }
+    getUserDetails();
+  }, [session, userId]);
 
   return (
     <section className="">
