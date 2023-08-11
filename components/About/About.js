@@ -53,8 +53,8 @@ function About() {
               }}
               className={
                 about
-                  ? "activeClass text-subHeaderText text-bold  text-2xl "
-                  : "notActiveClass text-2xl  "
+                  ? "activeClass text-subHeaderText text-bold  text-2xl cursor-pointer"
+                  : "notActiveClass text-2xl cursor-pointer "
               }
             >
               About Us
@@ -67,8 +67,8 @@ function About() {
               }}
               className={
                 venue
-                  ? "activeClass text-subHeaderText text-bold text-2xl"
-                  : "notActiveClass  text-2xl  "
+                  ? "activeClass text-subHeaderText text-bold text-2xl cursor-pointer"
+                  : "notActiveClass  text-2xl cursor-pointer "
               }
             >
               Our Venue
@@ -81,8 +81,8 @@ function About() {
               }}
               className={
                 schedule
-                  ? "activeClass text-subHeaderText text-bold hover:border-b-logoYellow text-xl focus:border-b-logoYellow"
-                  : "notActiveClass hover:border-b-logoYellow text-xl  focus:border-b-logoYellow"
+                  ? "activeClass text-subHeaderText text-bold hover:border-b-logoYellow text-xl focus:border-b-logoYellow cursor-pointer"
+                  : "notActiveClass hover:border-b-logoYellow text-xl  focus:border-b-logoYellow cursor-pointer"
               }
             >
               Our Team

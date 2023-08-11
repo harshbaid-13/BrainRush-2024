@@ -13,10 +13,16 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
+
     colors: {
+      "primary-orange": "#FF5722",
       headerText: "rgb(9 64 94)",
       background: "#0f172a",
-      subHeaderText: " #c40743",
+      subHeaderText: "#ed3d15",
+      btnColor: "#f06141",
+      btnColorDark: "#c21111",
+      inputBgColor: "#cacbd366",
+      countDownText: "#0b99b3",
       navcol: "#F1B860",
       purple: { 500: "rgb(24, 13, 238)", 800: "#fff" },
       pink: { 500: "#B2194A" },
@@ -24,6 +30,7 @@ module.exports = {
       gray: {
         50: "#f9fafb",
         100: "#f3f4f6",
+        200: "#474646",
         300: "gray",
         400: "#9ca3af",
         500: "#6b7280",
