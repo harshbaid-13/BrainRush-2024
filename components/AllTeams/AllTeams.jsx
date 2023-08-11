@@ -8,11 +8,12 @@ const AllTeams = () => {
   const [limit, setLimit] = useState(0);
   const [count, setCount] = useState(0);
   const [search, setSearch] = useState("");
+  const [notSelected, setNotSelected] = useState(null);
 
   const getTeams = async () => {
     try {
       const response = await fetch(
-        `/api/team/all?search=${search}&page=${pageNum}`
+        `/api/team/all?search=${search}&page=${pageNum}&selected=${notSelected}`
       );
       const data = await response.json();
       setTeams(data.teams);
@@ -26,7 +27,7 @@ const AllTeams = () => {
   useEffect(() => {
     getTeams();
     console.log({ teams });
-  }, [pageNum, search]);
+  }, [pageNum, notSelected]);
 
   return (
     <>
@@ -43,11 +44,16 @@ const AllTeams = () => {
                 id="teams-search"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 placeholder="Search for teams"
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                }}
+                onChange={(e) => { setSearch(e.target.value) }}
               />
             </div>
+            <button type="submit" className="bg-primary-orange p-2 text-white rounded-md" onClick={
+              getTeams
+            }>Submit</button>
+            <label className="flex">
+              <input className="mr-2 w-6 h-6" type="checkbox" name="notSelected" onClick={() => { setNotSelected((prev) => prev ? null : true) }} />
+              <span>Not Selected</span>
+            </label>
           </div>
         </div>
       </div>
@@ -81,7 +87,7 @@ const AllTeams = () => {
           <tbody>
             {teams &&
               teams.map((team) => (
-                <tr className=" border-b 0 dark:border-gray-700">
+                <tr className=" border-b 0 dark:border-gray-700" key={team._id}>
                   <td
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
