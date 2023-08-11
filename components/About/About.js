@@ -27,7 +27,7 @@ function About() {
   return (
     <>
       <section
-        className="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] px-5 sm:px-20  "
+        className="overflow-hidden  px-5 sm:px-20  "
         // style={{
         //   // background: rgb(255,248,227);
         //   background:
