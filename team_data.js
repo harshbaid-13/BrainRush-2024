@@ -3,7 +3,7 @@ const teamDetails = [
     year: "4th Year/CSE",
     name: "Anamika",
     photo:
-      "https://res.cloudinary.com/dr15eusdx/image/upload/v1690994957/Anamika_Tiwary_lzxfrp.jpg",
+      "https://res.cloudinary.com/dr15eusdx/image/upload/v1691738984/zrbm25mzlfiqqlcpp7dm.jpg",
     emoji: "😗",
     whatsapp: "http://wa.me/+919123272537",
   },
@@ -44,7 +44,7 @@ const teamDetails = [
     year: "4th Year/CSE-DS",
     name: "Ananya",
     photo:
-      "https://res.cloudinary.com/dr15eusdx/image/upload/c_thumb,w_900,h_900,g_auto/v1690994936/Ananya_Singh_nrn6n2.jpg",
+      "https://res.cloudinary.com/dr15eusdx/image/upload/v1691738396/jj1rtfola3bpaghz9sgt.jpg",
     emoji: "🐣",
     whatsapp: "http://wa.me/+919007445841",
   },
@@ -57,7 +57,7 @@ const teamDetails = [
     whatsapp: "http://wa.me/+917439251113",
   },
   {
-   year: "4th Year/CSE",
+    year: "4th Year/CSE",
     name: "Harsh",
     photo:
       "https://res.cloudinary.com/dr15eusdx/image/upload/v1690994937/Harsh_Baid_qnqgbn.jpg",
@@ -65,7 +65,7 @@ const teamDetails = [
     whatsapp: "http://wa.me/+918910631623",
   },
   {
-   year: "4th Year/CSE",
+    year: "4th Year/CSE",
     name: "Hitesh",
     photo:
       "https://res.cloudinary.com/dr15eusdx/image/upload/v1690994937/Hitesh_Periwal_pt0oxt.jpg",
@@ -84,7 +84,7 @@ const teamDetails = [
     year: "4th Year/CSE-DS",
     name: "Adil",
     photo:
-      "https://res.cloudinary.com/dr15eusdx/image/upload/v1690994943/Adil_Seraj_cl0nvf.jpg",
+      "https://res.cloudinary.com/dr15eusdx/image/upload/v1691738891/mzcnvdhpeupbovswzhhn.jpg",
     emoji: "😂",
     whatsapp: "http://wa.me/+919801250208",
   },
@@ -105,7 +105,7 @@ const teamDetails = [
     whatsapp: "http://wa.me/+919007446961",
   },
   {
-   year: "4th Year/CSE",
+    year: "4th Year/CSE",
     name: "Abhishek",
     photo:
       "https://res.cloudinary.com/dr15eusdx/image/upload/c_thumb,w_1500,h_1500,g_auto/v1690994935/Abhishek_Mishra_flpu3e.jpg",
@@ -114,10 +114,10 @@ const teamDetails = [
   },
 
   {
-   year: "4th Year/CSE",
+    year: "4th Year/CSE",
     name: "Utkarsh",
     photo:
-      "https://res.cloudinary.com/dr15eusdx/image/upload/c_thumb,w_1500,h_1500,g_auto/v1690994935/Utkarsh_Singh_xhjm5b.jpg",
+      "https://res.cloudinary.com/dr15eusdx/image/upload/v1691739423/nlwxn0dbi3oiik3ql1on.jpg",
     emoji: "🤐",
     whatsapp: "http://wa.me/+917370988146",
   },
@@ -125,7 +125,7 @@ const teamDetails = [
     year: "2nd Year/CSE-DS",
     name: "Swastik",
     photo:
-      "https://res.cloudinary.com/dr15eusdx/image/upload/c_thumb,w_1500,h_1500,g_auto/v1690994954/Swastik_Ghosh_ccpqv2.png",
+      "https://res.cloudinary.com/dr15eusdx/image/upload/c_thumb,w_1000,h_1000,g_auto/v1690994954/Swastik_Ghosh_ccpqv2.png",
     emoji: "😋",
     whatsapp: "http://wa.me/+917980167193",
   },
@@ -141,7 +141,7 @@ const teamDetails = [
     year: "3rd Year/CSE",
     name: "Nishka",
     photo:
-      "https://res.cloudinary.com/dr15eusdx/image/upload/c_thumb,w_1000,h_1500,g_auto/v1690994945/Nishka_Shrimali_sxtfpp.jpg",
+      "https://res.cloudinary.com/dr15eusdx/image/upload/v1691738850/d5xbajzpzvrzheqjoh5y.png",
     emoji: "🌻",
     whatsapp: "http://wa.me/+916291764011",
   },
@@ -163,12 +163,11 @@ const teamDetails = [
     whatsapp: "http://wa.me/+918697091160",
   },
 
- 
   {
     year: "2nd Year/AIML",
     name: "Monojit",
     photo:
-      "https://res.cloudinary.com/dr15eusdx/image/upload/v1690994944/Monojit_Das_n3ys6q.jpg",
+      "https://res.cloudinary.com/dr15eusdx/image/upload/v1691738829/no9zdwuwu9b8cchw7oyj.jpg",
     emoji: "🤓",
     whatsapp: "http://wa.me/+919836771886",
   },

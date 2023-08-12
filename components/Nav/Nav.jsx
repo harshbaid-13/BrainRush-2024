@@ -4,6 +4,13 @@ import Link from "next/link";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { useEffect, useState } from "react";
 import "./Nav.css";
+// import { Preahvihear } from "next/font/google";
+import { Preahvihear } from "next/font/google";
+
+const preahvihear = Preahvihear({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 const Nav = () => {
   const { data: session } = useSession();
@@ -31,7 +38,7 @@ const Nav = () => {
   return (
     <>
       <header
-        className="fixed top-0 left-0 w-full z-20 bg-white text-white body-font"
+        className="top-0 left-0 w-full z-20 bg-white text-white body-font"
         id="navHeader"
       >
         <div className="container mx-auto flex  p-5  md:flex-row items-center">
@@ -50,7 +57,9 @@ const Nav = () => {
               className="ml-3 text-2xl text-headerText font-bold "
               id="logoTag"
             >
-              Kodikas-2K23
+              <span className={preahvihear.className} id="logoTag">
+                Kodikas-2K23
+              </span>
             </span>
           </a>
           <nav
@@ -61,13 +70,13 @@ const Nav = () => {
               href={"/profile"}
               className="mx-2 font-bold text-2xl text-headerText hover:underline decoration-subHeaderText hover:text-subHeaderText "
             >
-              Profile
+              <span className={preahvihear.className}>Profile</span>
             </Link>
             <Link
               href={"/teams"}
               className="mx-2 font-bold text-2xl text-headerText hover:text-subHeaderText hover:underline decoration-subHeaderText"
             >
-              Teams
+              <span className={preahvihear.className}>Teams</span>
             </Link>
             {/* <Link href={"#venue"} className="mr-5 hover:text-logoYellow">Venue</Link> */}
           </nav>
@@ -82,6 +91,18 @@ const Nav = () => {
             // </button>
 
             <div className="flex gap-3 md:gap-5">
+              {/* <Link href="/teams/join-team">
+                <button
+                  type="button"
+                  class="inline-flex items-center rounded-lg group  mb-2 px-3 py-2 text-sm font-medium text-center text-white bg- bg-gradient-to-br from-btnColorDark to-btnColor group-hover:from-btnColorDark group-hover:to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+                >
+                  <span className={preahvihear.className}>Requests</span>
+                  <span class="inline-flex items-center justify-center w-4 h-4 ml-2 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
+                    {requests?.length === 0 ? 0 : requests?.length}
+                  </span>
+                </button>
+              </Link> */}
+
               <Link href="/teams/join-team">
                 <Image
                   src={session?.user.image}
@@ -90,9 +111,6 @@ const Nav = () => {
                   alt="Profile"
                   className="rounded-full relative"
                 />
-                <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-pink-500 top-2 right-29 ">
-                  {requests?.length === 0 ? 0 : requests?.length}
-                </div>
               </Link>
               <button
                 onClick={signOut}

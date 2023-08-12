@@ -2,14 +2,13 @@
     /* box-shadow: 10px 10px 17px -8px rgba(21, 121, 235, 1); */
     border-radius: 1rem;
     transition: 200ms;
-    /* border: 2px solid gray; */
-    /* margin: 2px 2px; */
-
-    /* background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(42, 20, 6, 1) 55%, rgba(4, 39, 45, 1) 100%); */
-
 }
 
-.teaminnerbutton {}
+.mainTeamButton {
+    margin: 0 5 !important;
+}
+
+
 
 .teamButton:hover {
     background-color: aliceblue;
@@ -17,4 +16,24 @@
     /* box-shadow: 0 0 11px rgba(149, 21, 235, 1); */
     /* transition: 7ms; */
 
+}
+
+
+@media only screen and(max-width: 500px) {
+    .mainTeamButton {
+        margin: 0 0 !important;
+    }
+
+
+    .teamButton {
+        width: 100% !important;
+        /* box-shadow: 10px 10px 17px -8px rgba(21, 121, 235, 1); */
+        border-radius: 1rem;
+        transition: 200ms;
+        /* border: 2px solid gray; */
+        /* margin: 2px 2px; */
+
+        /* background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(42, 20, 6, 1) 55%, rgba(4, 39, 45, 1) 100%); */
+
+    }
 }

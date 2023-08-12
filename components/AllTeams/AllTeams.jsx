@@ -33,27 +33,40 @@ const AllTeams = () => {
     <>
       <div className="sm:flex">
         <div className="items-center mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
-          <div className="lg:pr-3">
+          <div className="lg:pr-3 ml-20">
             <label htmlFor="teams-search" className="sr-only">
               Search
             </label>
-            <div className="relative mt-1 lg:w-64 xl:w-96">
+            <div className="flex flex-row my-2 lg:w-64 xl:w-96 ">
               <input
                 type="text"
                 name="email"
                 id="teams-search"
-                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                className="bg-gray-50 border  text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-50  dark:placeholder-gray-400 dark:text-headerText dark:focus:ring-primary-500 "
                 placeholder="Search for teams"
-                onChange={(e) => { setSearch(e.target.value) }}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
               />
+              <button
+                type="submit"
+                className="bg-primary-orange p-2 ml-2 text-white rounded-md"
+                onClick={getTeams}
+              >
+                Submit
+              </button>
             </div>
-            <button type="submit" className="bg-primary-orange p-2 text-white rounded-md" onClick={
-              getTeams
-            }>Submit</button>
-            <label className="flex">
-              <input className="mr-2 w-6 h-6" type="checkbox" name="notSelected" onClick={() => { setNotSelected((prev) => prev ? null : true) }} />
+            {/* <label className="flex my-2">
+              <input
+                className="mr-2 w-6 h-6"
+                type="checkbox"
+                name="notSelected"
+                onClick={() => {
+                  setNotSelected((prev) => (prev ? null : true));
+                }}
+              />
               <span>Not Selected</span>
-            </label>
+            </label> */}
           </div>
         </div>
       </div>
@@ -66,8 +79,8 @@ const AllTeams = () => {
       >
         <table className="w-full h-10 text-sm text-left text-gray-500 dark:text-gray-400">
           <thead
-            className="h-20 text-xs text-gray-50 uppercase  dark:bg-gray-50 dark:text-gray-50"
-            style={{ background: "#6f7bd9" }}
+            className="h-20 text-xs text-gray-50 uppercase  bg-headerText"
+            // style={{ background: "#6f7bd9" }}
           >
             <tr>
               <th scope="col" className="px-6 py-3">
@@ -115,28 +128,25 @@ const AllTeams = () => {
           </tbody>
         </table>
       </div>
-      <div
-        className="flex flex-col items-center justify-center fixed mb-10 right-0 bottom-0 mr-20"
-        style={{ background: "#6f7bd9" }}
-      >
-        <span className="text-sm text-gray-700 dark:text-gray-400">
+      <div className="relative flex flex-col items-center justify-center fixed mb-10 right-0 -bottom-20 mr-20">
+        <span className="text-sm text-gray-900 dark:text-gray-900 font-medium">
           Showing{" "}
-          <span className="font-semibold text-gray-900 dark:text-white">
+          <span className="font-semibold text-gray-900 dark:text-headerText">
             {Math.min(count, (pageNum - 1) * limit + 1)}
           </span>{" "}
           to{" "}
-          <span className="font-semibold text-gray-900 dark:text-white">
+          <span className="font-semibold text-gray-900 dark:text-headerText">
             {Math.min(count, pageNum * limit)}
           </span>{" "}
           of{" "}
-          <span className="font-semibold text-gray-900 dark:text-white">
+          <span className="font-semibold text-gray-900 dark:text-headerText">
             {count}
           </span>{" "}
           Entries
         </span>
         <div className="inline-flex mt-2 xs:mt-0">
           <button
-            className="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 rounded-l hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+            className="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-subHeaderText bg-gray-800 rounded-l hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
             onClick={() => {
               setPageNum((prev) => {
                 return Math.max(prev - 1, 1);
@@ -161,7 +171,7 @@ const AllTeams = () => {
             Prev
           </button>
           <button
-            className="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+            className="flex items-center justify-center px-4 h-10 text-base ml-1 font-medium text-white bg-subHeaderText bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
             onClick={() => {
               setPageNum((prev) => {
                 return Math.min(prev + 1, Math.floor((count - 1) / limit) + 1);

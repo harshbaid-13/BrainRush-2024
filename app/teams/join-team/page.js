@@ -3,6 +3,13 @@
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import { Preahvihear } from "next/font/google";
+import PreviousMap from "postcss/lib/previous-map";
+
+const preahvihear = Preahvihear({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 // import "./page.css";
 
 function page() {
@@ -53,8 +60,10 @@ function page() {
     return (
       <div className="mt-30">
         {requests?.length === 0 ? (
-          <h1 className="h-auto font-bold text-subHeaderText text-4xl mx-auto mt-16 text-center">
-            You have not any team request.
+          <h1 className="h-auto mt-80 font-bold text-subHeaderText text-4xl mx-auto mt-16 text-center">
+            <span className={preahvihear.className}>
+              You have not any team request.
+            </span>
           </h1>
         ) : (
           <>
@@ -80,14 +89,20 @@ function page() {
                           </div>
                           <div className="flex-grow">
                             <h2 className="text-white text-6xl title-font font-2xl mb-3">
-                              Join Team
+                              <span className={preahvihear.className}>
+                                Join Team
+                              </span>
                             </h2>
                             <h1 className="leading-relaxed text-base">
-                              Team Name : {request.team.teamName}
+                              <span className={preahvihear.className}>
+                                Team Name : {request.team.teamName}
+                              </span>
                               {/* Team Name : Poogle */}
                             </h1>
                             <p className="leading-relaxed text-base mb-5">
-                              Team Leader: {request.teamLeader.name}
+                              <span className={preahvihear.className}>
+                                Team Leader: {request.teamLeader.name}
+                              </span>
                               {/* Team Leader: Pratik Kumar Agarwal */}
                             </p>
                             <button
@@ -95,26 +110,32 @@ function page() {
                               onClick={() => {
                                 handleRejectTeam(request.team);
                               }}
-                              className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+                              className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
                             >
                               <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                                Cancel Request
+                                <span className={preahvihear.className}>
+                                  Confirm Request
+                                </span>
                               </span>
                             </button>
+
                             {/* <a className="mt-3 text-indigo-500 inline-flex me-2 items-center">
                     <Buttons title={"Cancel Request"} />
                   </a> */}
                             <button
                               type="submit"
-                              className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
                               onClick={() => {
                                 handleAcceptTeam(request.team);
                               }}
+                              className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
                             >
                               <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                                Confirm Request
+                                <span className={preahvihear.className}>
+                                  Confirm Request
+                                </span>
                               </span>
                             </button>
+
                             {/* <a className="mt-3 text-indigo-500 inline-flex ms-2 items-center">
                     <Buttons title={"Confirm Request"} />
                   </a> */}

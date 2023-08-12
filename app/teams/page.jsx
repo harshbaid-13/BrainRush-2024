@@ -3,6 +3,12 @@ import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import "./page.css";
 import Link from "next/link";
+import { Preahvihear } from "next/font/google";
+
+const preahvihear = Preahvihear({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 const Teams = () => {
   const { data: session } = useSession();
@@ -39,76 +45,108 @@ const Teams = () => {
   return (
     <>
       {isTeam ? (
-        <section class="text-gray-600  px-2 body-font">
-          <div class="container px-5 py-24 mx-auto flex flex-wrap">
-            <div class="flex flex-wrap -m-4">
-              <div class="p-4 lg:w-1/2 md:w-full teamButton">
-                <div class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col">
-                  <div class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
+        <section className="text-gray-600  body-font sm:mx-0 ">
+          <div className="container py-24 mx-auto flex flex-wrap items-center justify-center w-screen">
+            <div className="flex flex-wrap items-center justify-center md:w-full  lg:w-1/2 mainTeamButton">
+              <div className="p-2 lg:w-full md:w-full sm:w-full teamButton">
+                <div className="flex border-2 rounded-lg border-gray-200 teaminnerbutton border-opacity-50 p-8 sm:flex-row flex-col">
+                  <div className="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
                     <svg
                       fill="none"
                       stroke="currentColor"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      class="w-8 h-8"
+                      className="w-8 h-8"
                       viewBox="0 0 24 24"
                     >
                       <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
                     </svg>
                   </div>
-                  <div class="flex-grow">
-                    <h2 class="text-white text-6xl title-font font-2xl mb-3">
-                      My Team
+                  <div className="flex-grow">
+                    <h2 className="text-headerText text-4xl title-font font-2xl mb-3">
+                      <span className={preahvihear.className}>My Team</span>
                     </h2>
-                    <h1 class="leading-relaxed text-base">
-                      Team Name : {teamDetails?.teamName}
+                    <h1 className="leading-relaxed text-base text-gray-200 mb-5 ">
+                      <span className={preahvihear.className}>
+                        {" "}
+                        Team Name : {teamDetails?.teamName}
+                      </span>
                     </h1>
-                    <p class="leading-relaxed text-base mb-5">
-                      Team Leader: {teamDetails?.leader?.name}
+                    <p className="leading-relaxed text-base text-gray-200 mb-5">
+                      <span className={preahvihear.className}>
+                        Team Leader: {teamDetails?.leader?.name}
+                      </span>
                     </p>
-                    <p class="leading-relaxed text-base mb-5">
-                      Payment Status:{" "}
-                      {teamDetails?.payment ? "Paid" : "Not Paid"}
+                    <p className="leading-relaxed text-base text-gray-200 mb-5">
+                      <span className={preahvihear.className}>
+                        Payment Status:{" "}
+                        {teamDetails?.payment ? "Paid" : "Not Paid"}
+                      </span>
                     </p>
                     {teamDetails?.teamMemberConfirmation ? (
-                      <p>Team Member: {teamDetails?.teamMember}</p>
+                      <p>
+                        <span className={preahvihear.className}>
+                          Team Member: {teamDetails?.teamMember}
+                        </span>{" "}
+                        {teamDetails?.leader && teamDetails?.payment}?(
+                        <span class=" ml-2 bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
+                          Red
+                        </span>
+                        ):""
+                      </p>
                     ) : (
-                      <p>Team Member: Not Joined</p>
+                      <p>
+                        <span className={preahvihear.className}>
+                          Team Member: Not Joined
+                        </span>
+                      </p>
                     )}
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col justify-center items-center p-5">
-            {qrData && (
-              <img
-                className="mb-5 n"
-                src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${qrData}`}
-                width={200}
-                height={200}
-                alt="qr"
-              />
-            )}
+                {/* {console.log(qrData)} */}
+                <div className="flex flex-row justify-center items-center p-5">
+                  {qrData && (
+                    <img
+                      className="mb-5 n"
+                      src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${qrData}`}
+                      width={200}
+                      height={200}
+                      alt="qr"
+                    />
+                  )}
 
-            <button
-              type="submit"
-              class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
-              onClick={getQr}
-            >
-              <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                Get Team QR
-              </span>
-            </button>
-            <button className="text-white"></button>
+                  <button
+                    type="submit"
+                    onClick={getQr}
+                    className="relative mt-5 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+                  >
+                    <span className="relative px-5 py-2.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
+                      <span className={preahvihear.className}>Team Code</span>
+                    </span>
+                  </button>
+                  <button
+                    type="submit"
+                    onClick={getQr}
+                    className="relative mt-5 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+                  >
+                    <span className="relative px-5 py-2.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
+                      <span className={preahvihear.className}>Delete Team</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              <div />
+              <div />
+            </div>
           </div>
         </section>
       ) : (
-        <section class="text-gray-600  px-2 body-font mx-20">
+        <section class="text-gray-600  px-2 body-font mainTeamButton">
           <div class="container px-5 py-24 mx-auto flex flex-wrap">
-            <div class="flex flex-wrap -m-4">
-              <div class="p-4 lg:w-1/2 md:w-full teamButton">
+            <div class="flex flex-wrap gap-8 items-center justify-center -m-4">
+              <div class="p-4 lg:w-1/3 md:w-full teamButton">
                 <div class="flex border-2 rounded-lg border-gray-200 teaminnerbutton border-opacity-50 p-8 sm:flex-row flex-col">
                   <div class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
                     <svg
@@ -125,24 +163,28 @@ const Teams = () => {
                   </div>
                   <div class="flex-grow">
                     <h2
-                      class="text-pink-500 text-6xl title-font font-2xl mb-3"
+                      class="text-headerText text-4xl title-font font-2xl mb-3"
                       // style={{ color: "#6f7bd9 !important" }}
                     >
-                      Join Team
+                      <span className={preahvihear.className}>Join Team</span>
                     </h2>
 
                     <p class="leading-relaxed text-base mb-5">
                       {/* Team Leader: {request.teamLeader.name} */}
-                      Create your own team of member two including you by
-                      clicking the button.
+                      <span className={preahvihear.className}>
+                        Create your own team of member two including you by
+                        clicking the button.
+                      </span>
                     </p>
                     <Link href="teams/join-team">
                       <button
                         type="submit"
-                        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-headerText to-subHeaderText group-hover:from-headerText group-hover:to-subHeaderText hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+                        className="relative mt-5 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
                       >
-                        <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                          Team Request
+                        <span className="relative px-5 py-2.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
+                          <span className={preahvihear.className}>
+                            Join Team
+                          </span>
                         </span>
                       </button>
                     </Link>
@@ -156,7 +198,7 @@ const Teams = () => {
                   </div>
                 </div>
               </div>
-              <div class="p-4 lg:w-1/2 md:w-full teamButton">
+              <div class="p-4 lg:w-1/3 md:w-full teamButton">
                 <div class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col">
                   <div class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
                     <svg
@@ -173,20 +215,24 @@ const Teams = () => {
                     </svg>
                   </div>
                   <div class="flex-grow">
-                    <h2 class="text-pink-500 text-6xl title-font font-2xl mb-3">
-                      Create Team
+                    <h2 class="text-headerText text-4xl title-font font-2xl mb-3">
+                      <span className={preahvihear.className}>Create Team</span>
                     </h2>
                     <p class="leading-relaxed text-base mb-5">
-                      Create your own team of member two including you by
-                      clicking the button.
+                      <span className={preahvihear.className}>
+                        Create your own team of member two including you by
+                        clicking the button.
+                      </span>
                     </p>
                     <Link href="/teams/create-team">
                       <button
                         type="submit"
-                        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-headerText to-subHeaderText group-hover:from-headerText group-hover:to-subHeaderText hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+                        className="relative mt-5 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
                       >
-                        <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                          Create Team
+                        <span className="relative px-5 py-2.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
+                          <span className={preahvihear.className}>
+                            Create Team
+                          </span>
                         </span>
                       </button>
                     </Link>
