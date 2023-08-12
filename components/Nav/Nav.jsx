@@ -31,7 +31,7 @@ const Nav = () => {
   return (
     <>
       <header
-        className="fixed top-0 left-0 w-full z-20 bg-white text-white body-font"
+        className="top-0 left-0 w-full z-20 bg-white text-white body-font"
         id="navHeader"
       >
         <div className="container mx-auto flex  p-5  md:flex-row items-center">
@@ -83,6 +83,18 @@ const Nav = () => {
 
             <div className="flex gap-3 md:gap-5">
               <Link href="/teams/join-team">
+                <button
+                  type="button"
+                  class="inline-flex items-center rounded-lg group  mb-2 px-3 py-2 text-sm font-medium text-center text-white bg- bg-gradient-to-br from-btnColorDark to-btnColor group-hover:from-btnColorDark group-hover:to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+                >
+                  Requests
+                  <span class="inline-flex items-center justify-center w-4 h-4 ml-2 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
+                    {requests?.length === 0 ? 0 : requests?.length}
+                  </span>
+                </button>
+              </Link>
+
+              <Link href="/teams/join-team">
                 <Image
                   src={session?.user.image}
                   width={37}
@@ -90,9 +102,6 @@ const Nav = () => {
                   alt="Profile"
                   className="rounded-full relative"
                 />
-                <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-pink-500 top-2 right-29 ">
-                  {requests?.length === 0 ? 0 : requests?.length}
-                </div>
               </Link>
               <button
                 onClick={signOut}

@@ -15,9 +15,21 @@
     scrollbar-width: none;
     scrollbar-color: rgb(30, 41, 59);
 } */
-*{
+
+h1,
+h2,
+p,
+a,
+button {
     font-family: 'Preahvihear', sans-serif;
 }
+
+
+
+* {
+    font-family: 'Preahvihear', sans-serif;
+}
+
 .main {
     width: 100vw;
     min-height: 100vh;
@@ -78,6 +90,7 @@
         padding: 0;
     }
 }
+
 .example::-webkit-scrollbar {
     display: none;
 }
@@ -106,4 +119,3 @@
     border-radius: 0rem;
     /* border: 0.5px solid rgb(71 85 105 / 0.6); */
 }
-

@@ -1,6 +1,12 @@
 "use client";
 
 import React from "react";
+import { Preahvihear } from "next/font/google";
+
+const preahvihear = Preahvihear({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 export const NumberBox = ({ num, unit }) => {
   return (
@@ -9,7 +15,7 @@ export const NumberBox = ({ num, unit }) => {
         <div className="rounded-t-lg rounded-b-lg bg-[#cacbd366] w-full h-full opecity-0"></div>
 
         <div className="text-3xl absolute text-headerText z-10 font-bold font-redhat md:text-5xl font-mono ">
-          {num}
+          <div className={preahvihear.className}>{num}</div>
         </div>
 
         <div className=" rounded-b-lg rounded-t-lg bg-[#9b9b9d4b] w-full h-full"></div>
