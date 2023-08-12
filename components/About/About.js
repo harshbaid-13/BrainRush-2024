@@ -57,7 +57,7 @@ function About() {
                   : "notActiveClass text-2xl cursor-pointer "
               }
             >
-              About Us
+              {about ? "About Us" : "..."}
             </div>
             <div
               onClick={() => {
@@ -71,7 +71,7 @@ function About() {
                   : "notActiveClass  text-2xl cursor-pointer "
               }
             >
-              Our Venue
+              {venue ? "Our Venue" : "..."}
             </div>
             <div
               onClick={() => {
@@ -85,7 +85,7 @@ function About() {
                   : "notActiveClass hover:border-b-logoYellow text-xl  focus:border-b-logoYellow cursor-pointer"
               }
             >
-              Our Team
+              {schedule ? "Our Team" : "..."}
             </div>
           </div>
           <hr />

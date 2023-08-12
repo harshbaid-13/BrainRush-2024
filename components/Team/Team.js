@@ -14,7 +14,7 @@ const Team = () => {
     <>
       <section className="">
         <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
-          <div className="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid gap-8 lg:gap-16 grid-cols-2  lg:grid-cols-4 md:grid-cols-3 ">
             {data.map((e) => {
               return (
                 <div className="text-center text-gray-500 p-3 dark:text-gray-400  relativet">
@@ -24,7 +24,7 @@ const Team = () => {
                     alt=""
                   />
 
-                  <h3 className="my-2 text-2xl font-bold tracking-tight text-headerText hover:underline decoration-logoYellow ">
+                  <h3 className="mt-4 md:text-2xl font-bold tracking-tight text-headerText hover:underline decoration-logoYellow ">
                     <Link
                       href={e.whatsapp}
                       target="_blank"
@@ -33,7 +33,7 @@ const Team = () => {
                       {e.name}
                     </Link>
                   </h3>
-                  <p className="text-subHeaderText">
+                  <p className="md:text-xl text-xs text-subHeaderText">
                     <span className={preahvihear.className}>{e.year}</span>
                   </p>
                 </div>

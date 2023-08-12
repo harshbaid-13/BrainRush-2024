@@ -60,7 +60,7 @@ function page() {
     return (
       <div className="mt-30">
         {requests?.length === 0 ? (
-          <h1 className="h-auto mt-80 font-bold text-subHeaderText text-4xl mx-auto mt-16 text-center">
+          <h1 className="h-auto mt-80 font-bold text-subHeaderText text-4xl mx-auto text-center">
             <span className={preahvihear.className}>
               You have not any team request.
             </span>

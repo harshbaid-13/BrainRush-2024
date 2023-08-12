@@ -7,7 +7,7 @@ import About3 from "public/assets/images/About3.JPG";
 export default function AboutMain() {
   return (
     <>
-      <div className="container mx-auto">
+      <div className="container mx-auto my-7">
         <div className="-mx-4 flex flex-wrap items-center justify-between">
           <div className="w-full px-4 lg:w-6/12">
             <div className="-mx-3 flex items-center sm:-mx-4">

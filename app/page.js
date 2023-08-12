@@ -24,7 +24,6 @@ export default function Home() {
       {/* <Proccess /> */}
       <FAQ />
       {/* <Footer /> */}
-      <h1 className="flex justify-center">Kodikas 2K23 - Home Page</h1>
     </>
   );
 }
