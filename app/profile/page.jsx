@@ -1,14 +1,22 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import page from "@app/teams/page.jsx";
 import "./page.css";
+import { set } from "mongoose";
+import { Preahvihear } from "next/font/google";
+
+const preahvihear = Preahvihear({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 const Profile = () => {
   // todo ek useeffect likhna hai to get user details jb profile pe ayega
   const { data: session } = useSession();
-  const [name, setName] = useState(session?.user?.name);
+  let userId = session?.user?.id;
+  const [name, setName] = useState("");
   const email = session?.user?.email;
   const [department, setDepartment] = useState(null);
   const [year, setYear] = useState(null);
@@ -21,7 +29,6 @@ const Profile = () => {
   // }
   // console.log(session.user)
 
-  const userId = session?.user?.id;
   const submitHandler = async () => {
     try {
       await fetch("/api/user", {
@@ -36,22 +43,49 @@ const Profile = () => {
       console.log(err);
     }
   };
+
+  const getUserDetails = async () => {
+    if (userId) {
+      console.log({ userId });
+      try {
+        const response = await fetch(`/api/user/${userId}`);
+        const { data } = await response.json();
+        console.log("userdata", data);
+        setName(data.name);
+        setDepartment(data.department);
+        setYear(data.year);
+        setContact(data.phoneNumber);
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    }
+  };
+
   const successSubmit = () => {
     if (submit) {
       return <page />;
     }
   };
 
+  useEffect(() => {
+    if (session?.user) {
+      userId = session.user.id;
+    }
+    getUserDetails();
+  }, [session, userId]);
+
   return (
     <section className="">
       <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
         <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-headerText ">
-          Complete Your Profile
+          <span className={preahvihear.className}>Complete Your Profile</span>
         </h2>
 
         <p className="mb-8 lg:mb-16 text-center font-medium text-subHeaderText sm:text-xl">
-          Got a technical issue? Want to send feedback about a beta feature?
-          Need details about our Business plan? Let us know.
+          <span className={preahvihear.className}>
+            Got a technical issue? Want to send feedback about a beta feature?
+            Need details about our Business plan? Let us know.
+          </span>
         </p>
         <form action="#" className="space-y-8" onSubmit={submitHandler}>
           <div>
@@ -59,7 +93,9 @@ const Profile = () => {
               for="email"
               className="block mb-2 text-sm text-gray-700 font-medium"
             >
-              Your Name<span className="text-red text-2xl">*</span>
+              <span className={preahvihear.className}>
+                Your Name<span className="text-red text-2xl">*</span>
+              </span>{" "}
             </label>
             <input
               type="text"
@@ -78,7 +114,10 @@ const Profile = () => {
               for="subject"
               className="block mb-2 text-sm text-gray-600 font-medium "
             >
-              Your Email<span className="text-red text-2xl">*</span>
+              <span className={preahvihear.className}>
+                {/* Your Name<span className="text-red text-2xl">*</span> */}
+                Your Email<span className="text-red text-2xl">*</span>
+              </span>{" "}
             </label>
             <input
               type="email"
@@ -94,7 +133,10 @@ const Profile = () => {
               for="subject"
               className="block mb-2 text-gray-600 text-sm font-medium "
             >
-              Contact Number<span className="text-red text-2xl">*</span>
+              <span className={preahvihear.className}>
+                {/* Your Name<span className="text-red text-2xl">*</span> */}
+                Contact Number<span className="text-red text-2xl">*</span>
+              </span>{" "}
             </label>
             <input
               type="tel"
@@ -115,7 +157,10 @@ const Profile = () => {
               for="Department"
               className="block mb-2 text-gray-600 text-sm font-medium "
             >
-              Department<span className="text-red text-2xl">*</span>
+              <span className={preahvihear.className}>
+                {/* Your Name<span className="text-red text-2xl">*</span> */}
+                Department<span className="text-red text-2xl">*</span>
+              </span>{" "}
             </label>
 
             <select
@@ -143,7 +188,10 @@ const Profile = () => {
               for="Year"
               className="block mb-2 text-gray-600 text-sm font-medium "
             >
-              Year<span className="text-red text-2xl">*</span>
+              <span className={preahvihear.className}>
+                {/* Your Name<span className="text-red text-2xl">*</span> */}
+                Year<span className="text-red text-2xl">*</span>
+              </span>{" "}
             </label>
 
             <select
