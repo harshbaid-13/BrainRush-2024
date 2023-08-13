@@ -1,15 +1,15 @@
 import User from "@models/user";
 import { connectToDatabase } from "@utils/db";
-const { NextResponse } = require("next/server");
+import { NextResponse } from "next/server";
+import mongoose from "mongoose";
 
 export async function GET(request, { params }) {
   try {
     await connectToDatabase();
     if (!mongoose.Types.ObjectId.isValid(params.id)) {
-      console.error("Error fetching user data:", error);
       return NextResponse.json({ message: "Not a valid ID" }, { status: 404 });
     }
-    let user = await User.findOne({ _id: params.id });
+    let user = await User.findById(params.id);
 
     if (!user) {
       return NextResponse.json({ success: false, message: "User not found" });
