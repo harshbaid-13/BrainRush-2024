@@ -12,6 +12,14 @@ import Venue1 from "public/assets/images/Venue1.jpeg";
 import Venue2 from "public/assets/images/Venue2.jpeg";
 import Venue3 from "public/assets/images/Venue3.jpeg";
 import Venue4 from "public/assets/images/Venue4.jpeg";
+
+import { Preahvihear } from "next/font/google";
+
+const preahvihear = Preahvihear({
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 function Venue() {
   const myLoader = ({ src, width, quality }) => {
     return `https://example.com/${src}?w=${width}&q=${quality || 75}`;
@@ -120,7 +128,9 @@ function Venue() {
                   alt="icon"
                 />
                 <p className="text-gray-800  lg:text-2xl font-semibold pl-2">
-                  MCKV Institute of Engineering,Howrah
+                  <span className={preahvihear.className}>
+                    MCKV Institute of Engineering,Howrah
+                  </span>
                 </p>
               </div>
 
