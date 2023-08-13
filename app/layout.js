@@ -1,6 +1,5 @@
 "use client";
 import Hero from "@components/HeroSection/Hero";
-import Nav from "@components/Nav/Nav";
 import Provider from "@components/Provider";
 import "@styles/globals.css";
 import { Inter } from "next/font/google";
