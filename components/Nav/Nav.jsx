@@ -47,7 +47,7 @@ function Navbar() {
     dispatch(setUser(session?.user));
   };
   const getTeamDetails = async () => {
-    const res = await fetch(`/api/team/${session?.user?.id}`);
+    const res = await fetch(`/api/team/${session?.user?.id}/display`);
     const { data } = await res.json();
     dispatch(setTeam(data));
   };

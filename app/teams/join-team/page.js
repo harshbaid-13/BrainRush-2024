@@ -22,28 +22,28 @@ function page() {
 
   // const [requests, setRequests] = useState([]);
 
-  const handleAcceptTeam = async (teamId) => {
+  const handleAcceptTeam = async (id) => {
     try {
       await fetch("/api/team/confirm", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId: user.id, teamId }),
+        body: JSON.stringify({ userId: user.id, id }),
       });
     } catch (err) {
       console.log(err);
     }
   };
 
-  const handleRejectTeam = async (teamId) => {
+  const handleRejectTeam = async (id) => {
     try {
       await fetch("/api/team/confirm", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId: user?.id, teamId }),
+        body: JSON.stringify({ userId: user?.id, id }),
       });
     } catch (err) {
       console.log(err);
