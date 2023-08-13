@@ -32,9 +32,9 @@ const Hero = () => {
               width={"480"}
               height={"72"}
             /> */}
-            <h1 className={preahvihear.className}>
+            <span className={preahvihear.className}>
               Unlock Your Coding Potential{" "}
-            </h1>
+            </span>
 
             <a id="play-video" className="video-play-button" href="#">
               {/* <span></span> */}
