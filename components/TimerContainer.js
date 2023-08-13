@@ -20,7 +20,7 @@ export const TimerContainer = ({ days, hours, minutes, seconds }) => {
 
   return (
     <div className="-mt-20 rounded-xl">
-      <div className="flex items-center space-x-1 justify-between mt-2 rounded-xl px-6 py-8 ">
+      <div className="flex items-center space-x-1 justify-between mt-2 rounded-xl px-6 py-8 responsive-padding">
         <NumberBox num={days} unit={"Days"} />
         <span className="text-3xl -mt-8 md:inline-block md:text-5xl font-normal text-gray-700 ">
           :
