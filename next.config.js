@@ -11,6 +11,7 @@ const nextConfig = {
       "user-images.githubusercontent.com",
       "api.qrserver.com",
       "res.cloudinary.com",
+      "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name",
     ],
   },
   webpack(config) {
