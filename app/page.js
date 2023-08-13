@@ -11,6 +11,14 @@ import Footer from "@/components/Footer/Footer";
 // import Navbar from "@/components/Navbar";
 import Team from "@/components/Team/Team";
 import Venue from "@/components/Venue/Venue";
+import { useDispatch, useSelector } from "react-redux";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import { setUser } from "@Reducers/features/user";
+import { setTeam } from "@Reducers/features/team";
+import { setProfile } from "@Reducers/features/profile";
+import Schedule from "@components/Schedule/Schedule";
+
 // import UserLanding from "@components/UserInterface/UserLanding";
 // import Marquee from "@components/Marquee/Marquee";
 // import Proccess from "@components/Details/Proccess";
@@ -21,6 +29,9 @@ export default function Home() {
     <>
       <Hero />
       <About />
+      <Schedule />
+      {/* <Details /> */}
+      {/* <Proccess /> */}
       <FAQ />
     </>
   );

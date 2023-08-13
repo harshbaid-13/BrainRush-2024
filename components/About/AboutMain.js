@@ -4,6 +4,12 @@ import Image from "next/image";
 import About1 from "public/assets/images/About1.JPG";
 import About2 from "public/assets/images/About2.JPG";
 import About3 from "public/assets/images/About3.JPG";
+import { Preahvihear } from "next/font/google";
+
+const preahvihear = Preahvihear({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 export default function AboutMain() {
   return (
     <>
@@ -617,22 +623,32 @@ export default function AboutMain() {
                   About BRAINRUSH
             </h2> */}
               <p className="text-gray-800 mb-8 text-base">
-                The annual intra-college gameshow is organised by the department
-                of Computer Science & Engineering of MCKV Institute of
-                Engineering, in association with IIC,MCKVIE.
+                <span className={preahvihear.className}>
+                  Presented by the esteemed Department of Computer Science and
+                  Engineering at MCKV Institute of Engineering, in collaboration
+                  with IIC, MCKVIE, KODIKAS 🧩 is not just a coding competition;
+                  it's an exploration of innovation 🚀 and problem-solving 🧠.
+                </span>
               </p>
               <p className="text-gray-800 mb-12 text-base">
-                BRAINRUSH promises to test the analytical skills, attentiveness
-                and inquisitiveness of the students. It is a a game of sheer
-                intelligence and knowledge that provides a platform for testing
-                and sharpening the skill- set of the student.
+                <span className={preahvihear.className}>
+                  Get ready to unlock your coding potential 💻🔓 and challenge
+                  your intellect 🧐 at KODIKAS-23. This annual coding
+                  extravaganza is a melting pot 🍲 of talent 🌟, camaraderie 🤝,
+                  and skill enhancement 📈.
+                </span>
               </p>
               <p className="text-gray-800 mb-12 text-base">
-                The 6 tremendously successful runs, BRAINRUSH 2k23 promises to
-                be truly enlightening, illuminating and loaded with adventure.
+                <span className={preahvihear.className}>
+                  With thrilling rounds ⚡ that push your coding boundaries
+                  ⌨️🔍, KODIKAS-23 promises to be an exciting journey 🌄 filled
+                  with learning 📚 and triumph 🏆.
+                </span>
               </p>
               <h1 className="text-subHeaderText font-bold sm:text-4xl text-2xl date ">
-                Date: 25th August, 2023
+                <span className={preahvihear.className}>
+                  Date: 24th August, 2023
+                </span>
               </h1>
             </div>
           </div>
