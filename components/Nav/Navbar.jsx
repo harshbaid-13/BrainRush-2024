@@ -223,7 +223,7 @@ function Navbar() {
             <li>
               <a
                 href="#"
-                className="block py-2 pl-3 pr-4mx-2 font-bold text-xl text-headerText hover:underline decoration-subHeaderText hover:text-subHeaderText "
+                className="block py-2 pl-3 pr-4mx-2 font-bold text-xl text-headerText navLinks "
               >
                 <span className={preahvihear.className}>Schedule</span>
               </a>
@@ -231,7 +231,7 @@ function Navbar() {
             <li>
               <a
                 href="/teams"
-                className="block py-2 pl-3 pr-4mx-2 font-bold text-xl text-headerText hover:underline decoration-subHeaderText hover:text-subHeaderText "
+                className="block py-2 pl-3 pr-4mx-2 font-bold text-xl text-headerText navLinks "
                 aria-current="page"
               >
                 <span className={preahvihear.className}>My Team</span>
@@ -240,7 +240,7 @@ function Navbar() {
             <li>
               <a
                 href="/teams/all"
-                className="block py-2 pl-3 pr-4mx-2 font-bold text-xl text-headerText hover:underline decoration-subHeaderText hover:text-subHeaderText "
+                className="block py-2 pl-3 pr-4mx-2 font-bold text-xl text-headerText navLinks "
               >
                 <span className={preahvihear.className}>All Teams</span>
               </a>
@@ -248,7 +248,7 @@ function Navbar() {
             <li>
               <a
                 href="#"
-                className="block py-2 pl-1 pr-4 mx-2 font-bold text-xl text-headerText hover:underline decoration-subHeaderText hover:text-subHeaderText "
+                className="block py-2 pl-1 pr-4 mx-2 font-bold text-xl text-headerText navLinks "
               >
                 <span className={preahvihear.className}>About Us</span>
               </a>
