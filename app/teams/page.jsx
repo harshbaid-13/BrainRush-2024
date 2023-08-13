@@ -5,6 +5,7 @@ import "./page.css";
 import Link from "next/link";
 import { Preahvihear } from "next/font/google";
 import Loader from "@components/Loader/Loader";
+import { useSelector } from "react-redux";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -12,44 +13,48 @@ const preahvihear = Preahvihear({
 });
 
 const Teams = () => {
-  const [loading, setLoading] = useState(false);
-  const { data: session } = useSession();
-  const userId = session?.user?.id;
+  const [loading, setLoading] = useState(true);
+  const { isAlreadyInTeam, team } = useSelector((state) => state.team);
+  const user = useSelector((state) => state.user.user);
+  // const { data: session } = useSession();
+  // const userId = session?.user?.id;
   const [qrData, setQrData] = useState();
   const getQr = async () => {
     setLoading(true);
-    const response = await fetch(`/api/test/${userId}`);
+    const response = await fetch(`/api/test/${user?.id}`);
     const data = await response.json();
     setQrData(data);
     setLoading(false);
   };
 
-  const [isTeam, setIsTeam] = useState(true);
-  const [teamDetails, setTeamDetails] = useState({});
+  // const [isTeam, setIsTeam] = useState(true);
+  // const [teamDetails, setTeamDetails] = useState({});
 
-  const getTeamDetails = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch(`api/team/${userId}/is-team`);
-      const { data } = await response.json();
-      setIsTeam(data ? true : false);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching team details:", error);
-    }
-    try {
-      setLoading(true);
-      const response = await fetch(`api/team/${userId}/displayoneteam`);
-      const data = await response.json();
-      setTeamDetails(data.data);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching team details:", error);
-    }
-  };
+  // const getTeamDetails = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const response = await fetch(`api/team/${userId}/is-team`);
+  //     const { data } = await response.json();
+  //     setIsTeam(data ? true : false);
+  //     setLoading(false);
+  //   } catch (error) {
+  //     console.error("Error fetching team details:", error);
+  //   }
+  //   try {
+  //     setLoading(true);
+  //     const response = await fetch(`api/team/${userId}/displayoneteam`);
+  //     const data = await response.json();
+  //     setTeamDetails(data.data);
+  //     setLoading(false);
+  //   } catch (error) {
+  //     console.error("Error fetching team details:", error);
+  //   }
+  // };
 
   useEffect(() => {
-    getTeamDetails();
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   }, []);
 
   return (
@@ -58,7 +63,7 @@ const Teams = () => {
         <Loader />
       ) : (
         <>
-          {isTeam ? (
+          {isAlreadyInTeam ? (
             <section className="text-gray-600  body-font sm:mx-0 ">
               <div className="container py-24 mx-auto flex flex-wrap items-center justify-center w-screen">
                 <div className="flex flex-wrap items-center justify-center md:w-full  lg:w-1/2 mainTeamButton">
@@ -84,26 +89,26 @@ const Teams = () => {
                         <h1 className="leading-relaxed text-base text-gray-200 mb-5 ">
                           <span className={preahvihear.className}>
                             {" "}
-                            Team Name : {teamDetails?.teamName}
+                            Team Name : {team?.teamName}
                           </span>
                         </h1>
                         <p className="leading-relaxed text-base text-gray-200 mb-5">
                           <span className={preahvihear.className}>
-                            Team Leader: {teamDetails?.leader?.name}
+                            Team Leader: {team?.leader?.name}
                           </span>
                         </p>
                         <p className="leading-relaxed text-base text-gray-200 mb-5">
                           <span className={preahvihear.className}>
                             Payment Status:{" "}
-                            {teamDetails?.payment ? "Paid" : "Not Paid"}
+                            {team?.payment ? "Paid" : "Not Paid"}
                           </span>
                         </p>
-                        {teamDetails?.teamMemberConfirmation ? (
+                        {team?.teamMemberConfirmation ? (
                           <p>
                             <span className={preahvihear.className}>
-                              Team Member: {teamDetails?.teamMember}
+                              Team Member: {team?.teamMember}
                             </span>{" "}
-                            {teamDetails?.leader && teamDetails?.payment}?(
+                            {team.leader && team.payment}?(
                             <span className=" ml-2 bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
                               Red
                             </span>
@@ -130,17 +135,19 @@ const Teams = () => {
                         />
                       )}
 
-                      <button
-                        type="submit"
-                        onClick={getQr}
-                        className="relative mt-5 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
-                      >
-                        <span className="relative px-5 py-2.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
-                          <span className={preahvihear.className}>
-                            Team Code
+                      {team?.teamMemberConfirmation && (
+                        <button
+                          type="submit"
+                          onClick={getQr}
+                          className="relative mt-5 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+                        >
+                          <span className="relative px-5 py-2.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
+                            <span className={preahvihear.className}>
+                              Team Code
+                            </span>
                           </span>
-                        </span>
-                      </button>
+                        </button>
+                      )}
                       <button
                         type="submit"
                         onClick={getQr}
