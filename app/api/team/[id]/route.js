@@ -1,22 +1,23 @@
 import Team from "@models/team";
+import mongoose from "mongoose";
+import { NextResponse } from "next/server";
+import { connectToDatabase } from "@utils/db";
 
 export async function GET(request, { params }) {
   try {
     await connectToDatabase();
-    const userId = params.id;
-    let team = await Team.findOne({ leader: params.id }).populate([
-      "leader",
-      "teamMember",
-    ]);
-    if (!team) {
-      team = await Team.findOne({ teamMember: params.id }).populate([
-        "leader",
-        "teamMember",
-      ]);
+    const { id } = params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return NextResponse.json(
+        {
+          message: "Invalid object ID",
+        },
+        { status: 404 }
+      );
     }
-    if (!team) {
-      return NextResponse.json({ success: false, message: "Team not found" });
-    }
+    const team = await Team.findOne({
+      $or: [{ leader: id }, { teamMember: params.id }],
+    });
     return NextResponse.json({ success: true, data: team });
   } catch (error) {
     console.error("Error fetching team:", error);

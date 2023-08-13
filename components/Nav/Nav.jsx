@@ -7,6 +7,8 @@ import "./Nav.css";
 import { Preahvihear } from "next/font/google";
 import { setUser } from "@Reducers/features/user";
 import { useDispatch, useSelector } from "react-redux";
+import { setTeam } from "@Reducers/features/team";
+import { setProfile } from "@Reducers/features/profile";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -14,6 +16,9 @@ const preahvihear = Preahvihear({
 });
 
 const Nav = () => {
+  const profileCompleted = useSelector(
+    (state) => state.profile.isProfileCompleted
+  );
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const { data: session } = useSession();
@@ -23,19 +28,33 @@ const Nav = () => {
   useEffect(() => {
     const setProvidersFunc = async () => {
       const response = await getProviders();
-      console.log(response);
       setProviders(response);
     };
-    console.log(session);
+    console.log("session " + session);
     setProvidersFunc();
-
   }, []);
 
+  const setUserdata = () => {
+    dispatch(setUser(session?.user));
+  };
+  const getTeamDetails = async () => {
+    const res = await fetch(`/api/team/${session?.user?.id}`);
+    const { data } = await res.json();
+    dispatch(setTeam(data));
+  };
+  const getProfileDetails = async () => {
+    const res = await fetch(`/api/user/${session?.user?.id}`);
+    const { data } = await res.json();
+    dispatch(setProfile(data));
+  };
   useEffect(() => {
-    const setUserdata = () => {
-      dispatch(setUser(session?.user));
+    if (session) {
+      setUserdata();
+      getTeamDetails();
+      getProfileDetails();
+    } else {
+      dispatch(setUser(null));
     }
-    setUserdata();
   }, [session]);
 
   const getRequests = async () => {
@@ -77,18 +96,22 @@ const Nav = () => {
             className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center "
             id="navMenu"
           >
-            <Link
-              href={"/profile"}
-              className="mx-2 font-bold text-2xl text-headerText hover:underline decoration-subHeaderText hover:text-subHeaderText "
-            >
-              <span className={preahvihear.className}>Profile</span>
-            </Link>
-            <Link
-              href={"/teams"}
-              className="mx-2 font-bold text-2xl text-headerText hover:text-subHeaderText hover:underline decoration-subHeaderText"
-            >
-              <span className={preahvihear.className}>Teams</span>
-            </Link>
+            {user ? (
+              <>
+                <Link
+                  href={"/profile"}
+                  className="mx-2 font-bold text-2xl text-headerText hover:underline decoration-subHeaderText hover:text-subHeaderText "
+                >
+                  <span className={preahvihear.className}>Profile</span>
+                </Link>
+                <Link
+                  href={profileCompleted ? "/teams" : "/profile"}
+                  className="mx-2 font-bold text-2xl text-headerText hover:text-subHeaderText hover:underline decoration-subHeaderText"
+                >
+                  <span className={preahvihear.className}>Teams</span>
+                </Link>
+              </>
+            ) : null}
             {/* <Link href={"#venue"} className="mr-5 hover:text-logoYellow">Venue</Link> */}
           </nav>
           {session?.user ? (
