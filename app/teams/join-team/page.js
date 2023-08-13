@@ -5,6 +5,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { Preahvihear } from "next/font/google";
 import PreviousMap from "postcss/lib/previous-map";
+import { useSelector } from "react-redux";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -13,11 +14,13 @@ const preahvihear = Preahvihear({
 // import "./page.css";
 
 function page() {
-  const { data: session } = useSession();
-  const userId = session?.user?.id;
-  console.log({ userId });
+  const user = useSelector((state) => state.user.user);
+  const requests = useSelector((state) => state.requests.requests);
+  // const { data: session } = useSession();
+  // const userId = session?.user?.id;
+  // console.log({ userId });
 
-  const [requests, setRequests] = useState([]);
+  // const [requests, setRequests] = useState([]);
 
   const handleAcceptTeam = async (teamId) => {
     try {
@@ -26,7 +29,7 @@ function page() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId, teamId }),
+        body: JSON.stringify({ userId: user.id, teamId }),
       });
     } catch (err) {
       console.log(err);
@@ -40,21 +43,12 @@ function page() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId, teamId }),
+        body: JSON.stringify({ userId: user?.id, teamId }),
       });
     } catch (err) {
       console.log(err);
     }
   };
-  const getRequests = async () => {
-    const response = await fetch(`/api/team/confirm/${userId}`);
-    const data = await response.json();
-    setRequests(data.data);
-  };
-
-  useEffect(() => {
-    getRequests();
-  }, [userId]);
 
   function componentRender() {
     return (
@@ -108,7 +102,7 @@ function page() {
                             <button
                               type="submit"
                               onClick={() => {
-                                handleRejectTeam(request.team);
+                                handleRejectTeam(request._id);
                               }}
                               className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
                             >
@@ -125,7 +119,7 @@ function page() {
                             <button
                               type="submit"
                               onClick={() => {
-                                handleAcceptTeam(request.team);
+                                handleAcceptTeam(request._id);
                               }}
                               className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
                             >
