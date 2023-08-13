@@ -8,10 +8,11 @@ import { setUser } from "@Reducers/features/user";
 import { useDispatch, useSelector } from "react-redux";
 import { setTeam } from "@Reducers/features/team";
 import { setProfile } from "@Reducers/features/profile";
-import { setRequest } from "@Reducers/features/requestes";
+import { setRequest } from "@Reducers/features/requests";
 import "./Nav.css";
 
 import { Preahvihear } from "next/font/google";
+import { useRouter } from "next/navigation";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -19,6 +20,7 @@ const preahvihear = Preahvihear({
 });
 
 function Navbar() {
+  const router = useRouter();
   const dispatch = useDispatch();
   const profileCompleted = useSelector(
     (state) => state.profile.isProfileCompleted

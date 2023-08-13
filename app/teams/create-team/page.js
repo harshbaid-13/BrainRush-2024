@@ -5,6 +5,10 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import "./page.css";
 import { Preahvihear } from "next/font/google";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import { setTeam } from "@Reducers/features/team";
+import Loader from "@components/Loader/Loader";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -12,36 +16,52 @@ const preahvihear = Preahvihear({
 });
 
 const createTeam = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const user = useSelector((state) => state.user.user);
+  const [loading, setLoading] = useState(false);
   const [teamName, setTeamName] = useState("");
   const [teamMemberEmail, setTeamMemberEmail] = useState("");
-  const [submit, setSubmit] = useState(false);
-
-  const [createTeam, setCreateTeam] = useState(false);
-  const handleCreateTeamSubmit = async () => {
+  const handleCreateTeamSubmit = async (e) => {
+    e.preventDefault();
     try {
-      await Promise.all([
-        fetch("/api/team/create", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ teamName, userId }),
-        }),
-        fetch("/api/team/confirm", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ teamMemberEmail, userId }),
-        }),
-      ]);
-      setSubmit(true);
+      setLoading(true);
+      const res = await fetch("/api/team/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ teamName, userId: user.id }),
+      });
+      const data = await res.json();
+      const response = await fetch("/api/team/confirm", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ teamMemberEmail, userId: user.id }),
+      });
+      const confirmation = await response.json();
+      setLoading(false);
+      if (data.success) {
+        dispatch(setTeam(data.data));
+        router.push("/teams");
+      }
+      if (confirmation.success) {
+        alert(
+          "Your team created successfully Your partner need to confirm only"
+        );
+      } else {
+        alert("There is some technical issues with sending email");
+      }
     } catch (err) {
       console.log(err);
     }
   };
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <>
       <section>
         <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
@@ -55,11 +75,7 @@ const createTeam = () => {
               Need details about our Business plan? Let us know.
             </span>
           </p>
-          <form
-            action="#"
-            className="space-y-8"
-            onSubmit={handleCreateTeamSubmit}
-          >
+          <form className="space-y-8" onSubmit={handleCreateTeamSubmit}>
             <div>
               <label
                 htmlFor="subject"
