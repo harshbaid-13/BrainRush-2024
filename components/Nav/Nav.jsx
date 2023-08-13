@@ -2,10 +2,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import "./Nav.css";
-// import { Preahvihear } from "next/font/google";
 import { Preahvihear } from "next/font/google";
+import { setUser } from "@Reducers/features/user";
+import { useDispatch, useSelector } from "react-redux";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -13,6 +14,8 @@ const preahvihear = Preahvihear({
 });
 
 const Nav = () => {
+  const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
   const { data: session } = useSession();
   const userId = session?.user?.id;
   const [requests, setRequests] = useState([]);
@@ -25,7 +28,15 @@ const Nav = () => {
     };
     console.log(session);
     setProvidersFunc();
+
   }, []);
+
+  useEffect(() => {
+    const setUserdata = () => {
+      dispatch(setUser(session?.user));
+    }
+    setUserdata();
+  }, [session]);
 
   const getRequests = async () => {
     const response = await fetch(`/api/team/confirm/${userId}`);
