@@ -6,6 +6,7 @@ import "@styles/globals.css";
 import { Inter } from "next/font/google";
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from "@Reducers/store";
+import Navbar from "@components/Nav/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +25,7 @@ export default function RootLayout({ children }) {
               <div className="gradient"></div>
             </div>
             <div className="relative z-10">
-              <Nav />
+              <Navbar />
               <div className="w-full h-auto mt-16">{children}</div>
             </div>
           </ReduxProvider>

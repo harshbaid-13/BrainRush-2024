@@ -2,7 +2,7 @@
     padding: 0 3.5rem;
 }
 
-@media only screen and (max-width:800px) {
+@media only screen and (max-width:900px) {
     #navHeader {
         padding: 0 0rem;
     }
