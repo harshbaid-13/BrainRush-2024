@@ -5,6 +5,7 @@ import ConfirmationRequest from "@models/confirmationRequest";
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 
+// Get All LoggedIn User Requests
 export async function GET(request, { params }) {
   try {
     await connectToDatabase();
@@ -35,6 +36,7 @@ export async function GET(request, { params }) {
   }
 }
 
+// Delete Invite Request
 export async function DELETE(request, { params }) {
   try {
     await connectToDatabase();
@@ -54,10 +56,7 @@ export async function DELETE(request, { params }) {
       sentRequest = await ConfirmationRequest.findOne({
         teamMemberEmail: teamMember.email,
       });
-      console.log({ teamMember });
     }
-
-    console.log({ sentRequest });
 
     await sentRequest.deleteOne();
 

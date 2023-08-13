@@ -6,6 +6,7 @@ import sendConfirmationEmail from "@utils/sendConfirmationEmail";
 
 const { NextResponse } = require("next/server");
 
+// Send Invite Request
 export async function POST(request) {
   try {
     await connectToDatabase();
@@ -53,13 +54,12 @@ export async function POST(request) {
   }
 }
 
+// Accept Invite Request
 export async function PUT(request) {
   try {
     await connectToDatabase();
-    const { teamId, userId } = await request.json();
-    const confirmationRequest = await ConfirmationRequest.findOne({
-      teamId,
-    });
+    const { id, userId } = await request.json();
+    const confirmationRequest = await ConfirmationRequest.findById(id);
 
     const userTeamExist = await Team.findOne({ leader: userId });
 
@@ -94,13 +94,12 @@ export async function PUT(request) {
   }
 }
 
+// Reject Invite Request
 export async function DELETE(request) {
   try {
     await connectToDatabase();
-    const { teamId, userId } = await request.json();
-    const confirmationRequest = await ConfirmationRequest.findOne({
-      teamId,
-    });
+    const { id } = await request.json();
+    const confirmationRequest = await ConfirmationRequest.findById(id);
 
     await confirmationRequest.deleteOne();
 

@@ -5,6 +5,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { Preahvihear } from "next/font/google";
 import PreviousMap from "postcss/lib/previous-map";
+import { useSelector } from "react-redux";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -13,48 +14,41 @@ const preahvihear = Preahvihear({
 // import "./page.css";
 
 function page() {
-  const { data: session } = useSession();
-  const userId = session?.user?.id;
-  console.log({ userId });
+  const user = useSelector((state) => state.user.user);
+  const requests = useSelector((state) => state.requests.requests);
+  // const { data: session } = useSession();
+  // const userId = session?.user?.id;
+  // console.log({ userId });
 
-  const [requests, setRequests] = useState([]);
+  // const [requests, setRequests] = useState([]);
 
-  const handleAcceptTeam = async (teamId) => {
+  const handleAcceptTeam = async (id) => {
     try {
       await fetch("/api/team/confirm", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId, teamId }),
+        body: JSON.stringify({ userId: user.id, id }),
       });
     } catch (err) {
       console.log(err);
     }
   };
 
-  const handleRejectTeam = async (teamId) => {
+  const handleRejectTeam = async (id) => {
     try {
       await fetch("/api/team/confirm", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId, teamId }),
+        body: JSON.stringify({ userId: user?.id, id }),
       });
     } catch (err) {
       console.log(err);
     }
   };
-  const getRequests = async () => {
-    const response = await fetch(`/api/team/confirm/${userId}`);
-    const data = await response.json();
-    setRequests(data.data);
-  };
-
-  useEffect(() => {
-    getRequests();
-  }, [userId]);
 
   function componentRender() {
     return (
