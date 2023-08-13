@@ -14,10 +14,10 @@ function Heading(props) {
         className="text-headerText  font-bold  text-center mb-4 headingText "
         // style={{ fontFamily: "'Fira Code', monospace !important;" }}
       >
-        <h1 className={preahvihear.className}>
+        <span className={preahvihear.className}>
           {props.title}
           {props.subtitle}
-        </h1>
+        </span>
       </h1>
     </>
   );

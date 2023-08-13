@@ -3,11 +3,18 @@ import User from "@models/user";
 import { connectToDatabase } from "@utils/db";
 import ConfirmationRequest from "@models/confirmationRequest";
 import { NextResponse } from "next/server";
+import mongoose from "mongoose";
 
 export async function GET(request, { params }) {
   try {
     await connectToDatabase();
     const userId = params.id;
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return NextResponse.json(
+        { message: "Not a valid user" },
+        { status: 404 }
+      );
+    }
     const loggedInUser = await User.findById(userId);
     const totalRequests = await ConfirmationRequest.find({
       teamMemberEmail: loggedInUser.email,
@@ -32,6 +39,12 @@ export async function DELETE(request, { params }) {
   try {
     await connectToDatabase();
     const userId = params.id;
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return NextResponse.json(
+        { message: "Not a valid user" },
+        { status: 404 }
+      );
+    }
     let sentRequest = await ConfirmationRequest.findOne({
       teamLeader: userId,
     });
