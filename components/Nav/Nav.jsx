@@ -94,10 +94,10 @@ const Nav = () => {
               {/* <Link href="/teams/join-team">
                 <button
                   type="button"
-                  class="inline-flex items-center rounded-lg group  mb-2 px-3 py-2 text-sm font-medium text-center text-white bg- bg-gradient-to-br from-btnColorDark to-btnColor group-hover:from-btnColorDark group-hover:to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+                  className="inline-flex items-center rounded-lg group  mb-2 px-3 py-2 text-sm font-medium text-center text-white bg- bg-gradient-to-br from-btnColorDark to-btnColor group-hover:from-btnColorDark group-hover:to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
                 >
                   <span className={preahvihear.className}>Requests</span>
-                  <span class="inline-flex items-center justify-center w-4 h-4 ml-2 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
+                  <span className="inline-flex items-center justify-center w-4 h-4 ml-2 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
                     {requests?.length === 0 ? 0 : requests?.length}
                   </span>
                 </button>

@@ -34,29 +34,29 @@ const AllTeams = () => {
       <div className="sm:flex">
         <div className="items-center mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
           <div className="lg:pr-3 ml-20">
-            <label htmlFor="teams-search" className="sr-only">
-              Search
-            </label>
-            <div className="flex flex-row my-2 lg:w-64 xl:w-96 ">
-              <input
-                type="text"
-                name="email"
-                id="teams-search"
-                className="bg-gray-50 border  text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-50  dark:placeholder-gray-400 dark:text-headerText dark:focus:ring-primary-500 "
-                placeholder="Search for teams"
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                }}
-              />
-              <button
-                type="submit"
-                className="bg-primary-orange p-2 ml-2 text-white rounded-md"
-                onClick={getTeams}
-              >
-                Submit
-              </button>
-            </div>
-            {/* <label className="flex my-2">
+            <label htmlFor=="teams-search" className="sr-only">
+            Search
+          </label>
+          <div className="flex flex-row my-2 lg:w-64 xl:w-96 ">
+            <input
+              type="text"
+              name="email"
+              id="teams-search"
+              className="bg-gray-50 border  text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-50  dark:placeholder-gray-400 dark:text-headerText dark:focus:ring-primary-500 "
+              placeholder="Search for teams"
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+            />
+            <button
+              type="submit"
+              className="bg-primary-orange p-2 ml-2 text-white rounded-md"
+              onClick={getTeams}
+            >
+              Submit
+            </button>
+          </div>
+          {/* <label className="flex my-2">
               <input
                 className="mr-2 w-6 h-6"
                 type="checkbox"
@@ -67,9 +67,9 @@ const AllTeams = () => {
               />
               <span>Not Selected</span>
             </label> */}
-          </div>
         </div>
       </div>
+    </div >
       <div
         className="relative overflow-x-auto shadow-md sm:rounded-lg mx-20 pb-5"
         style={{
