@@ -9,14 +9,15 @@ import { store } from "@Reducers/store";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Kodikas 2k23",
-  description: "Unlock your coding pottential!",
-};
+// export const metadata = {
+//   title: "Kodikas 2k23",
+//   description: "Unlock your coding pottential!",
+// };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <title>Kodikas 2k23</title>
       <body>
         <Provider>
           <ReduxProvider store={store}>
