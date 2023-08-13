@@ -3,6 +3,7 @@ import { connectToDatabase } from "@utils/db";
 import User from "@models/user";
 import Team from "@models/team";
 
+// Get All Teams
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const search = searchParams.get("search") || "";
@@ -54,6 +55,44 @@ export async function GET(request) {
     });
   } catch (error) {
     console.error("Error fetching team names:", error);
+    return NextResponse.json(
+      { message: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}
+
+// Create Team
+export async function POST(request) {
+  try {
+    await connectToDatabase();
+    const { teamName, userId } = await request.json();
+    const teamLeader = await User.findById(userId);
+
+    const existingTeam = await Team.findOne({ teamName });
+
+    if (existingTeam) {
+      return NextResponse.json(
+        { success: false, message: "Team Name already exists" },
+        { status: 400 }
+      );
+    }
+
+    const team = await Team.create({
+      teamName: teamName,
+      leader: teamLeader,
+    });
+
+    const teamId = team._id;
+    const createdTeam = await Team.findById(teamId).populate("leader");
+
+    return NextResponse.json({
+      success: true,
+      message: "Team Created Successfully",
+      data: createdTeam,
+    });
+  } catch (error) {
+    console.error("Error ", error);
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 }

@@ -32,7 +32,7 @@ const Profile = () => {
   const submitHandler = async (event) => {
     event.preventDefault();
     try {
-      const res = await fetch("/api/user", {
+      const res = await fetch(`/api/user/${user?.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
