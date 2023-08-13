@@ -6,6 +6,7 @@ import page from "@app/teams/page.jsx";
 import "./page.css";
 import { set } from "mongoose";
 import { Preahvihear } from "next/font/google";
+import { useSelector } from "react-redux";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -14,6 +15,7 @@ const preahvihear = Preahvihear({
 
 const Profile = () => {
   // todo ek useeffect likhna hai to get user details jb profile pe ayega
+  const user = useSelector((state) => state.user.user);
   const { data: session } = useSession();
   let userId = session?.user?.id;
   const [name, setName] = useState("");

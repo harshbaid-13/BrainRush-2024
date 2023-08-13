@@ -28,9 +28,15 @@ const Nav = () => {
     };
     console.log(session);
     setProvidersFunc();
-    dispatch(setUser(session?.user));
+
   }, []);
 
+  useEffect(() => {
+    const setUserdata = () => {
+      dispatch(setUser(session?.user));
+    }
+    setUserdata();
+  }, [session]);
 
   const getRequests = async () => {
     const response = await fetch(`/api/team/confirm/${userId}`);
