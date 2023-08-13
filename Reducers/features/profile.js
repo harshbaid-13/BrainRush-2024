@@ -11,6 +11,7 @@ export const ProfileSlice = createSlice({
   reducers: {
     setProfile: (state, action) => {
       const data = action?.payload;
+      // console.log(data);
       state.profile = action?.payload;
       if (data) {
         if (data.year) {
