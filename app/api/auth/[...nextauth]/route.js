@@ -31,7 +31,7 @@ const handler = NextAuth({
             image: profile.picture,
             department: "",
             year: "",
-            phoneNumber: "0000000000",
+            phoneNumber: "1234567890",
           });
         }
         return true;

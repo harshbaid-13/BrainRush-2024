@@ -69,7 +69,7 @@ const AllTeams = () => {
             </label> */}
           </div>
         </div>
-      </div>
+      </div >
       <div
         className="relative overflow-x-auto shadow-md sm:rounded-lg mx-20 pb-5"
         style={{
@@ -80,7 +80,7 @@ const AllTeams = () => {
         <table className="w-full h-10 text-sm text-left text-gray-500 dark:text-gray-400">
           <thead
             className="h-20 text-xs text-gray-50 uppercase  bg-headerText"
-            // style={{ background: "#6f7bd9" }}
+          // style={{ background: "#6f7bd9" }}
           >
             <tr>
               <th scope="col" className="px-6 py-3">

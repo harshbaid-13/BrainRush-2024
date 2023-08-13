@@ -80,7 +80,7 @@ function page() {
                               stroke="currentColor"
                               stroke-linecap="round"
                               stroke-linejoin="round"
-                              stroke-width="2"
+                              strokeWidth="2"
                               className="w-8 h-8"
                               viewBox="0 0 24 24"
                             >

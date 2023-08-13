@@ -62,7 +62,7 @@ const createTeam = () => {
           >
             <div>
               <label
-                for="subject"
+                htmlFor="subject"
                 className="block mb-2 text-gray-600 text-sm font-medium "
               >
                 <span className={preahvihear.className}>
@@ -84,7 +84,7 @@ const createTeam = () => {
             </div>
             <div>
               <label
-                for="subject"
+                htmlFor="subject"
                 className="block mb-2 text-gray-600 text-sm font-medium "
               >
                 <span className={preahvihear.className}>
