@@ -89,6 +89,12 @@ button {
     .main {
         padding: 0;
     }
+    .responsive-padding{
+        padding-left: 0px;
+    }
+    .responsive-margin{
+        margin-left: -10px;
+    }
 }
 
 .example::-webkit-scrollbar {
