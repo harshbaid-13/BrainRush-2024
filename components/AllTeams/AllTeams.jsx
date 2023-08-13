@@ -1,6 +1,13 @@
 "use client";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
+import "./AllTeams.css";
+import { Preahvihear } from "next/font/google";
+
+const preahvihear = Preahvihear({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 const AllTeams = () => {
   const [teams, setTeams] = useState([]);
@@ -33,9 +40,9 @@ const AllTeams = () => {
     <>
       <div className="sm:flex">
         <div className="items-center mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
-          <div className="lg:pr-3 ml-20">
+          <div className="lg:pr-3 searchAllTeam">
             <label htmlFor="teams-search" className="sr-only">
-              Search
+              <span className={preahvihear.className}>Search</span>
             </label>
             <div className="flex flex-row my-2 lg:w-64 xl:w-96 ">
               <input
@@ -48,12 +55,13 @@ const AllTeams = () => {
                   setSearch(e.target.value);
                 }}
               />
+
               <button
                 type="submit"
-                className="bg-primary-orange p-2 ml-2 text-white rounded-md"
+                className="bg-primary-orange py-2 px-4 ml-2 text-white rounded-md"
                 onClick={getTeams}
               >
-                Submit
+                <span className={preahvihear.className}>Search</span>
               </button>
             </div>
             {/* <label className="flex my-2">
@@ -69,28 +77,28 @@ const AllTeams = () => {
             </label> */}
           </div>
         </div>
-      </div >
+      </div>
       <div
-        className="relative overflow-x-auto shadow-md sm:rounded-lg mx-20 pb-5"
+        className="relative overflow-x-auto shadow-md sm:rounded-lg allTeamTable pb-5 z-[-1]"
         style={{
           boxShadow:
             " rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;",
         }}
       >
-        <table className="w-full h-10 text-sm text-left text-gray-500 dark:text-gray-400">
+        <table className="w-full h-10 text-sm text-left text-gray-500 dark:text-gray-400 rounded-md ">
           <thead
             className="h-20 text-xs text-gray-50 uppercase  bg-headerText"
-          // style={{ background: "#6f7bd9" }}
+            // style={{ background: "#6f7bd9" }}
           >
             <tr>
-              <th scope="col" className="px-6 py-3">
-                Team Name
+              <th scope="col" className="px-6 py-3 ">
+                <span className={preahvihear.className}>Team Name</span>
               </th>
               <th scope="col" className="px-6 py-3">
-                Team Leader
+                <span className={preahvihear.className}>Team Leader</span>
               </th>
               <th scope="col" className="px-6 py-3">
-                Team Member
+                <span className={preahvihear.className}>Team Member</span>
               </th>
               {/* <th scope="col" className="px-6 py-3">
               Payment Status
@@ -105,22 +113,35 @@ const AllTeams = () => {
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                   >
-                    {team.teamName}
+                    <span className={preahvihear.className}>
+                      {team.teamName}
+                    </span>
                   </td>
                   <td className="px-6 py-4 text-gray-300">
-                    <span className="text-gray-900">{team.leader.name}</span>
+                    <span className="text-gray-900">
+                      <span className={preahvihear.className}>
+                        {/* {team.teamName} */}
+                        {team.leader.name}
+                      </span>
+                    </span>
                     <br />
-                    {team.leader.email}
+                    <span className={preahvihear.className}>
+                      {/* {team.teamName} */}
+                      {team.leader.email}
+                    </span>
                   </td>
                   <td className="px-6 py-4 ">
                     <span className="text-gray-900">
-                      {team?.teamMember?.name
-                        ? team.teamMember.name
-                        : "Not Selected"}
+                      <span className={preahvihear.className}>
+                        {team?.teamMember?.name
+                          ? team.teamMember.name
+                          : "Not Selected"}
+                      </span>
                     </span>
                     <br />
-
-                    {team?.teamMember?.name ? team.teamMember.email : ""}
+                    <span className={preahvihear.className}>
+                      {team?.teamMember?.name ? team.teamMember.email : ""}
+                    </span>
                   </td>
                   {/* <td className="px-6 py-4">{team?.payment ? "✅" : "❌"}</td> */}
                 </tr>
@@ -146,7 +167,7 @@ const AllTeams = () => {
         </span>
         <div className="inline-flex mt-2 xs:mt-0">
           <button
-            className="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-subHeaderText bg-gray-800 rounded-l hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+            className="rounded-md flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-subHeaderText bg-gray-800 hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-50"
             onClick={() => {
               setPageNum((prev) => {
                 return Math.max(prev - 1, 1);
@@ -170,8 +191,9 @@ const AllTeams = () => {
             </svg>
             Prev
           </button>
+
           <button
-            className="flex items-center justify-center px-4 h-10 text-base ml-1 font-medium text-white bg-subHeaderText bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+            className="rounded-md flex items-center justify-center px-4 h-10 text-base ml-1 font-medium text-white bg-subHeaderText bg-gray-800 border-0 border-gray-700  hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-50"
             onClick={() => {
               setPageNum((prev) => {
                 return Math.min(prev + 1, Math.floor((count - 1) / limit) + 1);

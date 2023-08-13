@@ -11,7 +11,7 @@ const preahvihear = Preahvihear({
 });
 const Hero = () => {
   return (
-    <section>
+    <section className="pl-8">
       <div className="grid max-w-screen-xl px-4  mx-auto overflow-hidden lg:gap-8 xl:gap-0 lg:py-5 lg:grid-cols-12">
         <div className="mr-auto place-self-center lg:col-span-7">
           <h1 className=" -ml-4 mt-7 px-8 max-w-2xl text-headerText mx-auto flex justify-center items-center text-5xl font-bold sm:text-7xl text-center mb-20 responsive-padding">
@@ -42,7 +42,7 @@ const Hero = () => {
           </h1>
           <Countdown />
         </div>
-        <div className="lg:mt-2 lg:col-span-5 lg:flex responsive-margin">
+        <div className="lg:mt-2 pr-5 lg:col-span-5 lg:flex responsive-margin">
           {/* <VideoPlayer /> */}
           <Image src={logo} alt="logo" />
         </div>

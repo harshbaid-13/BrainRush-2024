@@ -17,6 +17,7 @@ import { useEffect } from "react";
 import { setUser } from "@Reducers/features/user";
 import { setTeam } from "@Reducers/features/team";
 import { setProfile } from "@Reducers/features/profile";
+import Schedule from "@components/Schedule/Schedule";
 
 // import UserLanding from "@components/UserInterface/UserLanding";
 // import Marquee from "@components/Marquee/Marquee";
@@ -59,6 +60,7 @@ export default function Home() {
       {console.log("hello reducer3: " + profile?.year)}
       <Hero />
       <About />
+      <Schedule />
       {/* <Details /> */}
       {/* <Proccess /> */}
       <FAQ />
