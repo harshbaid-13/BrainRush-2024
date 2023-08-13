@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   team: null,
+  isAlreadyInTeam: false,
 };
 
 export const TeamSlice = createSlice({
@@ -9,8 +10,11 @@ export const TeamSlice = createSlice({
   initialState,
   reducers: {
     setTeam: (state, action) => {
-      console.log(action?.payload);
+      // console.log("team data", action?.payload);
       state.team = action?.payload;
+      if (action?.payload) {
+        state.isAlreadyInTeam = true;
+      }
     },
   },
 });
