@@ -33,7 +33,14 @@ export async function POST(request) {
       });
     }
 
-    sendConfirmationEmail(teamLeader, team, teamMemberEmail);
+    if (teamMemberEmail === teamLeader.email) {
+      return NextResponse.json(
+        { success: false, message: "You can't add yourself as a member" },
+        { status: 400 }
+      );
+    }
+
+    sendConfirmationEmail(teamLeader, team, teamMemberEmail, { event: 0 });
 
     const confirmationRequest = await ConfirmationRequest.create({
       team,
