@@ -34,7 +34,7 @@ const Profile = () => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    if (!name.size() || !department.size() || !year || !contact) {
+    if (!name.length || !department.length || !year || !contact) {
       alert("Fill the form completely!")
       return;
     }
