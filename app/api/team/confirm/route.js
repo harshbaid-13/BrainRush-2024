@@ -15,7 +15,9 @@ export async function POST(request) {
       teamLeader: userId,
     });
     const teamLeader = await User.findById(userId);
+    console.log(teamLeader);
     const team = await Team.findOne({ leader: userId });
+    console.log(team);
     if (requestSentAlready) {
       return NextResponse.json({
         success: false,
@@ -72,10 +74,12 @@ export async function PUT(request) {
     }
 
     const team = await Team.findByIdAndUpdate(
-      teamId,
+      confirmationRequest?.team,
       { teamMember: userId, teamMemberConfirmation: true },
       { new: true }
-    );
+    )
+      .populate("leader")
+      .populate("teamMember");
 
     await confirmationRequest.deleteOne();
 
@@ -99,9 +103,17 @@ export async function DELETE(request) {
   try {
     await connectToDatabase();
     const { id } = await request.json();
-    const confirmationRequest = await ConfirmationRequest.findById(id);
-
+    const confirmationRequest = await ConfirmationRequest.findById(id)
+      .populate("teamLeader")
+      .populate("team");
+    sendConfirmationEmail(
+      confirmationRequest?.teamLeader,
+      confirmationRequest.team,
+      confirmationRequest.teamLeader.email,
+      { event: 1 }
+    );
     await confirmationRequest.deleteOne();
+    //need to notify the leader that other member has rejected the request
 
     return NextResponse.json({
       success: true,

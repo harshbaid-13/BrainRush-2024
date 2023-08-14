@@ -5,7 +5,11 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { Preahvihear } from "next/font/google";
 import PreviousMap from "postcss/lib/previous-map";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "@components/Loader/Loader";
+import { setTeam, setTeamRequest } from "@Reducers/features/team";
+import { useRouter } from "next/navigation";
+import { setRequest } from "@Reducers/features/requests";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -14,23 +18,27 @@ const preahvihear = Preahvihear({
 // import "./page.css";
 
 function page() {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.user.user);
   const requests = useSelector((state) => state.requests.requests);
-  // const { data: session } = useSession();
-  // const userId = session?.user?.id;
-  // console.log({ userId });
-
-  // const [requests, setRequests] = useState([]);
-
   const handleAcceptTeam = async (id) => {
     try {
-      await fetch("/api/team/confirm", {
+      const res = await fetch("/api/team/confirm", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ userId: user.id, id }),
       });
+      const data = await res.json();
+      console.log(data);
+      if (data.success) {
+        dispatch(setTeam(data.data));
+        dispatch(setTeamRequest(null));
+        router.push("/teams");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -38,20 +46,34 @@ function page() {
 
   const handleRejectTeam = async (id) => {
     try {
-      await fetch("/api/team/confirm", {
+      setLoading(true);
+      const res = await fetch("/api/team/confirm", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ userId: user?.id, id }),
       });
+      const data = await res.json();
+      if (data.success) {
+        let x = requests.filter((req) => req._id !== id);
+        dispatch(setRequest(x));
+      }
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
   };
-
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
   function componentRender() {
-    return (
+    return loading ? (
+      <Loader />
+    ) : (
       <div className="mt-30">
         {requests?.length === 0 ? (
           <h1 className="h-auto mt-80 font-bold text-subHeaderText text-4xl mx-auto text-center">
@@ -62,30 +84,30 @@ function page() {
         ) : (
           <>
             <section className="text-gray-600  px-2 body-font">
-              <div className="container px-5 mx-auto flex flex-wrap">
-                <div className="flex flex-wrap -m-4">
+              <div className="containe mx-auto">
+                <div className="flex flex-col -m- w-full items-center justify-center">
                   {requests &&
                     requests.map((request) => (
-                      <div className="p-4 w-2/3 teamButton mx-auto">
-                        <div className="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-row">
-                          <div className="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
+                      <div className="p-4 sm:w-full md:w-4/5 lg:w-2/3 teamButton mx-auto">
+                        <div className="flex border-2 rounded-lg border-gray-200 border-opacity-50 sm:p-3 lg:p-8 sm:flex-row flex-row">
+                          <div className="w-16 h-16 sm:hidden lg:inline sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
                             <svg
                               fill="none"
                               stroke="currentColor"
                               stroke-linecap="round"
                               stroke-linejoin="round"
                               strokeWidth="2"
-                              className="w-8 h-8"
+                              className="w-8 h-8 sm:hidden lg:inline"
                               viewBox="0 0 24 24"
                             >
                               <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
                             </svg>
                           </div>
-                          <div className="flex flex-row w-full items-center justify-between">
+                          <div className="flex flex-row flex-wrap w-full items-center sm:justify-center md:justify-between">
                             <div>
                               <h1 className="leading-relaxed text-base">
                                 <span className={preahvihear.className}>
-                                  Team Name : {request.team.teamName}
+                                  Team Name : {request?.team?.teamName}
                                 </span>
                                 {/* Team Name : Poogle */}
                               </h1>
@@ -97,14 +119,14 @@ function page() {
                               </p>
                             </div>
 
-                            <div>
+                            <div className="flex flex:wrap items-center justify-end">
                               {/* <a className="mt-3 text-indigo-500 inline-flex me-2 items-center">
                     <Buttons title={"Cancel Request"} />
                   </a> */}
                               <button
                                 type="submit"
                                 onClick={() => {
-                                  handleAcceptTeam(request.team);
+                                  handleAcceptTeam(request._id);
                                 }}
                                 className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
                               >
@@ -117,7 +139,7 @@ function page() {
                               <button
                                 type="submit"
                                 onClick={() => {
-                                  handleRejectTeam(request.team);
+                                  handleRejectTeam(request._id);
                                 }}
                                 className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
                               >
