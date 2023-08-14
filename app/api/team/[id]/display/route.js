@@ -3,6 +3,7 @@ import Team from "@models/team";
 import User from "@models/user";
 import { connectToDatabase } from "@utils/db";
 import mongoose from "mongoose";
+import ConfirmationRequest from "@models/confirmationRequest";
 
 // Get Logged In User Team
 export async function GET(request, { params }) {
@@ -20,10 +21,11 @@ export async function GET(request, { params }) {
     const team = await Team.findOne({
       $or: [{ leader: id }, { teamMember: id }],
     }).populate(["leader", "teamMember"]);
+    const requests = await ConfirmationRequest.findOne({ team: team?._id });
     if (!team) {
       return NextResponse.json({ success: false, message: "Team not found" });
     }
-    return NextResponse.json({ success: true, data: team });
+    return NextResponse.json({ success: true, data: team, request: requests });
   } catch (error) {
     console.error("Error fetching team:", error);
     return NextResponse.json(
@@ -55,7 +57,7 @@ export async function DELETE(request, { params }) {
         { status: 403 }
       );
     }
-    const user = await Team.findByIdAndUpdate(
+    const newTeam = await Team.findByIdAndUpdate(
       team._id,
       { teamMember: null, teamMemberConfirmation: false },
       { new: true }

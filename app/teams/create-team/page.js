@@ -1,13 +1,11 @@
 "use client";
 // import Buttons from "@components/Buttons/Buttons";
-import { useSession } from "next-auth/react";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import "./page.css";
 import { Preahvihear } from "next/font/google";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import { setTeam } from "@Reducers/features/team";
+import { setTeam, setTeamRequest } from "@Reducers/features/team";
 import Loader from "@components/Loader/Loader";
 
 const preahvihear = Preahvihear({
@@ -39,21 +37,23 @@ const createTeam = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ teamMemberEmail, userId: user.id }),
+        body: JSON.stringify({ teamMemberEmail, userId: user?.id }),
       });
       const confirmation = await response.json();
+      console.log(confirmation);
       setLoading(false);
       if (data.success) {
         dispatch(setTeam(data.data));
-        router.push("/teams");
       }
       if (confirmation.success) {
+        dispatch(setTeamRequest(confirmation.data ? confirmation.data : null));
         alert(
           "Your team created successfully Your partner need to confirm only"
         );
       } else {
-        alert("There is some technical issues with sending email");
+        alert(confirmation.message);
       }
+      router.push("/teams");
     } catch (err) {
       console.log(err);
     }
