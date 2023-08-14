@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { connectToDatabase } from "@utils/db";
 import User from "@models/user";
 import Team from "@models/team";
+import sendConfirmationEmail from "@utils/sendConfirmationEmail";
+import ConfirmationRequest from "@models/confirmationRequest";
 
 // Get All Teams
 export async function GET(request) {
@@ -66,30 +68,52 @@ export async function GET(request) {
 export async function POST(request) {
   try {
     await connectToDatabase();
-    const { teamName, userId } = await request.json();
+    const { teamName, userId, teamMemberEmail } = await request.json();
+    //get the leader id
     const teamLeader = await User.findById(userId);
-
+    //check if the team name already exists
     const existingTeam = await Team.findOne({ teamName });
-
+    //if exists then can not create another team
     if (existingTeam) {
+      return NextResponse.json({
+        success: false,
+        message: "Team Name already exists",
+      });
+    }
+
+    //if the current user is already a member or a leader
+    const team = await Team.findOne({
+      $or: [{ leader: userId }, { teamMember: userId }],
+    });
+    //then can not create another team
+    if (team) {
       return NextResponse.json(
-        { success: false, message: "Team Name already exists" },
+        {
+          message: "You already have a team",
+          success: false,
+        },
         { status: 400 }
       );
     }
-
-    const team = await Team.create({
+    const newTeam = await Team.create({
       teamName: teamName,
       leader: teamLeader,
     });
+    sendConfirmationEmail(teamLeader, newTeam, teamMemberEmail, { event: 0 });
+    const confirmationRequest = await ConfirmationRequest.create({
+      team: newTeam,
+      teamLeader,
+      teamMemberEmail,
+    });
 
-    const teamId = team._id;
+    const teamId = newTeam._id;
     const createdTeam = await Team.findById(teamId).populate("leader");
 
     return NextResponse.json({
       success: true,
       message: "Team Created Successfully",
       data: createdTeam,
+      confirmationRequest,
     });
   } catch (error) {
     console.error("Error ", error);

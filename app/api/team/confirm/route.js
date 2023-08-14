@@ -103,8 +103,15 @@ export async function DELETE(request) {
   try {
     await connectToDatabase();
     const { id } = await request.json();
-    const confirmationRequest = await ConfirmationRequest.findById(id);
-
+    const confirmationRequest = await ConfirmationRequest.findById(id)
+      .populate("teamLeader")
+      .populate("team");
+    sendConfirmationEmail(
+      confirmationRequest?.teamLeader,
+      confirmationRequest.team,
+      confirmationRequest.teamLeader.email,
+      { event: 1 }
+    );
     await confirmationRequest.deleteOne();
     //need to notify the leader that other member has rejected the request
 

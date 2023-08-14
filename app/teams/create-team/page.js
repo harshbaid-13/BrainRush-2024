@@ -29,30 +29,23 @@ const createTeam = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ teamName, userId: user.id }),
+        body: JSON.stringify({ teamName, userId: user.id, teamMemberEmail }),
       });
       const data = await res.json();
-      const response = await fetch("/api/team/confirm", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ teamMemberEmail, userId: user?.id }),
-      });
-      const confirmation = await response.json();
-      console.log(confirmation);
-      setLoading(false);
       if (data.success) {
         dispatch(setTeam(data.data));
-      }
-      if (confirmation.success) {
-        dispatch(setTeamRequest(confirmation.data ? confirmation.data : null));
+        dispatch(
+          setTeamRequest(
+            data.confirmationRequest ? data.confirmationRequest : null
+          )
+        );
         alert(
           "Your team created successfully Your partner need to confirm only"
         );
       } else {
         alert(confirmation.message);
       }
+      setLoading(false);
       router.push("/teams");
     } catch (err) {
       console.log(err);
