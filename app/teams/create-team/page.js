@@ -63,7 +63,7 @@ const createTeam = () => {
             <div>
               <label
                 htmlFor="subject"
-                className="block mb-2 text-gray-600 text-sm font-medium "
+                className="block mb-2 text-gray-600 text-lg font-medium "
               >
                 <span className={preahvihear.className}>
                   {/* Your Name<span className="text-red text-2xl">*</span> */}
@@ -73,7 +73,7 @@ const createTeam = () => {
               <input
                 type="text"
                 id="email"
-                className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 placeholder-gray-700"
+                className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 placeholder-gray-700"
                 placeholder="Team Name"
                 required
                 value={teamName}
@@ -85,7 +85,7 @@ const createTeam = () => {
             <div>
               <label
                 htmlFor="subject"
-                className="block mb-2 text-gray-600 text-sm font-medium "
+                className="block mb-2 text-gray-600 text-xl font-medium "
               >
                 <span className={preahvihear.className}>
                   {/* Your Name<span className="text-red text-2xl">*</span> */}
@@ -95,7 +95,7 @@ const createTeam = () => {
               <input
                 type="email"
                 id="email"
-                className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 placeholder-gray-700"
+                className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 placeholder-gray-700"
                 placeholder="Team Member Email"
                 required
                 value={teamMemberEmail}
@@ -106,7 +106,7 @@ const createTeam = () => {
             </div>
             <button
               type="submit"
-              className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+              className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xl font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
             >
               <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-gradient-to-br from-btnColorDark to-btnColor rounded-md group-hover:bg-opacity-0">
                 <span className={preahvihear.className}>

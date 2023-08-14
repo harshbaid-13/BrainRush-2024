@@ -7,6 +7,7 @@ import "./page.css";
 import { set } from "mongoose";
 import { Preahvihear } from "next/font/google";
 import { useSelector } from "react-redux";
+import Toast from "@components/Toast/Toast";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -24,6 +25,7 @@ const Profile = () => {
   const [year, setYear] = useState(null);
   const [contact, setContact] = useState("");
   const [submit, setSubmit] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   // const getQr = async () => {
   //     const response = await fetch(`/api/test/${session?.user?.id}`);
   //     const data = await response.json();
@@ -41,6 +43,7 @@ const Profile = () => {
         body: JSON.stringify({ name, department, year, userId, contact }),
       });
       setSubmit(true);
+      setShowToast(true);
     } catch (err) {
       console.log(err);
     }
@@ -102,7 +105,7 @@ const Profile = () => {
             <input
               type="text"
               id="email"
-              className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
+              className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
               placeholder="Your Name"
               required
               value={name}
@@ -124,7 +127,7 @@ const Profile = () => {
             <input
               type="email"
               id="email"
-              className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
+              className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
               placeholder="Your Email ID"
               required
               value={email}
@@ -147,13 +150,13 @@ const Profile = () => {
               placeholder="123-456-7890"
               pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
               required
-              className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
+              className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
               value={contact}
               onChange={(e) => {
                 setContact(e.target.value);
               }}
             />
-          </div >
+          </div>
           <div>
             <label
               htmlFor="Department"
@@ -168,7 +171,7 @@ const Profile = () => {
             <select
               id="Department"
               name="Department"
-              className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
+              className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
               value={department}
               onChange={(e) => {
                 setDepartment(e.target.value);
@@ -184,7 +187,7 @@ const Profile = () => {
               <option value="EE">EE</option>
               <option value="ME">ME</option>
             </select>
-          </div >
+          </div>
           <div>
             <label
               htmlFor="Year"
@@ -199,7 +202,7 @@ const Profile = () => {
             <select
               id="Year"
               name="Year"
-              className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
+              className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
               value={year}
               onChange={(e) => {
                 setYear(e.target.value);
@@ -212,24 +215,29 @@ const Profile = () => {
               <option value={2025}>3rd</option>
               <option value={2024}>4th</option>
             </select>
-          </div >
+          </div>
           <button
             type="submit"
-            className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
-          // onClick={() => {
-          //   submitHandler;
-          //   setSubmit(true);
-          // }}
+            className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xl font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+            // onClick={() => {
+            //   submitHandler;
+            //   setSubmit(true);
+            // }}
           >
             <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-gradient-to-br from-btnColorDark to-btnColor rounded-md group-hover:bg-opacity-0">
               Submit Details
             </span>
           </button>
           {/* <button type="button" className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Purple to Pink</button> */}
-        </form >
-      </div >
+        </form>
+      </div>
+      {showToast && (
+        <div className=" bg-gray-100 text-gray-900 rounded-md">
+          <Toast message="Profile Created Successfully!" />
+        </div>
+      )}
       {successSubmit()}
-    </section >
+    </section>
     // <h1 className="flex justify-center">{session?.user?.name}</h1>
   );
 };
