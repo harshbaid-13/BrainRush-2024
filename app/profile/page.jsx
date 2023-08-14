@@ -24,6 +24,7 @@ const Profile = () => {
   const [year, setYear] = useState(profileData?.year);
   const [contact, setContact] = useState(profileData?.phoneNumber);
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     setName(profileData?.name);
     setDepartment(profileData?.department);
@@ -92,7 +93,7 @@ const Profile = () => {
                 <input
                   type="text"
                   id="email"
-                  className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
+                  className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
                   placeholder="Your Name"
                   required
                   value={name}
@@ -114,7 +115,7 @@ const Profile = () => {
                 <input
                   type="email"
                   id="email"
-                  className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
+                  className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
                   placeholder="Your Email ID"
                   required
                   value={email}
@@ -137,7 +138,7 @@ const Profile = () => {
                   placeholder="123-456-7890"
                   pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
                   required
-                  className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
+                  className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
                   value={contact}
                   onChange={(e) => {
                     setContact(e.target.value);
@@ -158,7 +159,7 @@ const Profile = () => {
                 <select
                   id="Department"
                   name="Department"
-                  className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
+                  className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
                   value={department}
                   onChange={(e) => {
                     setDepartment(e.target.value);
@@ -189,7 +190,7 @@ const Profile = () => {
                 <select
                   id="Year"
                   name="Year"
-                  className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
+                  className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
                   value={year}
                   onChange={(e) => {
                     setYear(e.target.value);

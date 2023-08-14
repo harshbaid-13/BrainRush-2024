@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { connectToDatabase } from "@utils/db";
 import User from "@models/user";
 import Team from "@models/team";
-import ConfirmationRequest from "@models/confirmationRequest";
 import sendConfirmationEmail from "@utils/sendConfirmationEmail";
+import ConfirmationRequest from "@models/confirmationRequest";
 
 // Get All Teams
 export async function GET(request) {
@@ -69,18 +69,31 @@ export async function POST(request) {
   try {
     await connectToDatabase();
     const { teamName, userId, teamMemberEmail } = await request.json();
+    //get the leader id
     const teamLeader = await User.findById(userId);
-
+    //check if the team name already exists
     const existingTeam = await Team.findOne({ teamName });
-
+    //if exists then can not create another team
     if (existingTeam) {
+      return NextResponse.json({
+        success: false,
+        message: "Team Name already exists",
+      });
+    }
+
+    //if the current user is already a member or a leader
+    let team = await Team.findOne({
+      $or: [{ leader: userId }, { teamMember: userId }],
+    });
+    //then can not create another team
+    if (team) {
       return NextResponse.json(
-        { success: false, message: "Team Name already exists" },
+        { success: false, message: "Team already exists" },
         { status: 400 }
       );
     }
 
-    const team = await Team.create({
+    team = await Team.create({
       teamName: teamName,
       leader: teamLeader,
     });

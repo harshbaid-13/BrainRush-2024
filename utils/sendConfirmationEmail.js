@@ -9,7 +9,12 @@ const transporter = nodemailer.createTransport({
 });
 
 // Send email to the team member
-const sendConfirmationEmail = async (teamLeader, team, teamMemberEmail) => {
+const sendConfirmationEmail = async (
+  teamLeader,
+  team,
+  teamMemberEmail,
+  event
+) => {
   const mailOptions = {
     from: process.env.EMAIL,
     to: teamMemberEmail,
