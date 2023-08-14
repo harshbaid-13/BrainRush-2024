@@ -2,27 +2,30 @@ import { NextResponse } from "next/server";
 import Team from "@models/team";
 import User from "@models/user";
 import { connectToDatabase } from "@utils/db";
+import mongoose from "mongoose";
+import ConfirmationRequest from "@models/confirmationRequest";
 
-//display one team
+// Get Logged In User Team
 export async function GET(request, { params }) {
   try {
     await connectToDatabase();
-    let isLeader = true;
-    let team = await Team.findOne({ leader: params.id }).populate([
-      "leader",
-      "teamMember",
-    ]);
-    if (!team) {
-      isLeader = false;
-      team = await Team.findOne({ teamMember: params.id }).populate([
-        "leader",
-        "teamMember",
-      ]);
+    const { id } = params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return NextResponse.json(
+        {
+          message: "Invalid object ID",
+        },
+        { status: 404 }
+      );
     }
+    const team = await Team.findOne({
+      $or: [{ leader: id }, { teamMember: id }],
+    }).populate(["leader", "teamMember"]);
+    const requests = await ConfirmationRequest.findOne({ team: team?._id });
     if (!team) {
       return NextResponse.json({ success: false, message: "Team not found" });
     }
-    return NextResponse.json({ success: true, data: team, isLeader });
+    return NextResponse.json({ success: true, data: team, request: requests });
   } catch (error) {
     console.error("Error fetching team:", error);
     return NextResponse.json(
@@ -31,13 +34,21 @@ export async function GET(request, { params }) {
     );
   }
 }
-//exit team--member
+
+// Exit Team Team Member
 export async function DELETE(request, { params }) {
   try {
     await connectToDatabase();
-    const teamMemberId = params.id;
-
-    const team = await Team.findOne({ teamMember: teamMemberId });
+    const { id } = params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return NextResponse.json(
+        {
+          message: "Invalid object ID",
+        },
+        { status: 404 }
+      );
+    }
+    const team = await Team.findOne({ teamMember: id });
 
     // Check if payment is done
     if (team.payment) {
@@ -46,7 +57,7 @@ export async function DELETE(request, { params }) {
         { status: 403 }
       );
     }
-    const user = await Team.findByIdAndUpdate(
+    const newTeam = await Team.findByIdAndUpdate(
       team._id,
       { teamMember: null, teamMemberConfirmation: false },
       { new: true }

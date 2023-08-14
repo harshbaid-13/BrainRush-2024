@@ -1,17 +1,24 @@
-import React from "react";
-import { motion } from "framer-motion";
+// components/Toast.js
+import { useState, useEffect } from "react";
+import styles from "./Toast.css";
 
-const Toast = ({ message }) => {
+export default function Toast({ message }) {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (message) {
+      setVisible(true);
+      const timer = setTimeout(() => {
+        setVisible(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      // animate={{ opacity: 1, y: 0 }}
-      // exit={{ opacity: 0, y: -20 }}
-      className="bg-gray-500 text-red rounded-md fixed bottom-0 left-0 right-0 flex justify-center items-center p-4"
-    >
-      <div className="text-red">{message}</div>
-    </motion.div>
+    <div className={`${styles.toast} ${visible ? styles.show : ""}`}>
+      {message}
+    </div>
   );
-};
-
-export default Toast;
+}

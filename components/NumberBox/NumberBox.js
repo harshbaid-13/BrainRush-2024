@@ -21,7 +21,7 @@ export const NumberBox = ({ num, unit }) => {
         <div className=" rounded-b-lg rounded-t-lg bg-[#9b9b9d4b] w-full h-full"></div>
       </div>
       <p className="text-lg mt-3 font-semibold text-subHeaderText  md:text-2xl ">
-        {unit}
+        <span className={preahvihear.className}>{unit}</span>
       </p>
     </div>
   );

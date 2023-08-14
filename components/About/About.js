@@ -7,6 +7,13 @@ import AboutMain from "./AboutMain";
 import Venue from "@components/Venue/Venue";
 // import Details from "@components/Details/Details";
 import Team from "@components/Team/Team";
+import { Preahvihear } from "next/font/google";
+
+const preahvihear = Preahvihear({
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 function About() {
   const [about, setAbout] = useState(true);
   const [venue, setVenue] = useState(false);
@@ -57,7 +64,9 @@ function About() {
                   : "notActiveClass text-2xl cursor-pointer "
               }
             >
-              {about ? "About Us" : "..."}
+              <span className={preahvihear.className}>
+                {about ? "About Us" : "..."}
+              </span>
             </div>
             <div
               onClick={() => {
@@ -71,7 +80,9 @@ function About() {
                   : "notActiveClass  text-2xl cursor-pointer "
               }
             >
-              {venue ? "Our Venue" : "..."}
+              <span className={preahvihear.className}>
+                {venue ? "Our Venue" : "..."}
+              </span>
             </div>
             <div
               onClick={() => {
@@ -85,7 +96,9 @@ function About() {
                   : "notActiveClass hover:border-b-logoYellow text-xl  focus:border-b-logoYellow cursor-pointer"
               }
             >
-              {schedule ? "Our Team" : "..."}
+              <span className={preahvihear.className}>
+                {schedule ? "Our Team" : "..."}
+              </span>
             </div>
           </div>
           <hr />
