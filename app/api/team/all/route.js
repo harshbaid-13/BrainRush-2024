@@ -82,13 +82,16 @@ export async function POST(request) {
     }
 
     //if the current user is already a member or a leader
-    let team = await Team.findOne({
+    const team = await Team.findOne({
       $or: [{ leader: userId }, { teamMember: userId }],
     });
     //then can not create another team
     if (team) {
       return NextResponse.json(
-        { success: false, message: "Team already exists" },
+        {
+          message: "You already have a team",
+          success: false,
+        },
         { status: 400 }
       );
     }
@@ -100,26 +103,25 @@ export async function POST(request) {
       );
     }
 
-    team = await Team.create({
+    const newTeam = await Team.create({
       teamName: teamName,
       leader: teamLeader,
     });
-
-    const teamId = team._id;
-    const createdTeam = await Team.findById(teamId).populate("leader");
-
-    sendConfirmationEmail(teamLeader, createdTeam, teamMemberEmail);
-
+    sendConfirmationEmail(teamLeader, newTeam, teamMemberEmail, { event: 0 });
     const confirmationRequest = await ConfirmationRequest.create({
-      team,
+      team: newTeam,
       teamLeader,
       teamMemberEmail,
     });
 
+    const teamId = newTeam._id;
+    const createdTeam = await Team.findById(teamId).populate("leader");
+
     return NextResponse.json({
       success: true,
       message: "Team Created Successfully",
-      data: [createdTeam, confirmationRequest],
+      data: createdTeam,
+      confirmationRequest,
     });
   } catch (error) {
     console.error("Error ", error);
