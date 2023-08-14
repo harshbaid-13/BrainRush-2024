@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   team: null,
   isAlreadyInTeam: false,
+  sentRequestFromTheTeam: null,
 };
 
 export const TeamSlice = createSlice({
@@ -14,11 +15,17 @@ export const TeamSlice = createSlice({
       state.team = action?.payload;
       if (action?.payload) {
         state.isAlreadyInTeam = true;
+      } else {
+        state.isAlreadyInTeam = false;
       }
+    },
+    setTeamRequest: (state, action) => {
+      console.log(action?.payload);
+      state.sentRequestFromTheTeam = action?.payload;
     },
   },
 });
 
-export const { setTeam } = TeamSlice.actions;
+export const { setTeam, setTeamRequest } = TeamSlice.actions;
 
 export default TeamSlice.reducer;

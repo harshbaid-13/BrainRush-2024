@@ -6,7 +6,7 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { setUser } from "@Reducers/features/user";
 import { useDispatch, useSelector } from "react-redux";
-import { setTeam } from "@Reducers/features/team";
+import { setTeam, setTeamRequest } from "@Reducers/features/team";
 import { setProfile } from "@Reducers/features/profile";
 import { setRequest } from "@Reducers/features/requests";
 import "./Nav.css";
@@ -48,8 +48,9 @@ function Navbar() {
   };
   const getTeamDetails = async () => {
     const res = await fetch(`/api/team/${session?.user?.id}/display`);
-    const { data } = await res.json();
-    dispatch(setTeam(data));
+    const data = await res.json();
+    dispatch(setTeam(data.data === undefined ? null : data.data));
+    dispatch(setTeamRequest(data.request===undefined?null:data.request));
   };
   const getProfileDetails = async () => {
     const res = await fetch(`/api/user/${session?.user?.id}`);
@@ -85,10 +86,12 @@ function Navbar() {
     <nav className="z-20 bg-white text-white body-font">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link href="/" className="flex items-center">
-          <img
+          <Image
             src="/assets/images/logo.png"
             className="h-8 mr-3"
             alt="Kodikas Logo"
+            height={40}
+            width={50}
           />
           <span
             className="self-center text-3xl font-semibold whitespace-nowrap text-headerText"
@@ -102,7 +105,7 @@ function Navbar() {
             <div className="relative">
               <button
                 type="button"
-                className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0"
                 id="user-menu-button"
                 aria-expanded={isUserDropdownOpen}
                 data-dropdown-toggle="user-dropdown"
@@ -110,10 +113,12 @@ function Navbar() {
                 onClick={toggleUserDropdown}
               >
                 <span className="sr-only">Open user menu</span>
-                <img
+                <Image
                   className="w-8 h-8 rounded-full border-2 border-subHeaderText"
                   src={user?.image}
                   alt="user photo"
+                  height={50}
+                  width={50}
                 />
               </button>
               {/* User toggle menu */}
@@ -137,7 +142,10 @@ function Navbar() {
                     </span>
                   </span>
                 </div>
-                <ul className="py-2" aria-labelledby="user-menu-button">
+                <ul
+                  className="py-2 flex flex-col"
+                  aria-labelledby="user-menu-button"
+                >
                   <li>
                     <Link
                       href="/profile"
@@ -149,7 +157,7 @@ function Navbar() {
 
                   <li>
                     <button
-                      onClick={signOut}
+                      onClick={() => signOut({ callbackUrl: "/" })}
                       className="relative inline-flex items-center ml-2 justify-center p-0.5 pr-2 mb-2  overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor group-hover:from-btnColorDark group-hover:to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
                     >
                       <span className="relative px-3 py-2 transition-all ease-in duration-75 bg-white text-gray-700 rounded-md hover:text-gray-100 group-hover:bg-opacity-0">
