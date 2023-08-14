@@ -93,6 +93,13 @@ export async function POST(request) {
       );
     }
 
+    if (teamMemberEmail === teamLeader.email) {
+      return NextResponse.json(
+        { success: false, message: "You can't add yourself as a member" },
+        { status: 400 }
+      );
+    }
+
     team = await Team.create({
       teamName: teamName,
       leader: teamLeader,
