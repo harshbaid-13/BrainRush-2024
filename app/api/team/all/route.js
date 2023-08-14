@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { connectToDatabase } from "@utils/db";
 import User from "@models/user";
 import Team from "@models/team";
+import ConfirmationRequest from "@models/confirmationRequest";
+import sendConfirmationEmail from "@utils/sendConfirmationEmail";
 
 // Get All Teams
 export async function GET(request) {
@@ -66,7 +68,7 @@ export async function GET(request) {
 export async function POST(request) {
   try {
     await connectToDatabase();
-    const { teamName, userId } = await request.json();
+    const { teamName, userId, teamMemberEmail } = await request.json();
     const teamLeader = await User.findById(userId);
 
     const existingTeam = await Team.findOne({ teamName });
@@ -86,10 +88,18 @@ export async function POST(request) {
     const teamId = team._id;
     const createdTeam = await Team.findById(teamId).populate("leader");
 
+    sendConfirmationEmail(teamLeader, createdTeam, teamMemberEmail);
+
+    const confirmationRequest = await ConfirmationRequest.create({
+      team,
+      teamLeader,
+      teamMemberEmail,
+    });
+
     return NextResponse.json({
       success: true,
       message: "Team Created Successfully",
-      data: createdTeam,
+      data: [createdTeam, confirmationRequest],
     });
   } catch (error) {
     console.error("Error ", error);
