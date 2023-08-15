@@ -3,21 +3,30 @@ import Team from "@models/team";
 import User from "@models/user";
 import { connectToDatabase } from "@utils/db";
 import sendConfirmationEmail from "@utils/sendConfirmationEmail";
+import mongoose from "mongoose";
 
 const { NextResponse } = require("next/server");
 
 // Send Invite Request
-export async function POST(request) {
+export async function POST(req) {
   try {
     await connectToDatabase();
-    const { userId, teamMemberEmail } = await request.json();
+    const email = req.headers.get("Authorization");
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      return NextResponse.json({ success: false, message: "User not found" });
+    }
+    const { teamMemberEmail } = await req.json();
+    if (teamMemberEmail === user.email) {
+      return NextResponse.json(
+        { success: false, message: "You can't add yourself as a member" },
+        { status: 400 }
+      );
+    }
+    const teamLeaderId = user._id;
     const requestSentAlready = await ConfirmationRequest.findOne({
-      teamLeader: userId,
+      teamLeader: teamLeaderId,
     });
-    const teamLeader = await User.findById(userId);
-    console.log(teamLeader);
-    const team = await Team.findOne({ leader: userId });
-    console.log(team);
     if (requestSentAlready) {
       return NextResponse.json({
         success: false,
@@ -25,6 +34,7 @@ export async function POST(request) {
         message: "Delete Previous Request First to Send New Request",
       });
     }
+    const team = await Team.findOne({ leader: teamLeaderId });
     if (team.teamMemberConfirmation) {
       return NextResponse.json({
         success: false,
@@ -33,18 +43,11 @@ export async function POST(request) {
       });
     }
 
-    if (teamMemberEmail === teamLeader.email) {
-      return NextResponse.json(
-        { success: false, message: "You can't add yourself as a member" },
-        { status: 400 }
-      );
-    }
-
-    sendConfirmationEmail(teamLeader, team, teamMemberEmail, { event: 0 });
+    sendConfirmationEmail(user, team, teamMemberEmail, { event: 0 });
 
     const confirmationRequest = await ConfirmationRequest.create({
       team,
-      teamLeader,
+      teamLeader: user,
       teamMemberEmail,
     });
 
@@ -63,103 +66,37 @@ export async function POST(request) {
   }
 }
 
-// Accept Invite Request
-export async function PUT(request) {
+// Get All LoggedIn User Requests
+export async function GET(req) {
   try {
     await connectToDatabase();
-    const { id, userId } = await request.json();
-    const confirmationRequest = await ConfirmationRequest.findById(id);
-
-    const userTeamExist = await Team.findOne({ leader: userId });
-
-    if (userTeamExist) {
-      return NextResponse.json({
-        success: false,
-        status: 400,
-        message: "You have a team already",
-      });
+    const email = req.headers.get("Authorization");
+    console.log({ email });
+    const user = await User.findOne({ email: email });
+    console.log({ user });
+    if (!user) {
+      return NextResponse.json({ success: false, message: "User not found" });
     }
-
-    const team = await Team.findByIdAndUpdate(
-      confirmationRequest?.team,
-      { teamMember: userId, teamMemberConfirmation: true },
-      { new: true }
-    )
-      .populate("leader")
-      .populate("teamMember");
-
-    await confirmationRequest.deleteOne();
-
-    return NextResponse.json({
-      success: true,
-      status: 200,
-      message: "Team Request Accepted Successfully",
-      data: team,
-    });
-  } catch (error) {
-    console.error("Error ", error);
-    return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
-    );
-  }
-}
-
-// Reject Invite Request
-export async function DELETE(request) {
-  try {
-    await connectToDatabase();
-    const { id } = await request.json();
-    const confirmationRequest = await ConfirmationRequest.findById(id)
-      .populate("teamLeader")
-      .populate("team");
-    sendConfirmationEmail(
-      confirmationRequest?.teamLeader,
-      confirmationRequest.team,
-      confirmationRequest.teamLeader.email,
-      { event: 1 }
-    );
-    await confirmationRequest.deleteOne();
-    //need to notify the leader that other member has rejected the request
-
-    return NextResponse.json({
-      success: true,
-      status: 200,
-      message: "Request Deleted Successfully",
-    });
-  } catch (error) {
-    console.error("Error ", error);
-    return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
-    );
-  }
-}
-
-//Get confirmationRequest id
-export async function GET(request) {
-  const { searchParams } = new URL(request.url);
-  const leaderId = searchParams.get("leaderId");
-  try {
-    await connectToDatabase();
-    const confirmationRequest = await ConfirmationRequest.findOne({
-      teamLeader: leaderId,
-    });
-    //if no leader found
-    if (!confirmationRequest) {
+    const teamLeaderId = user._id;
+    if (!mongoose.Types.ObjectId.isValid(teamLeaderId)) {
       return NextResponse.json(
-        { message: "Leader is not in a Team" },
-        { status: 400 }
+        { message: "Not a valid user" },
+        { status: 404 }
       );
     }
-    console.log(confirmationRequest);
+    // const loggedInUser = await User.findById(userId);
+    const totalRequests = await ConfirmationRequest.find({
+      teamMemberEmail: user.email,
+    }).populate(["team", "teamLeader"]);
+
     return NextResponse.json({
       success: true,
-      message: "GG get your ID",
-      data: confirmationRequest,
+      status: 200,
+      message: "Requests Retrieved Successfully",
+      data: totalRequests,
     });
   } catch (error) {
-    console.log(error);
+    console.error("Error ", error);
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 }

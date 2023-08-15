@@ -39,7 +39,7 @@ function Navbar() {
   }, []);
 
   const getRequests = async () => {
-    const response = await fetch(`/api/team/confirm/${session?.user?.id}`);
+    const response = await fetch(`/api/team/confirm`);
     const { data } = await response.json();
     dispatch(setRequest(data));
   };
@@ -47,15 +47,16 @@ function Navbar() {
     dispatch(setUser(session?.user));
   };
   const getTeamDetails = async () => {
-    const res = await fetch(`/api/team/${session?.user?.id}/display`);
+    const res = await fetch(`/api/team`);
     const data = await res.json();
+    // console.log(data)
     dispatch(setTeam(data.data === undefined ? null : data.data));
     dispatch(setTeamRequest(data.request === undefined ? null : data.request));
   };
   const getProfileDetails = async () => {
     const res = await fetch(`/api/user`);
     const { data } = await res.json();
-    console.log(data);
+    // console.log(data);
     dispatch(setProfile(data));
   };
   useEffect(() => {
