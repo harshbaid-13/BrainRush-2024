@@ -25,12 +25,11 @@ function page() {
   const requests = useSelector((state) => state.requests.requests);
   const handleAcceptTeam = async (id) => {
     try {
-      const res = await fetch("/api/team/confirm", {
+      const res = await fetch(`/api/new/confirm/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId: user.id, id }),
       });
       const data = await res.json();
       console.log(data);
@@ -47,12 +46,11 @@ function page() {
   const handleRejectTeam = async (id) => {
     try {
       setLoading(true);
-      const res = await fetch("/api/team/confirm", {
+      const res = await fetch(`/api/new/confirm/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId: user?.id, id }),
       });
       const data = await res.json();
       if (data.success) {
@@ -86,16 +84,20 @@ function page() {
             <section className="text-gray-600  px-2 body-font">
               <div className="containe mx-auto">
                 <div className="flex flex-col -m- w-full items-center justify-center">
+                  {console.log(requests)}
                   {requests &&
-                    requests.map((request) => (
-                      <div className="p-4 sm:w-full md:w-4/5 lg:w-2/3 teamButton mx-auto">
+                    requests.map((request, ind) => (
+                      <div
+                        key={ind}
+                        className="p-4 sm:w-full md:w-4/5 lg:w-2/3 teamButton mx-auto"
+                      >
                         <div className="flex border-2 rounded-lg border-gray-200 border-opacity-50 sm:p-3 lg:p-8 sm:flex-row flex-row">
                           <div className="w-16 h-16 sm:hidden lg:inline sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
                             <svg
                               fill="none"
                               stroke="currentColor"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                               strokeWidth="2"
                               className="w-8 h-8 sm:hidden lg:inline"
                               viewBox="0 0 24 24"

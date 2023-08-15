@@ -33,7 +33,14 @@ export async function POST(request) {
       });
     }
 
-    sendConfirmationEmail(teamLeader, team, teamMemberEmail);
+    if (teamMemberEmail === teamLeader.email) {
+      return NextResponse.json(
+        { success: false, message: "You can't add yourself as a member" },
+        { status: 400 }
+      );
+    }
+
+    sendConfirmationEmail(teamLeader, team, teamMemberEmail, { event: 0 });
 
     const confirmationRequest = await ConfirmationRequest.create({
       team,
@@ -122,6 +129,37 @@ export async function DELETE(request) {
     });
   } catch (error) {
     console.error("Error ", error);
+    return NextResponse.json(
+      { message: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}
+
+//Get confirmationRequest id
+export async function GET(request) {
+  const { searchParams } = new URL(request.url);
+  const leaderId = searchParams.get("leaderId");
+  try {
+    await connectToDatabase();
+    const confirmationRequest = await ConfirmationRequest.findOne({
+      teamLeader: leaderId,
+    });
+    //if no leader found
+    if (!confirmationRequest) {
+      return NextResponse.json(
+        { message: "Leader is not in a Team" },
+        { status: 400 }
+      );
+    }
+    console.log(confirmationRequest);
+    return NextResponse.json({
+      success: true,
+      message: "GG get your ID",
+      data: confirmationRequest,
+    });
+  } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 }

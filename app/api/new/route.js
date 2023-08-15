@@ -5,58 +5,31 @@ import Team from "@models/team";
 import sendConfirmationEmail from "@utils/sendConfirmationEmail";
 import ConfirmationRequest from "@models/confirmationRequest";
 
-// Get All Teams
-export async function GET(request) {
-  const { searchParams } = new URL(request.url);
-  const search = searchParams.get("search") || "";
-  const page = searchParams.get("page") || 1;
-  const filter = searchParams.get("filter") || null;
-  const limit = 10;
-  const skip = (page - 1) * limit;
-
-  const queries = search
-    ? {
-        $or: [
-          { name: { $regex: search, $options: "i" } },
-          { email: { $regex: search, $options: "i" } },
-        ],
-      }
-    : {};
-
+//get the details of a particuler team
+export async function GET(req) {
   try {
     await connectToDatabase();
-    const users = await User.find(queries);
-    const userIds = users.map((user) => user._id);
-    const newQueries = {
-      $and: [
-        {
-          $or: [
-            { leader: { $in: userIds } },
-            { teamMember: { $in: userIds } },
-            { teamName: { $regex: search, $options: "i" } },
-          ],
-        },
-      ],
-    };
-    if (filter) {
-      newQueries.$and.push({ teamMemberConfirmation: !filter });
+    const email = req.headers.get("Authorization");
+    const user = await User.findOne({ email: email });
+    const teamDetails = await Team.findOne({
+      $or: [{ leader: user._id }, { teamMember: user._id }],
+    });
+    if (!teamDetails) {
+      return NextResponse.json({
+        success: false,
+        message: "Team not found",
+      });
     }
-    const teams = await Team.find(newQueries)
-      .skip(skip)
-      .limit(limit)
-      .populate(["leader", "teamMember"]);
-
-    const count = await Team.find(newQueries).count();
-
+    const teamRequests = await ConfirmationRequest.findOne({
+      team: teamDetails?._id,
+    });
     return NextResponse.json({
       success: true,
-      message: "All registered teams",
-      count: Number(count),
-      limit: Number(limit),
-      teams: teams,
+      data: teamDetails,
+      request: teamRequests,
     });
   } catch (error) {
-    console.error("Error fetching team names:", error);
+    console.error("Error fetching team:", error);
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 }
@@ -68,9 +41,16 @@ export async function GET(request) {
 export async function POST(request) {
   try {
     await connectToDatabase();
-    const { teamName, userId, teamMemberEmail } = await request.json();
+    const email = request.headers.get("Authorization");
+    console.log({ email });
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      return NextResponse.json({ success: false, message: "User not found" });
+    }
+    const userId = user._id;
+    const { teamName, teamMemberEmail } = await request.json();
     //get the leader id
-    const teamLeader = await User.findById(userId);
+    // const teamLeader = await User.findById(userId);
     //check if the team name already exists
     const existingTeam = await Team.findOne({ teamName });
     //if exists then can not create another team
@@ -96,7 +76,7 @@ export async function POST(request) {
       );
     }
 
-    if (teamMemberEmail === teamLeader.email) {
+    if (teamMemberEmail === user.email) {
       return NextResponse.json(
         { success: false, message: "You can't add yourself as a member" },
         { status: 400 }
@@ -105,12 +85,12 @@ export async function POST(request) {
 
     const newTeam = await Team.create({
       teamName: teamName,
-      leader: teamLeader,
+      leader: user,
     });
-    sendConfirmationEmail(teamLeader, newTeam, teamMemberEmail, { event: 0 });
+    sendConfirmationEmail(user, newTeam, teamMemberEmail, { event: 0 });
     const confirmationRequest = await ConfirmationRequest.create({
       team: newTeam,
-      teamLeader,
+      teamLeader: user,
       teamMemberEmail,
     });
 

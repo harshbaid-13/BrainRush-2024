@@ -19,15 +19,16 @@ export async function DELETE(request, { params }) {
         { status: 403 }
       );
     }
-    const user = await Team.findByIdAndUpdate(
+    const teamDetails = await Team.findByIdAndUpdate(
       team._id,
       { teamMember: null, teamMemberConfirmation: false },
       { new: true }
-    );
+    ).populate("leader");
 
     return NextResponse.json({
       success: true,
       message: "Team member removed successfully",
+      data: teamDetails,
     });
   } catch (error) {
     console.error("Error removing team member:", error);

@@ -34,9 +34,13 @@ const Profile = () => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
+    if (!name.length || !department.length || !year || !contact) {
+      alert("Fill the form completely!");
+      return;
+    }
     setLoading(true);
     try {
-      const res = await fetch(`/api/user/${user?.id}`, {
+      const res = await fetch(`/api/user`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

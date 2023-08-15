@@ -24,12 +24,12 @@ const createTeam = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch("/api/team/all", {
+      const res = await fetch("/api/new", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ teamName, userId: user.id, teamMemberEmail }),
+        body: JSON.stringify({ teamName, teamMemberEmail }),
       });
       const data = await res.json();
       if (data.success) {
