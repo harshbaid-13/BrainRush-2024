@@ -6,6 +6,8 @@ import { Inter } from "next/font/google";
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from "@Reducers/store";
 import Nav from "@components/Nav/Nav";
+import { useEffect, useState } from "react";
+import Loader from "@components/Loader/Loader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,6 +17,13 @@ const inter = Inter({ subsets: ["latin"] });
 // };
 
 export default function RootLayout({ children }) {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+  }, []);
   return (
     <html lang="en">
       <title>Kodikas 2k23</title>
@@ -24,10 +33,16 @@ export default function RootLayout({ children }) {
             <div className="main">
               <div className="gradient"></div>
             </div>
-            <div className="relative z-10">
-              <Nav />
-              <div className="w-full h-auto mt-16">{children}</div>
-            </div>
+            {loading ? (
+              <Loader />
+            ) : (
+              <>
+                <div className="relative z-10">
+                  <Nav />
+                  <div className="w-full h-auto mt-16">{children}</div>
+                </div>
+              </>
+            )}
           </ReduxProvider>
         </Provider>
       </body>
