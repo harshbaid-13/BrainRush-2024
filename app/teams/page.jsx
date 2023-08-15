@@ -35,7 +35,7 @@ const Teams = () => {
   const handleDelete = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/new/${team?._id}`, {
+      const response = await fetch(`/api/team/${team?._id}`, {
         method: "DELETE",
       });
       const data = await response.json();
@@ -53,16 +53,15 @@ const Teams = () => {
   const handleRemoveRequest = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`/api/team/confirm?leaderId=${user?.id}`);
-      const { data } = await res.json();
-      console.log("handleRemoveRequest " + data.teamMemberEmail);
-      const response = await fetch("/api/team/confirm", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id: data?._id }),
-      });
+      const response = await fetch(
+        `/api/team/confirm/${sentRequestFromTheTeam?._id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const successData = await response.json();
       if (successData.success) {
         dispatch(setTeamRequest(null));
@@ -75,7 +74,7 @@ const Teams = () => {
   const handleRemoveMember = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`/api/new/${team?._id}`, {
+      const res = await fetch(`/api/team/${team?._id}`, {
         method: "PATCH",
       });
       const data = await res.json();
@@ -92,20 +91,15 @@ const Teams = () => {
   const handleLeaveTeam = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`/api/team/${user?.id}/display`, {
-        method: "DELETE",
+      const res = await fetch(`/api/team/${team?._id}`, {
+        method: "PUT",
       });
       const data = await res.json();
       if (data?.success) {
-        console.log("here");
         dispatch(setTeam(null));
         dispatch(setTeamRequest(null));
-        const response = await fetch(`/api/team/confirm/${user?.id}`);
-        const { data } = await response.json();
-        dispatch(setRequest(data));
       }
       setLoading(false);
-      router.push("/teams");
     } catch (error) {
       console.log(error);
     }
@@ -114,7 +108,7 @@ const Teams = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch("/api/new/confirm", {
+      const res = await fetch("/api/team/confirm", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -122,29 +116,26 @@ const Teams = () => {
         body: JSON.stringify({ teamMemberEmail }),
       });
       const data = await res.json();
+      console.log(data);
       if (data.success) {
-        dispatch(
-          setTeamRequest(
-            data.confirmationRequest ? data.confirmationRequest : null
-          )
-        );
+        dispatch(setTeamRequest(data.data));
         setTeamMemberEmail("");
       } else {
         alert(confirmation.message);
       }
       setLoading(false);
-      // router.push("/teams");
+      router.push("/teams");
     } catch (err) {
       console.log(err);
     }
   };
+
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
     }, 4000);
   }, []);
-
   return (
     <>
       {loading ? (
@@ -210,17 +201,17 @@ const Teams = () => {
                               className="space-y-8 "
                               onSubmit={handleSendRequest}
                             >
-                              <div className="w-full flex flex-wrap items-center">
+                              <div className="w-full flex items-center">
                                 <label
                                   htmlFor="email"
-                                  className="block text-md mb-2 mr-2 text-gray-700 font-medium"
+                                  className="block text-md mr-2 text-gray-700 font-medium"
                                 >
                                   <span className={preahvihear.className}>
                                     Add Team Member:
                                     <span className="text-red text-md"> </span>
                                   </span>{" "}
                                 </label>
-                                <div className="">
+                                <div>
                                   <input
                                     type="text"
                                     id="email"
