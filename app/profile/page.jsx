@@ -80,8 +80,7 @@ const Profile = () => {
 
             <p className="mb-8 lg:mb-16 text-center font-medium text-subHeaderText sm:text-xl">
               <span className={preahvihear.className}>
-                Got a technical issue? Want to send feedback about a beta
-                feature? Need details about our Business plan? Let us know.
+                Build Your Profile and Shine in KODIKAS-2K23.
               </span>
             </p>
             <form className="space-y-8" onSubmit={submitHandler}>

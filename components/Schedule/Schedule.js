@@ -13,7 +13,7 @@ function Schedule() {
     <>
       <Heading title="Our Schedule" />
       <section class=" dark:text-headerText">
-        <div class="container max-w-5xl px-4 py-12 mx-auto">
+        <div class="container max-w-5xl px-4 pt-3 pb-12 mx-auto">
           <div class="grid gap-4 mx-4 sm:grid-cols-12">
             <div class="col-span-12 sm:col-span-3">
               <div class="text-center sm:text-left mb-14 mr-3 before:block before:w-24 before:h-3 before:mb-5 before:rounded-md before:mx-auto sm:before:mx-0 before:dark:bg-violet-400">
