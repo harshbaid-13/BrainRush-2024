@@ -31,7 +31,12 @@ const Profile = () => {
     setYear(profileData?.year);
     setContact(profileData?.phoneNumber);
   }, [profileData]);
-
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
   const submitHandler = async (event) => {
     event.preventDefault();
     if (!name.length || !department.length || !year || !contact) {
