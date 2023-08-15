@@ -135,3 +135,34 @@ export async function DELETE(request) {
     );
   }
 }
+
+//Get confirmationRequest id
+export async function GET(request) {
+  const { searchParams } = new URL(request.url);
+  const leaderId = searchParams.get("leaderId");
+  try {
+    await connectToDatabase();
+    const confirmationRequest = await ConfirmationRequest.findOne({
+      teamLeader: leaderId,
+    });
+    //if no leader found
+    if (!confirmationRequest) {
+      return NextResponse.json(
+        { message: "Leader is not in a Team" },
+        { status: 400 }
+      );
+    }
+    console.log(confirmationRequest);
+    return NextResponse.json({
+      success: true,
+      message: "GG get your ID",
+      data: confirmationRequest,
+    });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { message: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}
