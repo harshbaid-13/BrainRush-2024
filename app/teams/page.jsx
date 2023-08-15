@@ -23,7 +23,7 @@ const Teams = () => {
   );
   const user = useSelector((state) => state.user.user);
   const [qrData, setQrData] = useState();
-  const [teamMemberEmail, setTeamMemberEmail] = useState("")
+  const [teamMemberEmail, setTeamMemberEmail] = useState("");
   //team qr not working
   const getQr = async () => {
     setLoading(true);
@@ -137,7 +137,7 @@ const Teams = () => {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -204,43 +204,48 @@ const Teams = () => {
                             </span>
                           </p>
                         )}
-                        {!team?.teamMemberConfirmation && !sentRequestFromTheTeam &&
-                          <form className="space-y-8 " onSubmit={handleSendRequest}>
-                            <div className="w-full flex items-center">
-                              <label
-                                htmlFor="email"
-                                className="block text-md mr-2 text-gray-700 font-medium"
-                              >
-                                <span className={preahvihear.className}>
-                                  Add Team Member:
-                                  <span className="text-red text-md"> </span>
-                                </span>{" "}
-                              </label>
-                              <div>
-                                <input
-                                  type="text"
-                                  id="email"
-                                  className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-md rounded-lg focus:ring-primary-500 focus:border-gray-50 block  p-1"
-                                  placeholder="Team Member Email"
-                                  required
-                                  value={teamMemberEmail}
-                                  onChange={(e) => {
-                                    setTeamMemberEmail(e.target.value);
-                                  }}
-                                />
-                              </div>
-                              <button
-                                type="submit"
-                                className="relative text-center inline-flex items-center justify-center p-0.5 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor "
-                              >
-                                <span className="relative px-2.5 py-1.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
+                        {!team?.teamMemberConfirmation &&
+                          !sentRequestFromTheTeam && (
+                            <form
+                              className="space-y-8 "
+                              onSubmit={handleSendRequest}
+                            >
+                              <div className="w-full flex flex-wrap items-center">
+                                <label
+                                  htmlFor="email"
+                                  className="block text-md mb-2 mr-2 text-gray-700 font-medium"
+                                >
                                   <span className={preahvihear.className}>
-                                    Send
+                                    Add Team Member:
+                                    <span className="text-red text-md"> </span>
+                                  </span>{" "}
+                                </label>
+                                <div className="">
+                                  <input
+                                    type="text"
+                                    id="email"
+                                    className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-md rounded-lg focus:ring-primary-500 focus:border-gray-50 block  p-1"
+                                    placeholder="Team Member Email"
+                                    required
+                                    value={teamMemberEmail}
+                                    onChange={(e) => {
+                                      setTeamMemberEmail(e.target.value);
+                                    }}
+                                  />
+                                </div>
+                                <button
+                                  type="submit"
+                                  className="relative text-center inline-flex items-center justify-center p-0.5 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor "
+                                >
+                                  <span className="relative px-2.5 py-1.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
+                                    <span className={preahvihear.className}>
+                                      Send
+                                    </span>
                                   </span>
-                                </span>
-                              </button>
-                            </div>
-                          </form>}
+                                </button>
+                              </div>
+                            </form>
+                          )}
 
                         {!team?.teamMemberConfirmation &&
                           sentRequestFromTheTeam && (
@@ -366,7 +371,7 @@ const Teams = () => {
                       <div className="flex-grow">
                         <h2
                           className="text-headerText text-4xl title-font font-2xl mb-3"
-                        // style={{ color: "#6f7bd9 !important" }}
+                          // style={{ color: "#6f7bd9 !important" }}
                         >
                           <span className={preahvihear.className}>
                             Join Team
@@ -450,8 +455,7 @@ const Teams = () => {
             </section>
           )}
         </>
-      )
-      }
+      )}
     </>
   );
 };
