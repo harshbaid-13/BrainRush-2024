@@ -8,6 +8,7 @@ import { store } from "@Reducers/store";
 import Nav from "@components/Nav/Nav";
 import { useEffect, useState } from "react";
 import Loader from "@components/Loader/Loader";
+import UniversalLoader from "@components/Loader/UniversalLoader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,7 +35,7 @@ export default function RootLayout({ children }) {
               <div className="gradient"></div>
             </div>
             {loading ? (
-              <Loader />
+              <UniversalLoader />
             ) : (
               <>
                 <div className="relative z-10">

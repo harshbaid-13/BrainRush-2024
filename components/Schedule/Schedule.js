@@ -23,7 +23,7 @@ function Schedule() {
                 <span class="text-sm font-bold tracking-wider uppercase dark:text-gray-400">
                   <span className={preahvihear.className}>
                     {/* Kodikas-2K23 */}
-                    Vestibulum diam nunc
+                    Innovate your code game
                   </span>
                 </span>
                 {/* <Image src={logo} alt="logo" /> */}
@@ -47,17 +47,16 @@ function Schedule() {
                   <time class="text-xs tracking-wide uppercase dark:text-gray-400">
                     <span className={preahvihear.className}>
                       {/* Kodikas-2K23 */}
-                      24-Aug 10:00 Am
+                      24-Aug 11:00 Am
                     </span>
                   </time>
                   <p class="mt-3">
                     <span className={preahvihear.className}>
                       {/* Kodikas-2K23 */}
-                      1. Teams will compete in a thrilling coding knowledge
+                      • Teams will compete in a thrilling coding knowledge
                       journey through an online quiz.
-                      <br />
-                      2. We've got treats to fuel the brains of our victorious
-                      teams!
+                      <br />• We've got treats to fuel the brains of our
+                      victorious teams!
                     </span>
                   </p>
                 </div>
@@ -65,23 +64,22 @@ function Schedule() {
                   <h3 class="text-3xl font-bold tracking-wide text-subHeaderText">
                     <span className={preahvihear.className}>
                       {/* Kodikas-2K23 */}
-                      KodeRank
+                      KoderRank
                     </span>
                   </h3>
                   <time class="text-xs tracking-wide uppercase dark:text-gray-400">
                     <span className={preahvihear.className}>
                       {/* Kodikas-2K23 */}
-                      24-Aug 10:00
+                      24-Aug 12:30 Pm
                     </span>
                   </time>
                   <p class="mt-3">
                     <span className={preahvihear.className}>
                       {/* Kodikas-2K23 */}
-                      1. Teams will tackle coding challenges using their
-                      favorite languages.
-                      <br />
-                      2. If your team makes the cut, you're heading to the final
-                      round!
+                      • Teams will tackle coding challenges using their favorite
+                      languages.
+                      <br />• If your team makes the cut, you're heading to the
+                      final round!
                     </span>
                   </p>
                 </div>
@@ -95,13 +93,13 @@ function Schedule() {
                   <time class="text-xs tracking-wide uppercase dark:text-gray-400">
                     <span className={preahvihear.className}>
                       {/* Kodikas-2K23 */}
-                      24-Aug 10:00
+                      24-Aug 02:30 Pm
                     </span>
                   </time>
                   <p class="mt-3">
                     <span className={preahvihear.className}>
                       {/* Kodikas-2K23 */}
-                      1.Teams will go head-to-head in 1 vs 1 battles, aiming to
+                      •Teams will go head-to-head in 1 vs 1 battles, aiming to
                       conquer Kodikas and claim their coding crowns!
                     </span>
                   </p>

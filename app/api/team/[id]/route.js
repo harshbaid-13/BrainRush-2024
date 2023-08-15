@@ -75,7 +75,7 @@ export async function PUT(req, { params }) {
     }
     const team = await Team.findOne({
       $and: [{ _id: id, teamMember: user?._id }],
-    });
+    }).populate("leader");
     if (!team) {
       return NextResponse.json(
         { message: "Not a valid team id " },
@@ -89,13 +89,12 @@ export async function PUT(req, { params }) {
       );
     }
 
-    sendConfirmationEmail(user, team, user.email, { event: 3 });
-
     const newTeam = await Team.findByIdAndUpdate(
       team._id,
       { teamMember: null, teamMemberConfirmation: false },
       { new: true }
     );
+    sendConfirmationEmail(user, team, team?.leader?.email, { event: 3 });
     console.log(newTeam);
     return NextResponse.json({
       success: true,
