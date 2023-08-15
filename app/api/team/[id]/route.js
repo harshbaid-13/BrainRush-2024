@@ -4,6 +4,7 @@ import Team from "@models/team";
 import User from "@models/user";
 import ConfirmationRequest from "@models/confirmationRequest";
 import mongoose from "mongoose";
+import sendConfirmationEmail from "@utils/sendConfirmationEmail";
 
 //remove a member by the team leader
 export async function PATCH(req, { params }) {
@@ -24,7 +25,7 @@ export async function PATCH(req, { params }) {
     }
     const team = await Team.findOne({
       $and: [{ _id: id }, { leader: user._id }],
-    });
+    }).populate(["leader", "teamMember"]);
     if (!team) {
       return NextResponse.json({ message: "You are not leader of the team" });
     }
@@ -34,6 +35,9 @@ export async function PATCH(req, { params }) {
         { status: 400 }
       );
     }
+
+    sendConfirmationEmail(user, team, team.teamMember.email, { event: 2 });
+
     const newTeam = await Team.findByIdAndUpdate(
       team._id,
       { teamMember: null, teamMemberConfirmation: false },
@@ -71,7 +75,7 @@ export async function PUT(req, { params }) {
     }
     const team = await Team.findOne({
       $and: [{ _id: id, teamMember: user?._id }],
-    });
+    }).populate("leader");
     if (!team) {
       return NextResponse.json(
         { message: "Not a valid team id " },
@@ -84,11 +88,13 @@ export async function PUT(req, { params }) {
         { status: 400 }
       );
     }
+
     const newTeam = await Team.findByIdAndUpdate(
       team._id,
       { teamMember: null, teamMemberConfirmation: false },
       { new: true }
     );
+    sendConfirmationEmail(user, team, team?.leader?.email, { event: 3 });
     console.log(newTeam);
     return NextResponse.json({
       success: true,

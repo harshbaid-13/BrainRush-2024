@@ -27,11 +27,9 @@ export const config = {
   matcher: [
     "/profile",
     "/teams",
-    "/api/team",
-    "/api/team/(.*)",
+    "/teams/(.*)",
     "/api/user",
     "/api/team",
-    "/teams/(.*)",
     "/api/team/(.*)",
     "/api/user/(.*)",
   ],

@@ -88,6 +88,7 @@ export async function POST(request) {
       leader: user,
     });
     sendConfirmationEmail(user, newTeam, teamMemberEmail, { event: 0 });
+
     const confirmationRequest = await ConfirmationRequest.create({
       team: newTeam,
       teamLeader: user,
