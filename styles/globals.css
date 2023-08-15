@@ -89,10 +89,12 @@ button {
     .main {
         padding: 0;
     }
-    .responsive-padding{
+
+    .responsive-padding {
         padding-left: 0px;
     }
-    .responsive-margin{
+
+    .responsive-margin {
         margin-left: -10px;
     }
 }
