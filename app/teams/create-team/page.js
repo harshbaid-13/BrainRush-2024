@@ -24,7 +24,7 @@ const createTeam = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch("/api/new", {
+      const res = await fetch("/api/team", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
