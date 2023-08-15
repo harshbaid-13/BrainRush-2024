@@ -34,12 +34,9 @@ const Teams = () => {
   const handleDelete = async () => {
     try {
       setLoading(true);
-      const response = await fetch(
-        `/api/team/${user?.id}?teamid=${team?._id}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`/api/new/${team?._id}`, {
+        method: "DELETE",
+      });
       const data = await response.json();
       console.log(data);
       if (data.success) {
@@ -55,9 +52,9 @@ const Teams = () => {
   const handleRemoveRequest = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`/api/team/confirm?leaderId=${user?.id}`)
+      const res = await fetch(`/api/team/confirm?leaderId=${user?.id}`);
       const { data } = await res.json();
-      console.log("handleRemoveRequest " + data.teamMemberEmail)
+      console.log("handleRemoveRequest " + data.teamMemberEmail);
       const response = await fetch("/api/team/confirm", {
         method: "DELETE",
         headers: {
@@ -73,16 +70,16 @@ const Teams = () => {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
   const handleRemove = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`/api/team/${user?.id}/remove`, {
-        method: "DELETE",
+      const res = await fetch(`/api/new/${team?._id}`, {
+        method: "PATCH",
       });
       const data = await res.json();
       if (data?.success) {
-        console.log("here")
+        console.log("here");
         dispatch(setTeamRequest(null));
         dispatch(setTeam(data.data));
       }
@@ -99,7 +96,7 @@ const Teams = () => {
       });
       const data = await res.json();
       if (data?.success) {
-        console.log("here")
+        console.log("here");
         dispatch(setTeam(null));
         dispatch(setTeamRequest(null));
         const response = await fetch(`/api/team/confirm/${user?.id}`);
@@ -170,7 +167,6 @@ const Teams = () => {
                             <span className={preahvihear.className}>
                               Team Member: {team?.teamMember.name}
                             </span>{" "}
-
                           </p>
                         ) : (
                           <p>
@@ -186,7 +182,8 @@ const Teams = () => {
                               className="block text-md mr-2 text-gray-700 font-medium"
                             >
                               <span className={preahvihear.className}>
-                                Add Team Member<span className="text-red text-md">: </span>
+                                Add Team Member
+                                <span className="text-red text-md">: </span>
                               </span>{" "}
                             </label>
                             <div>
@@ -196,10 +193,10 @@ const Teams = () => {
                                 className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-md rounded-lg focus:ring-primary-500 focus:border-gray-50 block  p-1"
                                 placeholder="Team Member Email"
                                 required
-                              // value={name}
-                              // onChange={(e) => {
-                              //   setName(e.target.value);
-                              // }}
+                                // value={name}
+                                // onChange={(e) => {
+                                //   setName(e.target.value);
+                                // }}
                               />
                             </div>
                             <button
@@ -218,8 +215,9 @@ const Teams = () => {
                           sentRequestFromTheTeam && (
                             <h1 className={preahvihear.className}>
                               Request sent to:{" "}
-                              <strong>{sentRequestFromTheTeam?.teamMemberEmail}</strong>
-
+                              <strong>
+                                {sentRequestFromTheTeam?.teamMemberEmail}
+                              </strong>
                             </h1>
                           )}
                       </div>
@@ -250,16 +248,19 @@ const Teams = () => {
                         </button>
                       )}
                       {user?.id === team?.leader?._id &&
-                        !team.payment && team?.teamMemberConfirmation && (<button
-                          onClick={handleRemove}
-                          className="relative mt-5 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
-                        >
-                          <span className="relative px-5 py-2.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
-                            <span className={preahvihear.className}>
-                              Kick Member
+                        !team.payment &&
+                        team?.teamMemberConfirmation && (
+                          <button
+                            onClick={handleRemove}
+                            className="relative mt-5 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+                          >
+                            <span className="relative px-5 py-2.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
+                              <span className={preahvihear.className}>
+                                Kick Member
+                              </span>
                             </span>
-                          </span>
-                        </button>)}
+                          </button>
+                        )}
                       {!team?.teamMemberConfirmation &&
                         sentRequestFromTheTeam && (
                           <button
@@ -329,7 +330,7 @@ const Teams = () => {
                       <div className="flex-grow">
                         <h2
                           className="text-headerText text-4xl title-font font-2xl mb-3"
-                        // style={{ color: "#6f7bd9 !important" }}
+                          // style={{ color: "#6f7bd9 !important" }}
                         >
                           <span className={preahvihear.className}>
                             Join Team
@@ -413,8 +414,7 @@ const Teams = () => {
             </section>
           )}
         </>
-      )
-      }
+      )}
     </>
   );
 };
