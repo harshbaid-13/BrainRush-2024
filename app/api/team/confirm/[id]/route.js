@@ -118,8 +118,9 @@ export async function DELETE(req, { params }) {
       confirmationRequest?.teamLeader,
       confirmationRequest.team,
       confirmationRequest.teamLeader.email,
-      { event: 1 }
+      { event: 3 }
     );
+
     await confirmationRequest.deleteOne();
     //need to notify the leader that other member has rejected the request
 
