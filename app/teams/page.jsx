@@ -253,7 +253,7 @@ const Teams = () => {
 
                     <div className="flex flex-row justify-center items-center p-5">
                       {/* qr code ui */}
-                      {qrData && (
+                      {/* {qrData && (
                         <img
                           className="mb-5 n"
                           src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${qrData}`}
@@ -261,9 +261,9 @@ const Teams = () => {
                           height={200}
                           alt="qr"
                         />
-                      )}
+                      )} */}
                       {/* team code */}
-                      {team?.teamMemberConfirmation && (
+                      {/* {team?.teamMemberConfirmation && (
                         <button
                           type="submit"
                           onClick={getQr}
@@ -275,7 +275,7 @@ const Teams = () => {
                             </span>
                           </span>
                         </button>
-                      )}
+                      )} */}
                       {/* kick member */}
                       {user?.id === team?.leader?._id &&
                         !team.payment &&
