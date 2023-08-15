@@ -11,14 +11,17 @@ const preahvihear = Preahvihear({
 });
 const Hero = () => {
   return (
-    <section className="pl-8">
-      <div className="grid max-w-screen-xl px-4  mx-auto overflow-hidden lg:gap-8 xl:gap-0 lg:py-5 lg:grid-cols-12">
-        <div className="mr-auto place-self-center lg:col-span-7">
-          <h1 className=" -ml-4 mt-7 px-8 max-w-2xl text-headerText mx-auto flex justify-center items-center text-5xl font-bold sm:text-7xl text-center mb-20 responsive-padding">
+    <section className="">
+      <div
+        className="ml-3 flex flex-wrap  md:w-full lg:w-4/5 px-4 mx-auto items-center justify-center"
+        style={{ margin: "auto" }}
+      >
+        <div className=" lg:mr-auto place-self-center ">
+          <h1 className=" mt-7 px-5 max-w-2xl text-headerText mx-auto flex justify-center items-center text-5xl font-bold sm:text-7xl text-center mb-20 responsive-padding">
             <span className={preahvihear.className}>Kodikas-2K23</span>
           </h1>
           <h1
-            className="-ml-4 px-8 max-w-2xl mx-auto -mt-16  flex justify-center items-center text-pink-500 text-3xl font-bold sm:text-l text-center mb-20 responsive-padding"
+            className=" px-5 max-w-2xl mx-auto -mt-16  flex justify-center items-center text-pink-500 text-3xl font-bold sm:text-l text-center mb-20 responsive-padding"
             style={{
               fontSize: "1.5 rem",
               color: "#ed3d15",
@@ -38,9 +41,9 @@ const Hero = () => {
           </h1>
           <Countdown />
         </div>
-        <div className="lg:mt-2 pr-5 lg:col-span-5 lg:flex responsive-margin">
+        <div className="flex items-center justify-center">
           {/* <VideoPlayer /> */}
-          <Image src={logo} alt="logo" />
+          <Image src={logo} alt="logo" className="mr-0" />
         </div>
       </div>
     </section>

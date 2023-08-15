@@ -13,11 +13,14 @@ import Team from "@/components/Team/Team";
 import Venue from "@/components/Venue/Venue";
 import { useDispatch, useSelector } from "react-redux";
 import { useSession } from "next-auth/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { setUser } from "@Reducers/features/user";
 import { setTeam } from "@Reducers/features/team";
 import { setProfile } from "@Reducers/features/profile";
 import Schedule from "@components/Schedule/Schedule";
+import Loader from "@components/Loader/Loader";
+// import { logo_loader } from "@/assets/images/logo_loader.mp4";
+// import { useEffect, useState } from "react";
 
 // import UserLanding from "@components/UserInterface/UserLanding";
 // import Marquee from "@components/Marquee/Marquee";
@@ -27,12 +30,19 @@ import Schedule from "@components/Schedule/Schedule";
 export default function Home() {
   return (
     <>
+      {/* <Loader />
+      {loading ? (
+        <Loader />
+      ) : ( */}
+      {/* <> */}
       <Hero />
       <About />
       <Schedule />
       {/* <Details /> */}
       {/* <Proccess /> */}
       <FAQ />
+      {/* </> */}
+      {/* )} */}
     </>
   );
 }
