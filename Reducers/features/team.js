@@ -20,7 +20,7 @@ export const TeamSlice = createSlice({
       }
     },
     setTeamRequest: (state, action) => {
-      console.log(action?.payload);
+      // console.log(action?.payload);
       state.sentRequestFromTheTeam = action?.payload;
     },
   },
