@@ -25,7 +25,7 @@ export async function GET(req) {
 export async function PUT(req) {
   try {
     await connectToDatabase();
-    const { name, department, year, contact } = await request.json();
+    const { name, department, year, contact } = await req.json();
     const email = req.headers.get("Authorization");
     const updatedUser = await User.updateOne(
       { email: email },
