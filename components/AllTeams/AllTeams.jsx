@@ -149,7 +149,7 @@ const AllTeams = () => {
           </tbody>
         </table>
       </div>
-      <div className="flex flex-col items-center justify-center fixed mb-10 right-0 bottom-0 mr-20">
+      <div className="flex flex-col mt-4 items-center justify-center relative mb-10 right-0 bottom-0 mr-20">
         <span className="text-sm text-gray-900 dark:text-gray-900 font-medium">
           Showing{" "}
           <span className="font-semibold text-gray-900 dark:text-headerText">

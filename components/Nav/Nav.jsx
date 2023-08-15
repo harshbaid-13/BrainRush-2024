@@ -281,18 +281,18 @@ function Navbar() {
                 <span className={preahvihear.className}>My Team</span>
               </Link>
             </li>
-            <li>
-              <Link
+            {/* <li> */}
+            {/* <Link
                 href="/teams/all"
                 className="block py-2 pl-3 pr-4mx-2 font-bold text-xl text-headerText  navLinks"
               >
                 <span className={preahvihear.className}>All Teams</span>
-              </Link>
-            </li>
+              </Link> */}
+            {/* </li> */}
             <li>
               <Link
                 href="#"
-                className="block py-2 pl-1 pr-4 mx-2 font-bold text-xl text-headerText  navLinks"
+                className="block py-2 pr-4 font-bold text-xl text-headerText  navLinks"
               >
                 <span className={preahvihear.className}>About Us</span>
               </Link>
