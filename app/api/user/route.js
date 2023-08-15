@@ -1,17 +1,14 @@
-import User from "@models/user";
-import { connectToDatabase } from "@utils/db";
 import { NextResponse } from "next/server";
-import mongoose from "mongoose";
+import { connectToDatabase } from "@utils/db";
+import User from "@models/user";
 
-// Get User Details
-export async function GET(request, { params }) {
+//particuler user ka details
+export async function GET(req) {
   try {
     await connectToDatabase();
-    if (!mongoose.Types.ObjectId.isValid(params.id)) {
-      return NextResponse.json({ message: "Not a valid ID" }, { status: 404 });
-    }
-    let user = await User.findById(params.id);
-
+    const email = req.headers.get("Authorization");
+    console.log(email);
+    const user = await User.findOne({ email: email });
     if (!user) {
       return NextResponse.json({ success: false, message: "User not found" });
     }
@@ -24,26 +21,25 @@ export async function GET(request, { params }) {
     );
   }
 }
-
-// Update User Details
-export async function PUT(request) {
+//profile update
+export async function PUT(req) {
   try {
     await connectToDatabase();
-    const { userId, name, department, year, contact } = await request.json();
-    const user = await User.findByIdAndUpdate(
-      userId,
+    const { name, department, year, contact } = await request.json();
+    const email = req.headers.get("Authorization");
+    const updatedUser = await User.updateOne(
+      { email: email },
       { name, department, year, phoneNumber: contact },
       { new: true }
     );
-
     return NextResponse.json({
       status: 200,
       success: true,
       message: "User data updated successfully",
-      data: user,
+      data: updatedUser,
     });
   } catch (error) {
-    console.error("Error updating user data:", error);
+    console.error("Error fetching updating data:", error);
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 }
