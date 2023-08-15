@@ -50,11 +50,12 @@ function Navbar() {
     const res = await fetch(`/api/team/${session?.user?.id}/display`);
     const data = await res.json();
     dispatch(setTeam(data.data === undefined ? null : data.data));
-    dispatch(setTeamRequest(data.request===undefined?null:data.request));
+    dispatch(setTeamRequest(data.request === undefined ? null : data.request));
   };
   const getProfileDetails = async () => {
-    const res = await fetch(`/api/user/${session?.user?.id}`);
+    const res = await fetch(`/api/user`);
     const { data } = await res.json();
+    console.log(data);
     dispatch(setProfile(data));
   };
   useEffect(() => {
