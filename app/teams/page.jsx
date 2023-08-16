@@ -6,8 +6,8 @@ import { Preahvihear } from "next/font/google";
 import Loader from "@components/Loader/Loader";
 import { useSelector, useDispatch } from "react-redux";
 import { setTeam, setTeamRequest } from "@Reducers/features/team";
-import { setRequest } from "@Reducers/features/requests";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -22,23 +22,24 @@ const Teams = () => {
     (state) => state.team
   );
   const user = useSelector((state) => state.user.user);
-  const [qrData, setQrData] = useState();
+  // const [qrData, setQrData] = useState();
   const [teamMemberEmail, setTeamMemberEmail] = useState("");
   //team qr not working
-  const getQr = async () => {
-    setLoading(true);
-    const response = await fetch(`/api/test/${team?._id}`);
-    const data = await response.json();
-    setQrData(data);
-    setLoading(false);
-  };
+  // const getQr = async () => {
+  //   setLoading(true);
+  //   const response = await fetch(
+  //     `${process.env.NEXT_PUBLIC_BASE_URL}/api/test/${team?._id}`
+  //   );
+  //   const data = await response.json();
+  //   setQrData(data);
+  //   setLoading(false);
+  // };
   const handleDelete = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/team/${team?._id}`, {
-        method: "DELETE",
-      });
-      const data = await response.json();
+      const { data } = await axios.delete(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/${team?._id}`
+      );
       console.log(data);
       if (data.success) {
         dispatch(setTeam(null));
@@ -53,17 +54,10 @@ const Teams = () => {
   const handleRemoveRequest = async () => {
     try {
       setLoading(true);
-      const response = await fetch(
-        `/api/team/confirm/${sentRequestFromTheTeam?._id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+      const { data } = await axios.patch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/confirm/${sentRequestFromTheTeam?._id}`
       );
-      const successData = await response.json();
-      if (successData.success) {
+      if (data.success) {
         dispatch(setTeamRequest(null));
       }
       setLoading(false);
@@ -74,12 +68,10 @@ const Teams = () => {
   const handleRemoveMember = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`/api/team/${team?._id}`, {
-        method: "PATCH",
-      });
-      const data = await res.json();
+      const { data } = await axios.patch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/${team?._id}`
+      );
       if (data?.success) {
-        console.log("here");
         dispatch(setTeamRequest(null));
         dispatch(setTeam(data.data));
       }
@@ -91,10 +83,9 @@ const Teams = () => {
   const handleLeaveTeam = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`/api/team/${team?._id}`, {
-        method: "PUT",
-      });
-      const data = await res.json();
+      const { data } = await axios.put(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/${team?._id}`
+      );
       if (data?.success) {
         dispatch(setTeam(null));
         dispatch(setTeamRequest(null));
@@ -108,14 +99,12 @@ const Teams = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch("/api/team/confirm", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ teamMemberEmail }),
-      });
-      const data = await res.json();
+      const { data } = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/confirm`,
+        {
+          teamMemberEmail,
+        }
+      );
       console.log(data);
       if (data.success) {
         dispatch(setTeamRequest(data.data));
@@ -362,7 +351,7 @@ const Teams = () => {
                       <div className="flex-grow">
                         <h2
                           className="text-headerText text-4xl title-font font-2xl mb-3"
-                        // style={{ color: "#6f7bd9 !important" }}
+                          // style={{ color: "#6f7bd9 !important" }}
                         >
                           <span className={preahvihear.className}>
                             Join Team
