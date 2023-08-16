@@ -10,7 +10,7 @@ import sendConfirmationEmail from "@utils/sendConfirmationEmail";
 export async function PATCH(req, { params }) {
   try {
     await connectToDatabase();
-    const email = req.headers.get("Authorization");
+    const email = req.headers.get("authorization");
     const user = await User.findOne({ email: email });
     if (!user) {
       return NextResponse.json({ success: false, message: "User not found" });
@@ -57,7 +57,7 @@ export async function PATCH(req, { params }) {
 export async function PUT(req, { params }) {
   try {
     await connectToDatabase();
-    const email = req.headers.get("Authorization");
+    const email = req.headers.get("authorization");
     const user = await User.findOne({ email: email });
     if (!user) {
       return NextResponse.json({ success: false, message: "User not found" });
@@ -112,7 +112,7 @@ export async function PUT(req, { params }) {
 export async function DELETE(req, { params }) {
   try {
     await connectToDatabase();
-    const email = req.headers.get("Authorization");
+    const email = req.headers.get("authorization");
     const user = await User.findOne({ email: email });
     if (!user) {
       return NextResponse.json({ success: false, message: "User not found" });

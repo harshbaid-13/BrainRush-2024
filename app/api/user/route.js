@@ -6,7 +6,7 @@ import User from "@models/user";
 export async function GET(req) {
   try {
     await connectToDatabase();
-    const email = req.headers.get("Authorization");
+    const email = req.headers.get("authorization");
     console.log(email);
     const user = await User.findOne({ email: email });
     if (!user) {
@@ -26,7 +26,7 @@ export async function PUT(req) {
   try {
     await connectToDatabase();
     const { name, department, year, contact } = await req.json();
-    const email = req.headers.get("Authorization");
+    const email = req.headers.get("authorization");
     const updatedUser = await User.updateOne(
       { email: email },
       { name, department, year, phoneNumber: contact },

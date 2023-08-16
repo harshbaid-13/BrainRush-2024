@@ -39,7 +39,7 @@ const AllTeams = () => {
   return (
     <>
       <div className="sm:flex">
-        <div className="items-center mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
+        <div className="items-center mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 ">
           <div className="lg:pr-3 searchAllTeam">
             <label htmlFor="teams-search" className="sr-only">
               <span className={preahvihear.className}>Search</span>
@@ -49,7 +49,7 @@ const AllTeams = () => {
                 type="text"
                 name="email"
                 id="teams-search"
-                className="bg-gray-50 border  text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-50  dark:placeholder-gray-400 dark:text-headerText dark:focus:ring-primary-500 "
+                className="bg-gray-50 border  text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5  "
                 placeholder="Search for teams"
                 onChange={(e) => {
                   setSearch(e.target.value);
@@ -85,10 +85,10 @@ const AllTeams = () => {
             " rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;",
         }}
       >
-        <table className="w-full h-10 text-sm text-left text-gray-500 dark:text-gray-400 rounded-md ">
+        <table className="w-full h-10 text-sm text-left text-gray-500  rounded-md ">
           <thead
             className="h-20 text-xs text-gray-50 uppercase  bg-headerText"
-            // style={{ background: "#6f7bd9" }}
+          // style={{ background: "#6f7bd9" }}
           >
             <tr>
               <th scope="col" className="px-6 py-3 ">
@@ -108,7 +108,7 @@ const AllTeams = () => {
           <tbody>
             {teams &&
               teams.map((team) => (
-                <tr className=" border-b 0 dark:border-gray-700" key={team._id}>
+                <tr className=" border-b 0 " key={team._id}>
                   <td
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
@@ -150,24 +150,24 @@ const AllTeams = () => {
         </table>
       </div>
       <div className="flex flex-col mt-4 items-center justify-center relative mb-10 right-0 bottom-0 mr-20">
-        <span className="text-sm text-gray-900 dark:text-gray-900 font-medium">
+        <span className="text-sm text-gray-900  font-medium">
           Showing{" "}
-          <span className="font-semibold text-gray-900 dark:text-headerText">
+          <span className="font-semibold text-gray-900 ">
             {Math.min(count, (pageNum - 1) * limit + 1)}
           </span>{" "}
           to{" "}
-          <span className="font-semibold text-gray-900 dark:text-headerText">
+          <span className="font-semibold text-gray-900 ">
             {Math.min(count, pageNum * limit)}
           </span>{" "}
           of{" "}
-          <span className="font-semibold text-gray-900 dark:text-headerText">
+          <span className="font-semibold text-gray-900 ">
             {count}
           </span>{" "}
           Entries
         </span>
         <div className="inline-flex mt-2 xs:mt-0">
           <button
-            className="rounded-md flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-subHeaderText bg-gray-800 hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-50"
+            className="rounded-md flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-subHeaderText bg-gray-800 hover:bg-gray-900   "
             onClick={() => {
               setPageNum((prev) => {
                 return Math.max(prev - 1, 1);
@@ -193,7 +193,7 @@ const AllTeams = () => {
           </button>
 
           <button
-            className="rounded-md flex items-center justify-center px-4 h-10 text-base ml-1 font-medium text-white bg-subHeaderText bg-gray-800 border-0 border-gray-700  hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-50"
+            className="rounded-md flex items-center justify-center px-4 h-10 text-base ml-1 font-medium text-white bg-subHeaderText bg-gray-800 border-0 border-gray-700  hover:bg-gray-900   "
             onClick={() => {
               setPageNum((prev) => {
                 return Math.min(prev + 1, Math.floor((count - 1) / limit) + 1);
