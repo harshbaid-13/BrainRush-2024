@@ -92,8 +92,8 @@ function Navbar() {
             src="/assets/images/logo.png"
             className="h-8 mr-3"
             alt="Kodikas Logo"
-            height={40}
-            width={50}
+            height={50}
+            width={40}
           />
           <span
             className="self-center text-3xl font-semibold whitespace-nowrap text-headerText"
@@ -266,7 +266,7 @@ function Navbar() {
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 w-full md:bg-white ">
             <li>
               <Link
-                href="#"
+                href="#schedule"
                 className="block py-2 pl-3 pr-4mx-2 font-bold text-xl text-headerText  navLinks"
               >
                 <span className={preahvihear.className}>Schedule</span>
@@ -291,7 +291,7 @@ function Navbar() {
             {/* </li> */}
             <li>
               <Link
-                href="#"
+                href="#about"
                 className="block py-2 pr-4 font-bold text-xl text-headerText  navLinks"
               >
                 <span className={preahvihear.className}>About Us</span>
