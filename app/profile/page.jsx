@@ -103,7 +103,7 @@ const Profile = () => {
                   className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
                   placeholder="Your Name"
                   required
-                  value={name}
+                  value={name || ""}
                   onChange={(e) => {
                     setName(e.target.value);
                   }}
@@ -125,7 +125,8 @@ const Profile = () => {
                   className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
                   placeholder="Your Email ID"
                   required
-                  value={email}
+                  disabled
+                  value={email || ""}
                 />
               </div>
               <div>
@@ -146,7 +147,7 @@ const Profile = () => {
                   pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
                   required
                   className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
-                  value={contact}
+                  value={contact || ""}
                   onChange={(e) => {
                     setContact(e.target.value);
                   }}
@@ -167,7 +168,7 @@ const Profile = () => {
                   id="Department"
                   name="Department"
                   className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
-                  value={department}
+                  value={department || ""}
                   onChange={(e) => {
                     setDepartment(e.target.value);
                   }}
@@ -198,7 +199,7 @@ const Profile = () => {
                   id="Year"
                   name="Year"
                   className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
-                  value={year}
+                  value={year || ""}
                   onChange={(e) => {
                     setYear(e.target.value);
                   }}
@@ -214,10 +215,10 @@ const Profile = () => {
               <button
                 type="submit"
                 className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
-                // onClick={() => {
-                //   submitHandler;
-                //   setSubmit(true);
-                // }}
+              // onClick={() => {
+              //   submitHandler;
+              //   setSubmit(true);
+              // }}
               >
                 <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-gradient-to-br from-btnColorDark to-btnColor rounded-md group-hover:bg-opacity-0">
                   Submit Details
