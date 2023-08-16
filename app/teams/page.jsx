@@ -22,28 +22,24 @@ const Teams = () => {
     (state) => state.team
   );
   const user = useSelector((state) => state.user.user);
-  const [qrData, setQrData] = useState();
+  // const [qrData, setQrData] = useState();
   const [teamMemberEmail, setTeamMemberEmail] = useState("");
   //team qr not working
-  const getQr = async () => {
-    setLoading(true);
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/test/${team?._id}`
-    );
-    const data = await response.json();
-    setQrData(data);
-    setLoading(false);
-  };
+  // const getQr = async () => {
+  //   setLoading(true);
+  //   const response = await fetch(
+  //     `${process.env.NEXT_PUBLIC_BASE_URL}/api/test/${team?._id}`
+  //   );
+  //   const data = await response.json();
+  //   setQrData(data);
+  //   setLoading(false);
+  // };
   const handleDelete = async () => {
     try {
       setLoading(true);
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/${team?._id}`,
-        {
-          method: "DELETE",
-        }
+      const { data } = await axios.delete(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/${team?._id}`
       );
-      const data = await response.json();
       console.log(data);
       if (data.success) {
         dispatch(setTeam(null));
@@ -58,17 +54,10 @@ const Teams = () => {
   const handleRemoveRequest = async () => {
     try {
       setLoading(true);
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/confirm/${sentRequestFromTheTeam?._id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+      const { data } = await axios.patch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/confirm/${sentRequestFromTheTeam?._id}`
       );
-      const successData = await response.json();
-      if (successData.success) {
+      if (data.success) {
         dispatch(setTeamRequest(null));
       }
       setLoading(false);
@@ -79,15 +68,10 @@ const Teams = () => {
   const handleRemoveMember = async () => {
     try {
       setLoading(true);
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/${team?._id}`,
-        {
-          method: "PATCH",
-        }
+      const { data } = await axios.patch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/${team?._id}`
       );
-      const data = await res.json();
       if (data?.success) {
-        console.log("here");
         dispatch(setTeamRequest(null));
         dispatch(setTeam(data.data));
       }
@@ -99,13 +83,9 @@ const Teams = () => {
   const handleLeaveTeam = async () => {
     try {
       setLoading(true);
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/${team?._id}`,
-        {
-          method: "PUT",
-        }
+      const { data } = await axios.put(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/${team?._id}`
       );
-      const data = await res.json();
       if (data?.success) {
         dispatch(setTeam(null));
         dispatch(setTeamRequest(null));
@@ -125,14 +105,6 @@ const Teams = () => {
           teamMemberEmail,
         }
       );
-      // const res = await fetch("/api/team/confirm", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({ teamMemberEmail }),
-      // });
-      // const data = await res.json();
       console.log(data);
       if (data.success) {
         dispatch(setTeamRequest(data.data));

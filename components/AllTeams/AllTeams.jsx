@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import "./AllTeams.css";
 import { Preahvihear } from "next/font/google";
+import axios from "axios";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -19,10 +20,10 @@ const AllTeams = () => {
 
   const getTeams = async () => {
     try {
-      const response = await fetch(
+      const { data } = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/all?search=${search}&page=${pageNum}&selected=${notSelected}`
       );
-      const data = await response.json();
+      // const data = await response.json();
       setTeams(data.teams);
       setLimit(data.limit);
       setCount(data.count);
