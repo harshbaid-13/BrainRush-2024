@@ -45,7 +45,7 @@ const Profile = () => {
     }
     setLoading(true);
     try {
-      const res = await fetch("https://kodikas.vercel.app/api/user", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -26,7 +26,7 @@ function page() {
   const handleAcceptTeam = async (id) => {
     try {
       const res = await fetch(
-        `https://kodikas.vercel.app/api/team/confirm/${id}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/confirm/${id}`,
         {
           method: "PUT",
           headers: {
@@ -50,7 +50,7 @@ function page() {
     try {
       setLoading(true);
       const res = await fetch(
-        `https://kodikas.vercel.app/api/team/confirm/${id}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/confirm/${id}`,
         {
           method: "DELETE",
           headers: {
