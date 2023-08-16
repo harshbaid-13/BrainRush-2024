@@ -43,7 +43,7 @@ const createTeam = () => {
           "Your team created successfully Your partner need to confirm only"
         );
       } else {
-        alert(confirmation.message);
+        alert(data.message);
       }
       setLoading(false);
       router.push("/teams");
