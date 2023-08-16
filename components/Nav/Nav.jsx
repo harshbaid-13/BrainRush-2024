@@ -150,7 +150,9 @@ function Navbar() {
                   <li>
                     <Link
                       href="/profile"
-                      className="block px-4 py-2 text-xl hover:bg-gray-100   mb-2"
+
+                      className="block px-4 py-2 text-xl text-gray-900 hover:bg-gray-100 mb-2"
+
                     >
                       <span className={preahvihear.className}>My Profile</span>
                     </Link>

@@ -11,7 +11,7 @@ const preahvihear = Preahvihear({
 });
 const Hero = () => {
   return (
-    <section className="">
+    <section className="overflow-hidden">
       <div
         className="ml-3 flex flex-wrap  md:w-full lg:w-4/5 px-4 mx-auto items-center justify-center"
         style={{ margin: "auto" }}
