@@ -9,7 +9,7 @@ import ConfirmationRequest from "@models/confirmationRequest";
 export async function GET(req) {
   try {
     await connectToDatabase();
-    const email = req.headers.get("authorization");
+    const email = req.headers.get("Authorization");
     const user = await User.findOne({ email: email });
     const teamDetails = await Team.findOne({
       $or: [{ leader: user._id }, { teamMember: user._id }],
@@ -41,7 +41,7 @@ export async function GET(req) {
 export async function POST(request) {
   try {
     await connectToDatabase();
-    const email = request.headers.get("authorization");
+    const email = request.headers.get("Authorization");
     console.log({ email });
     const user = await User.findOne({ email: email });
     if (!user) {

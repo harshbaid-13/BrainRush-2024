@@ -121,7 +121,7 @@ const Teams = () => {
         dispatch(setTeamRequest(data.data));
         setTeamMemberEmail("");
       } else {
-        alert(confirmation.message);
+        alert(data.message);
       }
       setLoading(false);
       router.push("/teams");

@@ -11,7 +11,7 @@ export async function middleware(req) {
       );
     }
     const reqHeader = new Headers(req.headers);
-    reqHeader.set("authorization", token?.email);
+    reqHeader.set("Authorization", token?.email);
     return NextResponse.next({
       request: {
         headers: reqHeader,
