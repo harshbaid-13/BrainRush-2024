@@ -6,7 +6,6 @@ import "./Loader.css";
 const UniversalLoader = () => {
   return (
     <>
-      return (
       <div>
         <div className="" style={{ backgroundColor: "#FCFCFC !important" }}>
           <div className="bg-white w-screen h-screen flex items-center justify-center sm:h-2/3">
@@ -14,7 +13,6 @@ const UniversalLoader = () => {
           </div>
         </div>
       </div>
-      );
     </>
   );
 };

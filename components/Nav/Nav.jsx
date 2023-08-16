@@ -125,9 +125,8 @@ function Navbar() {
               </button>
               {/* User toggle menu */}
               <div
-                className={`${
-                  isUserDropdownOpen ? "block" : "hidden"
-                } absolute right-0 mt-2 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:divide-gray-600`}
+                className={`${isUserDropdownOpen ? "block" : "hidden"
+                  } absolute right-0 mt-2 text-base list-none bg-white divide-y rounded-lg shadowdivide-gray-600 z-20`}
                 id="user-dropdown"
               >
                 <div className="px-4 py-3">
@@ -137,7 +136,7 @@ function Navbar() {
                       {user?.name}
                     </span>
                   </span>
-                  <span className="block text-sm text-gray-500 truncate dark:text-gray-400">
+                  <span className="block text-sm text-gray-500 truncate ">
                     <span className={preahvihear.className}>
                       {/* Sign Out */}
                       {user?.email}
@@ -151,7 +150,7 @@ function Navbar() {
                   <li>
                     <Link
                       href="/profile"
-                      className="block px-4 py-2 text-xl text-white hover:bg-gray-100 dark:hover:bg-gray-100 dark:text-gray-200 dark:hover:text-headerText mb-2"
+                      className="block px-4 py-2 text-xl text-white hover:bg-gray-100   mb-2"
                     >
                       <span className={preahvihear.className}>My Profile</span>
                     </Link>
@@ -160,7 +159,7 @@ function Navbar() {
                   <li>
                     <button
                       onClick={() => signOut({ callbackUrl: "/" })}
-                      className="relative inline-flex items-center ml-2 justify-center p-0.5 pr-2 mb-2  overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor group-hover:from-btnColorDark group-hover:to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+                      className="relative inline-flex items-center ml-2 justify-center p-0.5 pr-2 mb-2  overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor group-hover:from-btnColorDark group-hover:to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
                     >
                       <span className="relative px-3 py-2 transition-all ease-in duration-75 bg-white text-gray-700 rounded-md hover:text-gray-100 group-hover:bg-opacity-0">
                         <span className={preahvihear.className}>Sign Out</span>{" "}
@@ -174,7 +173,7 @@ function Navbar() {
             <button
               data-collapse-toggle="navbar-user"
               type="button"
-              className="inline-flex items-center  p-2 w-10 h-10 justify-center text-sm  rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 text-headerText font-bold dark:focus:ring-gray-600"
+              className="inline-flex items-center  p-2 w-10 h-10 justify-center text-sm  rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 text-headerText font-bold "
               aria-controls="navbar-user"
               aria-expanded={isMainMenuOpen}
               onClick={toggleMainMenu}
@@ -207,9 +206,9 @@ function Navbar() {
                 >
                   <div className="relative mr-2">
                     <button
-                      className="relative inline-flex items-center justify-center p-0.5 pr-2 mb-0  overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor group-hover:from-btnColorDark group-hover:to-btnColor hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+                      className="relative inline-flex items-center justify-center p-0.5 pr-2 mb-0  overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor group-hover:from-btnColorDark group-hover:to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
                       key={provider.name}
-                      onClick={() => signIn(provider.id)}
+                      onClick={() => signIn(provider.id, { callbackUrl: "/" })}
                     >
                       <span className="relative px-3 py-2 transition-all ease-in duration-75 bg-white text-gray-700 rounded-md hover:text-gray-100 group-hover:bg-opacity-0">
                         <span className={preahvihear.className}>Sign In</span>
@@ -231,7 +230,7 @@ function Navbar() {
                   <button
                     data-collapse-toggle="navbar-user"
                     type="button"
-                    className="inline-flex items-center  p-2 w-10 h-10 justify-center text-sm  rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 text-headerText font-bold dark:focus:ring-gray-600"
+                    className="inline-flex items-center  p-2 w-10 h-10 justify-center text-sm  rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 text-headerText font-bold "
                     aria-controls="navbar-user"
                     aria-expanded={isMainMenuOpen}
                     onClick={toggleMainMenu}
@@ -258,12 +257,11 @@ function Navbar() {
           </>
         )}
         <div
-          className={`items-center justify-between ${
-            isMainMenuOpen ? "flex" : "hidden"
-          } w-full md:flex md:w-auto md:order-1`}
+          className={`items-center justify-between ${isMainMenuOpen ? "flex" : "hidden"
+            } w-full md:flex md:w-auto md:order-1`}
           id="navbar-user"
         >
-          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 w-full md:bg-white dark:border-gray-700">
+          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 w-full md:bg-white ">
             <li>
               <Link
                 href="#schedule"

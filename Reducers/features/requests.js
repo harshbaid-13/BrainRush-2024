@@ -12,7 +12,7 @@ export const RequestSlice = createSlice({
     setRequest: (state, action) => {
       // console.log(action?.payload);
       state.requests = action?.payload;
-      if (action?.payload.length > 0) {
+      if (action?.payload?.length > 0) {
         state.hasRequests = true;
       }
     },

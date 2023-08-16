@@ -17,7 +17,7 @@ const Team = () => {
           <div className="grid gap-8 lg:gap-16 grid-cols-2  lg:grid-cols-4 md:grid-cols-3 ">
             {data.map((e) => {
               return (
-                <div className="text-center text-gray-500 p-3 dark:text-gray-400  relativet">
+                <div className="text-center text-gray-500 p-3   relativet">
                   <img
                     className="object-contain mx-auto p-1 ring-4 ring-subHeaderText  rounded-full"
                     src={e.photo}

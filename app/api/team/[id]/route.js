@@ -15,7 +15,7 @@ export async function PATCH(req, { params }) {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return NextResponse.json({ message: "Not a valid id" }, { status: 404 });
     }
-    const email = req.headers.get("Authorization");
+    const email = req.headers.get("authorization");
     const user = await User.findOne({ email: email });
     if (!user) {
       return NextResponse.json(
@@ -65,7 +65,7 @@ export async function PUT(req, { params }) {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return NextResponse.json({ message: "Not a valid id" }, { status: 404 });
     }
-    const email = req.headers.get("Authorization");
+    const email = req.headers.get("authorization");
     const user = await User.findOne({ email: email });
     if (!user) {
       return NextResponse.json(
@@ -112,7 +112,7 @@ export async function DELETE(req, { params }) {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return NextResponse.json({ message: "Not a valid id" }, { status: 404 });
     }
-    const email = req.headers.get("Authorization");
+    const email = req.headers.get("authorization");
     const user = await User.findOne({ email: email });
     if (!user) {
       return NextResponse.json(
