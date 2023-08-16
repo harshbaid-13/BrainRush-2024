@@ -127,7 +127,7 @@ function Navbar() {
               <div
                 className={`${
                   isUserDropdownOpen ? "block" : "hidden"
-                } absolute right-0 mt-2 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:divide-gray-600`}
+                } absolute right-0 mt-2 text-base list-none bg-white divide-y rounded-lg shadowdivide-gray-600 z-20`}
                 id="user-dropdown"
               >
                 <div className="px-4 py-3">
