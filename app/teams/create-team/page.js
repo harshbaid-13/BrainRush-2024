@@ -16,7 +16,7 @@ const preahvihear = Preahvihear({
 const createTeam = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const user = useSelector((state) => state.user.user);
+  const isAlreadyInTeam = useSelector((state) => state.team.isAlreadyInTeam);
   const [loading, setLoading] = useState(false);
   const [teamName, setTeamName] = useState("");
   const [teamMemberEmail, setTeamMemberEmail] = useState("");
@@ -51,6 +51,9 @@ const createTeam = () => {
       console.log(err);
     }
   };
+  useEffect(() => {
+    if (isAlreadyInTeam) router.push("/teams");
+  }, []);
 
   return loading ? (
     <Loader />

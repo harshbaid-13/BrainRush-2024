@@ -6,7 +6,7 @@ import User from "@models/user";
 export async function GET(req) {
   try {
     await connectToDatabase();
-    const email = req.headers.get("authorization");
+    const email = req.headers.get("Authorization");
     console.log(email);
     const user = await User.findOne({ email: email });
     if (!user) {
@@ -26,7 +26,7 @@ export async function PUT(req) {
   try {
     await connectToDatabase();
     const { name, department, year, contact } = await req.json();
-    const email = req.headers.get("authorization");
+    const email = req.headers.get("Authorization");
     const user = await User.findOne({ email: email });
     if (!user) {
       return NextResponse.json({ success: false, message: "User not found" });
