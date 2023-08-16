@@ -11,7 +11,7 @@ const { NextResponse } = require("next/server");
 export async function POST(req) {
   try {
     await connectToDatabase();
-    const email = req.headers.get("Authorization");
+    const email = req.headers.get("authorization");
     const user = await User.findOne({ email: email });
     if (!user) {
       return NextResponse.json({ success: false, message: "User not found" });
@@ -70,7 +70,7 @@ export async function POST(req) {
 export async function GET(req) {
   try {
     await connectToDatabase();
-    const email = req.headers.get("Authorization");
+    const email = req.headers.get("authorization");
     console.log({ email });
     const user = await User.findOne({ email: email });
     console.log({ user });
