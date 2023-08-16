@@ -27,11 +27,22 @@ export async function PUT(req) {
     await connectToDatabase();
     const { name, department, year, contact } = await req.json();
     const email = req.headers.get("authorization");
-    const updatedUser = await User.updateOne(
-      { email: email },
-      { name, department, year, phoneNumber: contact },
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      return NextResponse.json({ success: false, message: "User not found" });
+    }
+    const updatedUser = await User.findByIdAndUpdate(
+      user?._id,
+      {
+        name,
+        department,
+        year,
+        phoneNumber: contact,
+      },
       { new: true }
     );
+
+    console.log(updatedUser);
     return NextResponse.json({
       status: 200,
       success: true,
