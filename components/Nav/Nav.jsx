@@ -13,6 +13,7 @@ import "./Nav.css";
 
 import { Preahvihear } from "next/font/google";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 // import { logo } from ".@/public";
 
 const preahvihear = Preahvihear({
@@ -40,27 +41,30 @@ function Navbar() {
   }, []);
 
   const getRequests = async () => {
-    const response = await fetch(
+    const { data } = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/confirm`
     );
-    const { data } = await response.json();
-    dispatch(setRequest(data));
+    console.log(data);
+    dispatch(setRequest(data.data));
   };
   const setUserdata = () => {
     dispatch(setUser(session?.user));
   };
   const getTeamDetails = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/team`);
-    const data = await res.json();
-    // console.log(data)
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/team`
+    );
+    console.log(data);
     dispatch(setTeam(data.data === undefined ? null : data.data));
     dispatch(setTeamRequest(data.request === undefined ? null : data.request));
   };
   const getProfileDetails = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`);
-    const { data } = await res.json();
-    // console.log(data);
-    dispatch(setProfile(data));
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/user`
+    );
+    // const { data } = await res.json();
+    console.log(data);
+    dispatch(setProfile(data.data));
   };
   useEffect(() => {
     console.log("session available:", session);

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { setTeam, setTeamRequest } from "@Reducers/features/team";
 import Loader from "@components/Loader/Loader";
+import axios from "axios";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -16,7 +17,6 @@ const preahvihear = Preahvihear({
 const createTeam = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const isAlreadyInTeam = useSelector((state) => state.team.isAlreadyInTeam);
   const [loading, setLoading] = useState(false);
   const [teamName, setTeamName] = useState("");
   const [teamMemberEmail, setTeamMemberEmail] = useState("");
@@ -24,14 +24,11 @@ const createTeam = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/team`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ teamName, teamMemberEmail }),
-      });
-      const data = await res.json();
+      const { data } = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team`,
+        { teamName, teamMemberEmail }
+      );
+
       if (data.success) {
         dispatch(setTeam(data.data));
         dispatch(
@@ -51,9 +48,6 @@ const createTeam = () => {
       console.log(err);
     }
   };
-  useEffect(() => {
-    if (isAlreadyInTeam) router.push("/teams");
-  }, []);
 
   return loading ? (
     <Loader />
