@@ -66,7 +66,9 @@ export async function PUT(req, { params }) {
     const id = params.id;
     const confirmationRequest = await ConfirmationRequest.findById(id);
 
-    const userTeamExist = await Team.findOne({ leader: userId });
+    const userTeamExist = await Team.findOne({
+      $or: [{ leader: userId }, { teamMember: userId }],
+    });
 
     if (userTeamExist) {
       return NextResponse.json({
