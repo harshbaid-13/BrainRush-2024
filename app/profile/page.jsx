@@ -54,7 +54,6 @@ const Profile = () => {
           name,
           department,
           year,
-          userId: user?.id,
           contact,
         }),
       });
