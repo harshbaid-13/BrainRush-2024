@@ -35,6 +35,7 @@ function About() {
     <>
       <section
         className="overflow-hidden  px-5 sm:px-20  "
+        id="about"
         // style={{
         //   // background: rgb(255,248,227);
         //   background:
