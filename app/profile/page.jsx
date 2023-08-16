@@ -45,7 +45,7 @@ const Profile = () => {
     }
     setLoading(true);
     try {
-      const res = await fetch(`/api/user`, {
+      const res = await fetch("https://kodikas.vercel.app/api/user", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
