@@ -361,7 +361,7 @@ const Teams = () => {
                       </div>
                       <div className="flex-grow">
                         <h2
-                          className="text-headerText text-4xl title-font font-2xl mb-3"
+                          className="text-headerText text-3xl title-font font-2xl mb-3"
                           // style={{ color: "#6f7bd9 !important" }}
                         >
                           <span className={preahvihear.className}>
@@ -415,7 +415,7 @@ const Teams = () => {
                         </svg>
                       </div>
                       <div className="flex-grow">
-                        <h2 className="text-headerText text-4xl title-font font-2xl mb-3">
+                        <h2 className="text-headerText text-3xl title-font font-2xl mb-3">
                           <span className={preahvihear.className}>
                             Create Team
                           </span>

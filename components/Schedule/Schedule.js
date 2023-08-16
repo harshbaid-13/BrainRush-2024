@@ -11,8 +11,8 @@ const preahvihear = Preahvihear({
 function Schedule() {
   return (
     <>
-      <Heading title="Our Schedule" />
-      <section className=" dark:text-headerText">
+      <section className=" dark:text-headerText" id="schedule">
+        <Heading title="Our Schedule" />
         <div className="container max-w-5xl px-4 pt-3 pb-12 mx-auto">
           <div className="grid gap-4 mx-4 sm:grid-cols-12">
             <div className="col-span-12 sm:col-span-3">
