@@ -31,9 +31,9 @@ const sendConfirmationEmail = async (teamLeader, team, email, event) => {
     to: email,
     subject: subject.replace("<teamName>", team.teamName),
     text: text
-      .replace("<leaderName>", teamLeader.name)
-      .replace("<teamName>", team.teamName)
-      .replace("<teamMember>", team.teamMember.name),
+      .replace("<leaderName>", teamLeader?.name)
+      .replace("<teamName>", team?.teamName)
+      .replace("<teamMember>", team?.teamMember?.name),
   };
   await transporter.sendMail(mailOptions);
 };

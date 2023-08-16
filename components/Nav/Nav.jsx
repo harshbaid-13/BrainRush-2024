@@ -13,6 +13,7 @@ import "./Nav.css";
 
 import { Preahvihear } from "next/font/google";
 import { useRouter } from "next/navigation";
+// import { logo } from ".@/public";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -39,7 +40,9 @@ function Navbar() {
   }, []);
 
   const getRequests = async () => {
-    const response = await fetch(`https://kodikas.vercel.app/api/team/confirm`);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/confirm`
+    );
     const { data } = await response.json();
     dispatch(setRequest(data));
   };
@@ -47,14 +50,14 @@ function Navbar() {
     dispatch(setUser(session?.user));
   };
   const getTeamDetails = async () => {
-    const res = await fetch(`https://kodikas.vercel.app/api/team`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/team`);
     const data = await res.json();
     // console.log(data)
     dispatch(setTeam(data.data === undefined ? null : data.data));
     dispatch(setTeamRequest(data.request === undefined ? null : data.request));
   };
   const getProfileDetails = async () => {
-    const res = await fetch(`https://kodikas.vercel.app/api/user`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`);
     const { data } = await res.json();
     // console.log(data);
     dispatch(setProfile(data));
@@ -84,6 +87,7 @@ function Navbar() {
   // useEffect(() => {
   //   getRequests();
   // }, [userId]);
+
   return (
     <nav className="z-20 bg-white text-white body-font">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">

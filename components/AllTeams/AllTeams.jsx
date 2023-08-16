@@ -20,7 +20,7 @@ const AllTeams = () => {
   const getTeams = async () => {
     try {
       const response = await fetch(
-        `https://kodikas.vercel.app/api/team/all?search=${search}&page=${pageNum}&selected=${notSelected}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/all?search=${search}&page=${pageNum}&selected=${notSelected}`
       );
       const data = await response.json();
       setTeams(data.teams);

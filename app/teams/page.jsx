@@ -6,8 +6,8 @@ import { Preahvihear } from "next/font/google";
 import Loader from "@components/Loader/Loader";
 import { useSelector, useDispatch } from "react-redux";
 import { setTeam, setTeamRequest } from "@Reducers/features/team";
-import { setRequest } from "@Reducers/features/requests";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -28,7 +28,7 @@ const Teams = () => {
   const getQr = async () => {
     setLoading(true);
     const response = await fetch(
-      `https://kodikas.vercel.app/api/test/${team?._id}`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/test/${team?._id}`
     );
     const data = await response.json();
     setQrData(data);
@@ -38,7 +38,7 @@ const Teams = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `https://kodikas.vercel.app/api/team/${team?._id}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/${team?._id}`,
         {
           method: "DELETE",
         }
@@ -59,7 +59,7 @@ const Teams = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `https://kodikas.vercel.app/api/team/confirm/${sentRequestFromTheTeam?._id}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/confirm/${sentRequestFromTheTeam?._id}`,
         {
           method: "PATCH",
           headers: {
@@ -80,7 +80,7 @@ const Teams = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        `https://kodikas.vercel.app/api/team/${team?._id}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/${team?._id}`,
         {
           method: "PATCH",
         }
@@ -100,7 +100,7 @@ const Teams = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        `https://kodikas.vercel.app/api/team/${team?._id}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/${team?._id}`,
         {
           method: "PUT",
         }
@@ -119,14 +119,20 @@ const Teams = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch("https://kodikas.vercel.app/api/team/confirm", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ teamMemberEmail }),
-      });
-      const data = await res.json();
+      const { data } = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/confirm`,
+        {
+          teamMemberEmail,
+        }
+      );
+      // const res = await fetch("/api/team/confirm", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ teamMemberEmail }),
+      // });
+      // const data = await res.json();
       console.log(data);
       if (data.success) {
         dispatch(setTeamRequest(data.data));
