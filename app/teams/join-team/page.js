@@ -25,12 +25,15 @@ function page() {
   const requests = useSelector((state) => state.requests.requests);
   const handleAcceptTeam = async (id) => {
     try {
-      const res = await fetch(`/api/team/confirm/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        `https://kodikas.vercel.app/api/team/confirm/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const data = await res.json();
       console.log(data);
       if (data.success) {
@@ -46,12 +49,15 @@ function page() {
   const handleRejectTeam = async (id) => {
     try {
       setLoading(true);
-      const res = await fetch(`/api/team/confirm/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        `https://kodikas.vercel.app/api/team/confirm/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const data = await res.json();
       if (data.success) {
         let x = requests.filter((req) => req._id !== id);

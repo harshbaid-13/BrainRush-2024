@@ -27,7 +27,9 @@ const Teams = () => {
   //team qr not working
   const getQr = async () => {
     setLoading(true);
-    const response = await fetch(`/api/test/${team?._id}`);
+    const response = await fetch(
+      `https://kodikas.vercel.app/api/test/${team?._id}`
+    );
     const data = await response.json();
     setQrData(data);
     setLoading(false);
@@ -35,9 +37,12 @@ const Teams = () => {
   const handleDelete = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/team/${team?._id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `https://kodikas.vercel.app/api/team/${team?._id}`,
+        {
+          method: "DELETE",
+        }
+      );
       const data = await response.json();
       console.log(data);
       if (data.success) {
@@ -54,7 +59,7 @@ const Teams = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `/api/team/confirm/${sentRequestFromTheTeam?._id}`,
+        `https://kodikas.vercel.app/api/team/confirm/${sentRequestFromTheTeam?._id}`,
         {
           method: "PATCH",
           headers: {
@@ -74,9 +79,12 @@ const Teams = () => {
   const handleRemoveMember = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`/api/team/${team?._id}`, {
-        method: "PATCH",
-      });
+      const res = await fetch(
+        `https://kodikas.vercel.app/api/team/${team?._id}`,
+        {
+          method: "PATCH",
+        }
+      );
       const data = await res.json();
       if (data?.success) {
         console.log("here");
@@ -91,9 +99,12 @@ const Teams = () => {
   const handleLeaveTeam = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`/api/team/${team?._id}`, {
-        method: "PUT",
-      });
+      const res = await fetch(
+        `https://kodikas.vercel.app/api/team/${team?._id}`,
+        {
+          method: "PUT",
+        }
+      );
       const data = await res.json();
       if (data?.success) {
         dispatch(setTeam(null));
@@ -108,7 +119,7 @@ const Teams = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch("/api/team/confirm", {
+      const res = await fetch("https://kodikas.vercel.app/api/team/confirm", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -362,7 +373,7 @@ const Teams = () => {
                       <div className="flex-grow">
                         <h2
                           className="text-headerText text-4xl title-font font-2xl mb-3"
-                        // style={{ color: "#6f7bd9 !important" }}
+                          // style={{ color: "#6f7bd9 !important" }}
                         >
                           <span className={preahvihear.className}>
                             Join Team

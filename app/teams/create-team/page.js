@@ -24,7 +24,7 @@ const createTeam = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch("/api/team", {
+      const res = await fetch("https://kodikas.vercel.app/api/team", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

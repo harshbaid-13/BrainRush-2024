@@ -39,7 +39,7 @@ function Navbar() {
   }, []);
 
   const getRequests = async () => {
-    const response = await fetch(`/api/team/confirm`);
+    const response = await fetch(`https://kodikas.vercel.app/api/team/confirm`);
     const { data } = await response.json();
     dispatch(setRequest(data));
   };
@@ -47,14 +47,14 @@ function Navbar() {
     dispatch(setUser(session?.user));
   };
   const getTeamDetails = async () => {
-    const res = await fetch(`/api/team`);
+    const res = await fetch(`https://kodikas.vercel.app/api/team`);
     const data = await res.json();
     // console.log(data)
     dispatch(setTeam(data.data === undefined ? null : data.data));
     dispatch(setTeamRequest(data.request === undefined ? null : data.request));
   };
   const getProfileDetails = async () => {
-    const res = await fetch(`/api/user`);
+    const res = await fetch(`https://kodikas.vercel.app/api/user`);
     const { data } = await res.json();
     // console.log(data);
     dispatch(setProfile(data));
@@ -125,8 +125,9 @@ function Navbar() {
               </button>
               {/* User toggle menu */}
               <div
-                className={`${isUserDropdownOpen ? "block" : "hidden"
-                  } absolute right-0 mt-2 text-base list-none bg-white divide-y rounded-lg shadowdivide-gray-600 z-20`}
+                className={`${
+                  isUserDropdownOpen ? "block" : "hidden"
+                } absolute right-0 mt-2 text-base list-none bg-white divide-y rounded-lg shadowdivide-gray-600 z-20`}
                 id="user-dropdown"
               >
                 <div className="px-4 py-3">
@@ -150,9 +151,7 @@ function Navbar() {
                   <li>
                     <Link
                       href="/profile"
-
                       className="block px-4 py-2 text-xl text-gray-900 hover:bg-gray-100 mb-2"
-
                     >
                       <span className={preahvihear.className}>My Profile</span>
                     </Link>
@@ -259,8 +258,9 @@ function Navbar() {
           </>
         )}
         <div
-          className={`items-center justify-between ${isMainMenuOpen ? "flex" : "hidden"
-            } w-full md:flex md:w-auto md:order-1`}
+          className={`items-center justify-between ${
+            isMainMenuOpen ? "flex" : "hidden"
+          } w-full md:flex md:w-auto md:order-1`}
           id="navbar-user"
         >
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 w-full md:bg-white ">
