@@ -76,6 +76,13 @@ export async function PUT(req, { params }) {
       });
     }
 
+    sendConfirmationEmail(
+      confirmationRequest?.teamLeader,
+      confirmationRequest?.team,
+      confirmationRequest?.teamLeader?.email,
+      { event: 1 }
+    );
+
     const team = await Team.findByIdAndUpdate(
       confirmationRequest?.team,
       { teamMember: userId, teamMemberConfirmation: true },
