@@ -48,6 +48,18 @@ export async function POST(request) {
     }
     const userId = user._id;
     const { teamName, teamMemberEmail } = await request.json();
+    if (teamName.length > 20) {
+      return NextResponse.json({
+        success: false,
+        message: "Team name should be less than 50 characters",
+      });
+    }
+    if (teamMemberEmail.length > 50) {
+      return NextResponse.json({
+        success: false,
+        message: "Email should be less than 50 characters",
+      });
+    }
     //get the leader id
     // const teamLeader = await User.findById(userId);
     //check if the team name already exists

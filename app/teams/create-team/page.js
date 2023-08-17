@@ -37,10 +37,10 @@ const createTeam = () => {
           )
         );
         alert(
-          "Your team has been created successfully ! Ask your team mate to check their email to confirm !"
+          "Your team has been created successfully! Ask your teammate login and join team!"
         );
       } else {
-        alert(data.message);
+        alert(data?.message);
       }
       setLoading(false);
       router.push("/teams");
@@ -62,7 +62,7 @@ const createTeam = () => {
           <p className="mb-8 lg:mb-16 font-medium text-center text-subHeaderText sm:text-xl">
             <span className={preahvihear.className}>
               Create your own team by entering your team name and your team
-              mate's email !
+              mate's email!
             </span>
           </p>
           <form className="space-y-8" onSubmit={handleCreateTeamSubmit}>

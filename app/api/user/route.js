@@ -30,6 +30,30 @@ export async function PUT(req) {
     if (!user) {
       return NextResponse.json({ success: false, message: "User not found" });
     }
+    if (name.length > 50) {
+      return NextResponse.json({
+        success: false,
+        message: "Name should be less than 50 characters",
+      });
+    }
+    if (contact.length != 10) {
+      return NextResponse.json({
+        success: false,
+        message: "Contact Number should be of 10 digits",
+      });
+    }
+    if (department.length == "Select") {
+      return NextResponse.json({
+        success: false,
+        message: "Select your department",
+      });
+    }
+    if (year.length == "Select") {
+      return NextResponse.json({
+        success: false,
+        message: "Select your batch",
+      });
+    }
     const updatedUser = await User.findByIdAndUpdate(
       user?._id,
       {

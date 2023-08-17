@@ -111,7 +111,7 @@ const Teams = () => {
         dispatch(setTeamRequest(data.data));
         setTeamMemberEmail("");
       } else {
-        alert(data.message);
+        alert(data?.message);
       }
       setLoading(false);
       router.push("/teams");
@@ -352,7 +352,7 @@ const Teams = () => {
                       <div className="flex-grow">
                         <h2
                           className="text-headerText text-4xl title-font font-2xl mb-3"
-                          // style={{ color: "#6f7bd9 !important" }}
+                        // style={{ color: "#6f7bd9 !important" }}
                         >
                           <span className={preahvihear.className}>
                             Join Team
