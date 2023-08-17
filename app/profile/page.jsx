@@ -72,6 +72,8 @@ const Profile = () => {
       if (data.success) {
         dispatch(setProfile(data.data));
         router.push("/teams");
+      } else {
+        alert(data?.message);
       }
       setLoading(false);
     } catch (err) {

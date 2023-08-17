@@ -43,6 +43,8 @@ const Teams = () => {
       if (data.success) {
         dispatch(setTeam(null));
         dispatch(setTeamRequest(null));
+      } else {
+        alert(data?.message);
       }
       setLoading(false);
     } catch (error) {
@@ -57,6 +59,8 @@ const Teams = () => {
       );
       if (data.success) {
         dispatch(setTeamRequest(null));
+      } else {
+        alert(data?.message);
       }
       setLoading(false);
     } catch (error) {
