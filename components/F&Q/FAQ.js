@@ -117,8 +117,7 @@ const FAQ = () => {
             </summary>
             <p className="text-neutral-600 text-gray-900 mt-3 group-open:animate-fadeIn">
               <span className={preahvihear.className}>
-                Teams can be formed from the same department and same year ,
-                Cross-Department registration is also allowed.
+                Teams can be formed from the same department and same year, Cross-Department registration is also allowed.
               </span>
             </p>
           </details>

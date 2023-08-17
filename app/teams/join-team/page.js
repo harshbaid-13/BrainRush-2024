@@ -10,6 +10,7 @@ import Loader from "@components/Loader/Loader";
 import { setTeam, setTeamRequest } from "@Reducers/features/team";
 import { useRouter } from "next/navigation";
 import { setRequest } from "@Reducers/features/requests";
+import axios from "axios";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -25,18 +26,16 @@ function page() {
   const requests = useSelector((state) => state.requests.requests);
   const handleAcceptTeam = async (id) => {
     try {
-      const res = await fetch(`/api/team/confirm/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await res.json();
-      console.log(data);
+      const { data } = await axios.put(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/confirm/${id}`
+      );
+
       if (data.success) {
         dispatch(setTeam(data.data));
         dispatch(setTeamRequest(null));
         router.push("/teams");
+      } else {
+        alert(data?.message);
       }
     } catch (err) {
       console.log(err);
@@ -46,16 +45,15 @@ function page() {
   const handleRejectTeam = async (id) => {
     try {
       setLoading(true);
-      const res = await fetch(`/api/team/confirm/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await res.json();
+      const { data } = await axios.delete(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/confirm/${id}`
+      );
+
       if (data.success) {
         let x = requests.filter((req) => req._id !== id);
         dispatch(setRequest(x));
+      } else {
+        alert(data?.message);
       }
       setLoading(false);
     } catch (err) {
@@ -84,7 +82,6 @@ function page() {
             <section className="text-gray-600  px-2 body-font">
               <div className="containe mx-auto">
                 <div className="flex flex-col -m- w-full items-center justify-center">
-                  {console.log(requests)}
                   {requests &&
                     requests.map((request, ind) => (
                       <div

@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import "./AllTeams.css";
 import { Preahvihear } from "next/font/google";
+import axios from "axios";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -19,10 +20,10 @@ const AllTeams = () => {
 
   const getTeams = async () => {
     try {
-      const response = await fetch(
-        `/api/team/all?search=${search}&page=${pageNum}&selected=${notSelected}`
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/all?search=${search}&page=${pageNum}&selected=${notSelected}`
       );
-      const data = await response.json();
+      // const data = await response.json();
       setTeams(data.teams);
       setLimit(data.limit);
       setCount(data.count);
@@ -33,7 +34,6 @@ const AllTeams = () => {
 
   useEffect(() => {
     getTeams();
-    console.log({ teams });
   }, [pageNum, notSelected]);
 
   return (
@@ -88,7 +88,7 @@ const AllTeams = () => {
         <table className="w-full h-10 text-sm text-left text-gray-500  rounded-md ">
           <thead
             className="h-20 text-xs text-gray-50 uppercase  bg-headerText"
-          // style={{ background: "#6f7bd9" }}
+            // style={{ background: "#6f7bd9" }}
           >
             <tr>
               <th scope="col" className="px-6 py-3 ">
@@ -159,10 +159,7 @@ const AllTeams = () => {
           <span className="font-semibold text-gray-900 ">
             {Math.min(count, pageNum * limit)}
           </span>{" "}
-          of{" "}
-          <span className="font-semibold text-gray-900 ">
-            {count}
-          </span>{" "}
+          of <span className="font-semibold text-gray-900 ">{count}</span>{" "}
           Entries
         </span>
         <div className="inline-flex mt-2 xs:mt-0">

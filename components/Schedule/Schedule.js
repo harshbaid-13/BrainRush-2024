@@ -11,8 +11,8 @@ const preahvihear = Preahvihear({
 function Schedule() {
   return (
     <>
-      <Heading title="Our Schedule" />
-      <section className="" id="schedule">
+      <section id="schedule" className="mt-10">
+        <Heading title="Our Schedule" />
         <div className="container max-w-5xl px-4 pt-3 pb-12 mx-auto">
           <div className="grid gap-4 mx-4 sm:grid-cols-12">
             <div className="col-span-12 sm:col-span-3">
@@ -45,10 +45,9 @@ function Schedule() {
                     </span>
                   </h3>
                   <time className="text-xs tracking-wide uppercase ">
-                    {/* <span className={preahvihear.className}>
-                     
-                      24-Aug 11:00 Am
-                    </span> */}
+                    <span className={preahvihear.className}>
+                      {/* Kodikas-2K23 */}
+                    </span>
                   </time>
                   <p className="mt-3">
                     <span className={preahvihear.className}>
@@ -68,10 +67,9 @@ function Schedule() {
                     </span>
                   </h3>
                   <time className="text-xs tracking-wide uppercase ">
-                    {/* <span className={preahvihear.className}>
-                      {/* Kodikas-2K23 }
-                      24-Aug 12:30 Pm
-                    </span> */}
+                    <span className={preahvihear.className}>
+                      {/* Kodikas-2K23 */}
+                    </span>
                   </time>
                   <p className="mt-3">
                     <span className={preahvihear.className}>
@@ -91,16 +89,15 @@ function Schedule() {
                     </span>
                   </h3>
                   <time className="text-xs tracking-wide uppercase ">
-                    {/* <span className={preahvihear.className}>
-                      {/* Kodikas-2K23 }
-                      24-Aug 02:30 Pm
-                    </span> */}
+                    <span className={preahvihear.className}>
+                      {/* Kodikas-2K23 */}
+                    </span>
                   </time>
                   <p className="mt-3">
                     <span className={preahvihear.className}>
-                      {/* Kodikas-2K23 */}
-                      •Teams will go head-to-head in 1 vs 1 battles, aiming to
-                      conquer Kodikas and claim their coding crowns!
+                      {/* Kodikas-2K23 */}• Teams will go head-to-head in 1 vs 1
+                      battles, aiming to conquer Kodikas and claim their coding
+                      crowns!
                     </span>
                   </p>
                 </div>

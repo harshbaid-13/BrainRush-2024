@@ -15,9 +15,12 @@ const Team = () => {
       <section className="">
         <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
           <div className="grid gap-8 lg:gap-16 grid-cols-2  lg:grid-cols-4 md:grid-cols-3 ">
-            {data.map((e) => {
+            {data.map((e, ind) => {
               return (
-                <div className="text-center text-gray-500 p-3   relativet">
+                <div
+                  key={ind}
+                  className="text-center text-gray-500 p-3 relative"
+                >
                   <img
                     className="object-contain mx-auto p-1 ring-4 ring-subHeaderText  rounded-full"
                     src={e.photo}

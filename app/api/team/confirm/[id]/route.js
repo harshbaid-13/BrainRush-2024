@@ -27,8 +27,6 @@ export async function PATCH(req, { params }) {
       $and: [{ _id: requestId }, { teamLeader: userId }],
     });
 
-    console.log({ sentRequest });
-
     if (!sentRequest) {
       return NextResponse.json({
         success: false,
@@ -64,9 +62,16 @@ export async function PUT(req, { params }) {
     }
     const userId = user._id;
     const id = params.id;
-    const confirmationRequest = await ConfirmationRequest.findById(id);
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return NextResponse.json({ message: "Invalid id" }, { status: 400 });
+    }
+    const confirmationRequest = await ConfirmationRequest.findById(id)
+      .populate("teamLeader")
+      .populate("team");
 
-    const userTeamExist = await Team.findOne({ leader: userId });
+    const userTeamExist = await Team.findOne({
+      $or: [{ leader: userId }, { teamMember: userId }],
+    });
 
     if (userTeamExist) {
       return NextResponse.json({

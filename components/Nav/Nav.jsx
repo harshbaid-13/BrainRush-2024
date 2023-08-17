@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { setUser } from "@Reducers/features/user";
 import { useDispatch, useSelector } from "react-redux";
 import { setTeam, setTeamRequest } from "@Reducers/features/team";
@@ -13,6 +13,8 @@ import "./Nav.css";
 
 import { Preahvihear } from "next/font/google";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+// import { logo } from ".@/public";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -34,33 +36,33 @@ function Navbar() {
       // console.log(response);
       setProviders(response);
     };
-    console.log(session);
     setProvidersFunc();
   }, []);
 
   const getRequests = async () => {
-    const response = await fetch(`/api/team/confirm`);
-    const { data } = await response.json();
-    dispatch(setRequest(data));
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/confirm`
+    );
+    dispatch(setRequest(data.data));
   };
   const setUserdata = () => {
     dispatch(setUser(session?.user));
   };
   const getTeamDetails = async () => {
-    const res = await fetch(`/api/team`);
-    const data = await res.json();
-    // console.log(data)
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/team`
+    );
     dispatch(setTeam(data.data === undefined ? null : data.data));
     dispatch(setTeamRequest(data.request === undefined ? null : data.request));
   };
   const getProfileDetails = async () => {
-    const res = await fetch(`/api/user`);
-    const { data } = await res.json();
-    // console.log(data);
-    dispatch(setProfile(data));
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/user`
+    );
+    // const { data } = await res.json();
+    dispatch(setProfile(data.data));
   };
   useEffect(() => {
-    console.log("session available:", session);
     if (session) {
       setUserdata();
       getTeamDetails();
@@ -75,15 +77,43 @@ function Navbar() {
 
   const toggleUserDropdown = () => {
     setIsUserDropdownOpen(!isUserDropdownOpen);
+    if (isMainMenuOpen) {
+      setIsMainMenuOpen(false);
+    }
   };
 
   const toggleMainMenu = () => {
     setIsMainMenuOpen(!isMainMenuOpen);
+    if (isUserDropdownOpen) {
+      setIsUserDropdownOpen(false);
+    }
   };
+
+  const navbarRef = useRef(null);
+
+  const handleDocumentClick = (event) => {
+    console.log("clicked");
+    if (
+      !navbarRef.current?.contains(event.target) &&
+      (isUserDropdownOpen || isMainMenuOpen)
+    ) {
+      setIsUserDropdownOpen(false);
+      setIsMainMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleDocumentClick);
+
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, [navbarRef, isUserDropdownOpen, isMainMenuOpen]);
 
   // useEffect(() => {
   //   getRequests();
   // }, [userId]);
+
   return (
     <nav className="z-20 bg-white text-white body-font">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -125,8 +155,9 @@ function Navbar() {
               </button>
               {/* User toggle menu */}
               <div
-                className={`${isUserDropdownOpen ? "block" : "hidden"
-                  } absolute right-0 mt-2 text-base list-none bg-white divide-y rounded-lg shadowdivide-gray-600 z-20`}
+                className={`${
+                  isUserDropdownOpen ? "block" : "hidden"
+                } absolute right-0 mt-2 text-base list-none bg-white divide-y rounded-lg shadowdivide-gray-600 z-20`}
                 id="user-dropdown"
               >
                 <div className="px-4 py-3">
@@ -150,9 +181,7 @@ function Navbar() {
                   <li>
                     <Link
                       href="/profile"
-
                       className="block px-4 py-2 text-xl text-gray-900 hover:bg-gray-100 mb-2"
-
                     >
                       <span className={preahvihear.className}>My Profile</span>
                     </Link>
@@ -259,19 +288,12 @@ function Navbar() {
           </>
         )}
         <div
-          className={`items-center justify-between ${isMainMenuOpen ? "flex" : "hidden"
-            } w-full md:flex md:w-auto md:order-1`}
+          className={`items-center justify-between ${
+            isMainMenuOpen ? "flex" : "hidden"
+          } w-full md:flex md:w-auto md:order-1`}
           id="navbar-user"
         >
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 w-full md:bg-white ">
-            <li>
-              <Link
-                href="#schedule"
-                className="block py-2 pl-3 pr-4mx-2 font-bold text-xl text-headerText  navLinks"
-              >
-                <span className={preahvihear.className}>Schedule</span>
-              </Link>
-            </li>
             <li>
               <Link
                 href={profileCompleted ? "/teams" : "/profile"}
@@ -279,6 +301,14 @@ function Navbar() {
                 aria-current="page"
               >
                 <span className={preahvihear.className}>My Team</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="#schedule"
+                className="block py-2 pl-3 pr-4mx-2 font-bold text-xl text-headerText  navLinks"
+              >
+                <span className={preahvihear.className}>Schedule</span>
               </Link>
             </li>
             {/* <li> */}

@@ -62,7 +62,7 @@ function About() {
               className={
                 about
                   ? "activeClass text-subHeaderText text-bold  text-2xl cursor-pointer"
-                  : "notActiveClass text-2xl cursor-pointer "
+                  : "notActiveClass text-subHeaderText text-bold text-4xl cursor-pointer "
               }
             >
               <span className={preahvihear.className}>
@@ -78,7 +78,7 @@ function About() {
               className={
                 venue
                   ? "activeClass text-subHeaderText text-bold text-2xl cursor-pointer"
-                  : "notActiveClass  text-2xl cursor-pointer "
+                  : "notActiveClass text-subHeaderText text-bold text-4xl cursor-pointer "
               }
             >
               <span className={preahvihear.className}>
@@ -93,8 +93,8 @@ function About() {
               }}
               className={
                 schedule
-                  ? "activeClass text-subHeaderText text-bold hover:border-b-logoYellow text-xl focus:border-b-logoYellow cursor-pointer"
-                  : "notActiveClass hover:border-b-logoYellow text-xl  focus:border-b-logoYellow cursor-pointer"
+                  ? "activeClass text-subHeaderText text-bold  text-2xl cursor-pointer"
+                  : "notActiveClass text-subHeaderText text-bold text-4xl   cursor-pointer"
               }
             >
               <span className={preahvihear.className}>

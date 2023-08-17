@@ -13,7 +13,7 @@ function Loader() {
       <div role="status">
         <svg
           aria-hidden="true"
-          className="inline w-8 h-8 mr-2 text-white animate-spin  fill-white"
+          className="inline w-8 h-8 mr-2 text-gray-900 animate-spin  fill-white"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

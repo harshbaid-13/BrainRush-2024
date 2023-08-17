@@ -42,7 +42,6 @@ export async function POST(request) {
   try {
     await connectToDatabase();
     const email = request.headers.get("Authorization");
-    console.log({ email });
     const user = await User.findOne({ email: email });
     if (!user) {
       return NextResponse.json({ success: false, message: "User not found" });
