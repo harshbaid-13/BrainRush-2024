@@ -17,6 +17,12 @@ export async function POST(req) {
       return NextResponse.json({ success: false, message: "User not found" });
     }
     const { teamMemberEmail } = await req.json();
+    if (teamMemberEmail.length > 50) {
+      return NextResponse.json({
+        success: false,
+        message: "Email should be less than 50 characters",
+      });
+    }
     if (teamMemberEmail === user.email) {
       return NextResponse.json(
         { success: false, message: "You can't add yourself as a member" },

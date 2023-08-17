@@ -362,7 +362,7 @@ const Teams = () => {
                         <p className="leading-relaxed text-base mb-5">
                           {/* Team Leader: {request.teamLeader.name} */}
                           <span className={preahvihear.className}>
-                            Join a team made by a friend of yours !
+                            Join a team made by a friend of yours!
                           </span>
                         </p>
                         <Link href="teams/join-team">
@@ -411,8 +411,7 @@ const Teams = () => {
                         </h2>
                         <p className="leading-relaxed text-base mb-5">
                           <span className={preahvihear.className}>
-                            Create your own team ! A team should contain 2
-                            members including yourself !
+                            Create your own team, and invite your friend!
                           </span>
                         </p>
                         <Link href="/teams/create-team">

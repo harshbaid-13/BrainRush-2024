@@ -48,10 +48,10 @@ export async function POST(request) {
     }
     const userId = user._id;
     const { teamName, teamMemberEmail } = await request.json();
-    if (teamName.length > 20) {
+    if (teamName.length > 30) {
       return NextResponse.json({
         success: false,
-        message: "Team name should be less than 50 characters",
+        message: "Team name should be less than 30 characters",
       });
     }
     if (teamMemberEmail.length > 50) {
