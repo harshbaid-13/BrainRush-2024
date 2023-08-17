@@ -17,7 +17,6 @@ export async function POST(req) {
       return NextResponse.json({ success: false, message: "User not found" });
     }
     const { teamMemberEmail } = await req.json();
-    console.log(teamMemberEmail);
     if (teamMemberEmail === user.email) {
       return NextResponse.json(
         { success: false, message: "You can't add yourself as a member" },
@@ -72,9 +71,8 @@ export async function GET(req) {
   try {
     await connectToDatabase();
     const email = req.headers.get("Authorization");
-    console.log({ email });
     const user = await User.findOne({ email: email });
-    console.log({ user });
+
     if (!user) {
       return NextResponse.json({ success: false, message: "User not found" });
     }
