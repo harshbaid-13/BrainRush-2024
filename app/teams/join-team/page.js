@@ -76,7 +76,7 @@ function page() {
         {requests?.length === 0 ? (
           <h1 className="h-auto mt-80 font-bold text-subHeaderText text-4xl mx-auto text-center">
             <span className={preahvihear.className}>
-              You have not any team request.
+              You don't have any team requests.
             </span>
           </h1>
         ) : (

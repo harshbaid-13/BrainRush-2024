@@ -45,10 +45,10 @@ function Schedule() {
                     </span>
                   </h3>
                   <time className="text-xs tracking-wide uppercase ">
-                    <span className={preahvihear.className}>
-                      {/* Kodikas-2K23 */}
+                    {/* <span className={preahvihear.className}>
+                     
                       24-Aug 11:00 Am
-                    </span>
+                    </span> */}
                   </time>
                   <p className="mt-3">
                     <span className={preahvihear.className}>
@@ -68,10 +68,10 @@ function Schedule() {
                     </span>
                   </h3>
                   <time className="text-xs tracking-wide uppercase ">
-                    <span className={preahvihear.className}>
-                      {/* Kodikas-2K23 */}
+                    {/* <span className={preahvihear.className}>
+                      {/* Kodikas-2K23 }
                       24-Aug 12:30 Pm
-                    </span>
+                    </span> */}
                   </time>
                   <p className="mt-3">
                     <span className={preahvihear.className}>
@@ -91,10 +91,10 @@ function Schedule() {
                     </span>
                   </h3>
                   <time className="text-xs tracking-wide uppercase ">
-                    <span className={preahvihear.className}>
-                      {/* Kodikas-2K23 */}
+                    {/* <span className={preahvihear.className}>
+                      {/* Kodikas-2K23 }
                       24-Aug 02:30 Pm
-                    </span>
+                    </span> */}
                   </time>
                   <p className="mt-3">
                     <span className={preahvihear.className}>
