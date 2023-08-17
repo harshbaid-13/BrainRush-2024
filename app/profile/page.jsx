@@ -152,7 +152,7 @@ const Profile = () => {
                   </span>{" "}
                 </label>
                 <input
-                  type="number"
+                  type="tel"
                   id="phone"
                   name="phone"
                   placeholder="123-456-7890"
@@ -190,12 +190,12 @@ const Profile = () => {
                   <option>Select</option>
                   <option value="CSE">CSE</option>
                   <option value="CSE-DS">CSE-DS</option>
-                  <option value="AIML">CSE AIML</option>
+                  <option value="CSE AIML">CSE AIML</option>
                   <option value="IT">IT</option>
-                  <option value="IT">IT AIML</option>
-                  <option value="IT">AUE</option>
+                  <option value="IT AIML">IT AIML</option>
+                  <option value="AUE">AUE</option>
                   <option value="ECE">ECE</option>
-                  <option value="ECE">ECE VLSI</option>
+                  <option value="ECE VLSI">ECE VLSI</option>
                   <option value="EE">EE</option>
                   <option value="ME">ME</option>
                 </select>
@@ -223,9 +223,9 @@ const Profile = () => {
                 >
                   <option>Select</option>
                   {/* <option value={2027}>1st</option> */}
-                  <option value={2026}>2020-24</option>
+                  <option value={2024}>2020-24</option>
                   <option value={2025}>2021-25</option>
-                  <option value={2024}>2022-26</option>
+                  <option value={2026}>2022-26</option>
                 </select>
               </div>
               <button
