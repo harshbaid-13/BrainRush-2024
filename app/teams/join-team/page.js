@@ -30,7 +30,6 @@ function page() {
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/confirm/${id}`
       );
 
-      console.log(data);
       if (data.success) {
         dispatch(setTeam(data.data));
         dispatch(setTeamRequest(null));
@@ -79,7 +78,6 @@ function page() {
             <section className="text-gray-600  px-2 body-font">
               <div className="containe mx-auto">
                 <div className="flex flex-col -m- w-full items-center justify-center">
-                  {console.log(requests)}
                   {requests &&
                     requests.map((request, ind) => (
                       <div

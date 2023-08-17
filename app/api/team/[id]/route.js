@@ -8,7 +8,6 @@ import sendConfirmationEmail from "@utils/sendConfirmationEmail";
 
 //remove a member by the team leader
 export async function PATCH(req, { params }) {
-  console.log("Here in patch");
   try {
     await connectToDatabase();
     const { id } = params;
@@ -95,7 +94,6 @@ export async function PUT(req, { params }) {
       { new: true }
     );
     sendConfirmationEmail(user, team, team?.leader?.email, { event: 3 });
-    console.log(newTeam);
     return NextResponse.json({
       success: true,
       message: "Team member removed successfully",

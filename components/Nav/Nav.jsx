@@ -36,7 +36,6 @@ function Navbar() {
       // console.log(response);
       setProviders(response);
     };
-    console.log(session);
     setProvidersFunc();
   }, []);
 
@@ -44,7 +43,6 @@ function Navbar() {
     const { data } = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/confirm`
     );
-    console.log(data);
     dispatch(setRequest(data.data));
   };
   const setUserdata = () => {
@@ -54,7 +52,6 @@ function Navbar() {
     const { data } = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/team`
     );
-    console.log(data);
     dispatch(setTeam(data.data === undefined ? null : data.data));
     dispatch(setTeamRequest(data.request === undefined ? null : data.request));
   };
@@ -63,11 +60,9 @@ function Navbar() {
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/user`
     );
     // const { data } = await res.json();
-    console.log(data);
     dispatch(setProfile(data.data));
   };
   useEffect(() => {
-    console.log("session available:", session);
     if (session) {
       setUserdata();
       getTeamDetails();

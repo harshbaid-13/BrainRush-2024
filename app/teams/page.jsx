@@ -40,13 +40,11 @@ const Teams = () => {
       const { data } = await axios.delete(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/${team?._id}`
       );
-      console.log(data);
       if (data.success) {
         dispatch(setTeam(null));
         dispatch(setTeamRequest(null));
       }
       setLoading(false);
-      console.log(isAlreadyInTeam);
     } catch (error) {
       console.log(error);
     }
@@ -105,7 +103,6 @@ const Teams = () => {
           teamMemberEmail,
         }
       );
-      console.log(data);
       if (data.success) {
         dispatch(setTeamRequest(data.data));
         setTeamMemberEmail("");

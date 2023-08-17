@@ -7,7 +7,6 @@ export async function GET(req) {
   try {
     await connectToDatabase();
     const email = req.headers.get("Authorization");
-    console.log(email);
     const user = await User.findOne({ email: email });
     if (!user) {
       return NextResponse.json({ success: false, message: "User not found" });
@@ -42,7 +41,6 @@ export async function PUT(req) {
       { new: true }
     );
 
-    console.log(updatedUser);
     return NextResponse.json({
       status: 200,
       success: true,

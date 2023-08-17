@@ -34,7 +34,6 @@ const AllTeams = () => {
 
   useEffect(() => {
     getTeams();
-    console.log({ teams });
   }, [pageNum, notSelected]);
 
   return (

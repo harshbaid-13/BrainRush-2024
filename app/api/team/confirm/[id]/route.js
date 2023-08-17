@@ -27,8 +27,6 @@ export async function PATCH(req, { params }) {
       $and: [{ _id: requestId }, { teamLeader: userId }],
     });
 
-    console.log({ sentRequest });
-
     if (!sentRequest) {
       return NextResponse.json({
         success: false,

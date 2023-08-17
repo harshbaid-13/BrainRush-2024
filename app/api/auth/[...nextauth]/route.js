@@ -14,7 +14,6 @@ const handler = NextAuth({
     async session({ session }) {
       try {
         await connectToDatabase();
-        console.log("connected to db");
         const sessionUser = await User.findOne({ email: session?.user?.email });
         session.user.id = sessionUser._id.toString();
         return session;
@@ -25,7 +24,6 @@ const handler = NextAuth({
     async signIn({ profile }) {
       try {
         await connectToDatabase();
-        console.log("connected to db");
         //if user already exists
         const userExists = await User.findOne({ email: profile.email });
         //create new user
