@@ -191,7 +191,7 @@ const Teams = () => {
                               className="space-y-8 "
                               onSubmit={handleSendRequest}
                             >
-                              <div className="w-full flex items-center">
+                              <div className="w-full flex flex-wrap items-center">
                                 <label
                                   htmlFor="email"
                                   className="block text-md mr-2 text-gray-700 font-medium"
@@ -216,7 +216,7 @@ const Teams = () => {
                                 </div>
                                 <button
                                   type="submit"
-                                  className="relative text-center inline-flex items-center justify-center p-0.5 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor "
+                                  className="mt-1 relative text-center inline-flex items-center justify-center p-0.5 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor "
                                 >
                                   <span className="relative px-2.5 py-1.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
                                     <span className={preahvihear.className}>
@@ -362,8 +362,7 @@ const Teams = () => {
                         <p className="leading-relaxed text-base mb-5">
                           {/* Team Leader: {request.teamLeader.name} */}
                           <span className={preahvihear.className}>
-                            Create your own team of member two including you by
-                            clicking the button.
+                            Join a team made by a friend of yours !
                           </span>
                         </p>
                         <Link href="teams/join-team">
@@ -412,8 +411,8 @@ const Teams = () => {
                         </h2>
                         <p className="leading-relaxed text-base mb-5">
                           <span className={preahvihear.className}>
-                            Create your own team of member two including you by
-                            clicking the button.
+                            Create your own team ! A team should contain 2
+                            members including yourself !
                           </span>
                         </p>
                         <Link href="/teams/create-team">

@@ -1,6 +1,4 @@
-input,
-select,
-option {
+.profileInput {
     /* background-color: rgb(45, 27, 5) !important; */
     padding: 2rem !important;
     border-radius: 1rem !important;
