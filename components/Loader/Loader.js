@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import logo_loader from "public/assets/images/Loader_Website2.gif";
+// import logo_loader from "public/assets/images/Loader_Website2.gif";
 import "./Loader.css";
 
 // function Loader() {

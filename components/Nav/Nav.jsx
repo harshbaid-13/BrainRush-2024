@@ -92,7 +92,7 @@ function Navbar() {
   const navbarRef = useRef(null);
 
   const handleDocumentClick = (event) => {
-    console.log("clicked");
+    // console.log("clicked");
     if (
       !navbarRef.current?.contains(event.target) &&
       (isUserDropdownOpen || isMainMenuOpen)

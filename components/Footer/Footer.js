@@ -1,6 +1,6 @@
 import React from "react";
-import euphoria from "public/assets/images/euphoria.png";
-import csi from "public/assets/images/csi.png";
+// import euphoria from "public/assets/images/euphoria.png";
+// import csi from "public/assets/images/csi.png";
 import Image from "next/image";
 
 const Footer = () => {
