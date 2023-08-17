@@ -34,6 +34,8 @@ function page() {
         dispatch(setTeam(data.data));
         dispatch(setTeamRequest(null));
         router.push("/teams");
+      } else {
+        alert(data?.message);
       }
     } catch (err) {
       console.log(err);
@@ -50,6 +52,8 @@ function page() {
       if (data.success) {
         let x = requests.filter((req) => req._id !== id);
         dispatch(setRequest(x));
+      } else {
+        alert(data?.message);
       }
       setLoading(false);
     } catch (err) {

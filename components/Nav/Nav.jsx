@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { setUser } from "@Reducers/features/user";
 import { useDispatch, useSelector } from "react-redux";
 import { setTeam, setTeamRequest } from "@Reducers/features/team";
@@ -77,11 +77,38 @@ function Navbar() {
 
   const toggleUserDropdown = () => {
     setIsUserDropdownOpen(!isUserDropdownOpen);
+    if (isMainMenuOpen) {
+      setIsMainMenuOpen(false);
+    }
   };
 
   const toggleMainMenu = () => {
     setIsMainMenuOpen(!isMainMenuOpen);
+    if (isUserDropdownOpen) {
+      setIsUserDropdownOpen(false);
+    }
   };
+
+  const navbarRef = useRef(null);
+
+  const handleDocumentClick = (event) => {
+    console.log("clicked");
+    if (
+      !navbarRef.current?.contains(event.target) &&
+      (isUserDropdownOpen || isMainMenuOpen)
+    ) {
+      setIsUserDropdownOpen(false);
+      setIsMainMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleDocumentClick);
+
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, [navbarRef, isUserDropdownOpen, isMainMenuOpen]);
 
   // useEffect(() => {
   //   getRequests();
@@ -269,19 +296,19 @@ function Navbar() {
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 w-full md:bg-white ">
             <li>
               <Link
-                href="#schedule"
-                className="block py-2 pl-3 pr-4mx-2 font-bold text-xl text-headerText  navLinks"
-              >
-                <span className={preahvihear.className}>Schedule</span>
-              </Link>
-            </li>
-            <li>
-              <Link
                 href={profileCompleted ? "/teams" : "/profile"}
                 className="block py-2 pl-3 pr-4mx-2 font-bold text-xl text-headerText  navLinks"
                 aria-current="page"
               >
                 <span className={preahvihear.className}>My Team</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="#schedule"
+                className="block py-2 pl-3 pr-4mx-2 font-bold text-xl text-headerText  navLinks"
+              >
+                <span className={preahvihear.className}>Schedule</span>
               </Link>
             </li>
             {/* <li> */}
