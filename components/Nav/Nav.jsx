@@ -40,27 +40,41 @@ function Navbar() {
   }, []);
 
   const getRequests = async () => {
-    const { data } = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/confirm`
-    );
-    dispatch(setRequest(data.data));
+    try {
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/confirm`
+      );
+      dispatch(setRequest(data.data));
+    } catch (err) {
+      console.log(err);
+    }
   };
   const setUserdata = () => {
     dispatch(setUser(session?.user));
   };
   const getTeamDetails = async () => {
-    const { data } = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/team`
-    );
-    dispatch(setTeam(data.data === undefined ? null : data.data));
-    dispatch(setTeamRequest(data.request === undefined ? null : data.request));
+    try {
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team`
+      );
+      dispatch(setTeam(data.data === undefined ? null : data.data));
+      dispatch(setTeamRequest(data.request === undefined ? null : data.request));
+    } catch (err) {
+      console.log(err);
+    }
+
   };
   const getProfileDetails = async () => {
-    const { data } = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/user`
-    );
-    // const { data } = await res.json();
-    dispatch(setProfile(data.data));
+    try {
+
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/user`
+      );
+      // const { data } = await res.json();
+      dispatch(setProfile(data.data));
+    } catch (err) {
+      console.log(err);
+    }
   };
   useEffect(() => {
     if (session) {
@@ -155,9 +169,8 @@ function Navbar() {
               </button>
               {/* User toggle menu */}
               <div
-                className={`${
-                  isUserDropdownOpen ? "block" : "hidden"
-                } absolute right-0 mt-2 text-base list-none bg-white divide-y rounded-lg shadowdivide-gray-600 z-20`}
+                className={`${isUserDropdownOpen ? "block" : "hidden"
+                  } absolute right-0 mt-2 text-base list-none bg-white divide-y rounded-lg shadowdivide-gray-600 z-20`}
                 id="user-dropdown"
               >
                 <div className="px-4 py-3">
@@ -288,9 +301,8 @@ function Navbar() {
           </>
         )}
         <div
-          className={`items-center justify-between ${
-            isMainMenuOpen ? "flex" : "hidden"
-          } w-full md:flex md:w-auto md:order-1`}
+          className={`items-center justify-between ${isMainMenuOpen ? "flex" : "hidden"
+            } w-full md:flex md:w-auto md:order-1`}
           id="navbar-user"
         >
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 w-full md:bg-white ">
