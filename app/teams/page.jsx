@@ -119,15 +119,12 @@ const Teams = () => {
   /* SHOW QR STARTS */
   const [isImageVisible, setImageVisible] = useState(false);
   const handleQr = () => {
-    setImageVisible(true)
-  }
+    setImageVisible(true);
+  };
   const posterRef = useRef(null);
 
   const handleDocumentClick = (event) => {
-    if (
-      !posterRef.current?.contains(event.target) &&
-      (isImageVisible)
-    ) {
+    if (!posterRef.current?.contains(event.target) && isImageVisible) {
       setImageVisible(false);
     }
   };
@@ -145,9 +142,17 @@ const Teams = () => {
     <>
       {/* qr */}
       {
-        <div className={`z-50 fixed inset-0 flex justify-center items-center transition-opacity duration-300 ${isImageVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'} backdrop-blur-md`}>
+        <div
+          className={`z-50 fixed inset-0 flex justify-center items-center transition-opacity duration-300 ${
+            isImageVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+          } backdrop-blur-md`}
+        >
           <div className="bg-white p-8 rounded-lg shadow-md w-auto">
-            <img src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${team?._id}`} alt="Centered Image" className="block mx-auto max-w-full" />
+            <img
+              src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${team?._id}`}
+              alt="Centered Image"
+              className="block mx-auto max-w-full"
+            />
           </div>
         </div>
       }
@@ -319,16 +324,18 @@ const Teams = () => {
                             </span>
                           </button>
                         )}
-                      {team?.teamMemberConfirmation && <button
-                        onClick={handleQr}
-                        className="relative mt-5 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
-                      >
-                        <span className="relative px-5 py-2.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
-                          <span className={preahvihear.className}>
-                            Your QR
+                      {team?.teamMemberConfirmation && (
+                        <button
+                          onClick={handleQr}
+                          className="relative mt-5 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
+                        >
+                          <span className="relative px-5 py-2.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
+                            <span className={preahvihear.className}>
+                              Team QR
+                            </span>
                           </span>
-                        </span>
-                      </button>}
+                        </button>
+                      )}
 
                       {/* delete team */}
                       {!team?.payment ? (

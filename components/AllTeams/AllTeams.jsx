@@ -64,13 +64,14 @@ const AllTeams = () => {
                       setSearch(e.target.value);
                     }}
                   />
-
                   <button
                     type="submit"
-                    className="bg-primary-orange py-2 px-4 ml-2 text-white rounded-md"
+                    className="relative text-center inline-flex items-center justify-center py-1 px-4 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
                     onClick={getTeams}
                   >
-                    <span className={preahvihear.className}>Search</span>
+                    <span className="relative px-4 py-2 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
+                      <span className={preahvihear.className}>Search</span>
+                    </span>
                   </button>
                 </div>
                 {/* <label className="flex my-2">
@@ -179,62 +180,66 @@ const AllTeams = () => {
                 {Math.min(count, pageNum * limit)}
               </span>{" "}
               of <span className="font-semibold text-gray-900 ">{count}</span>{" "}
-              Entries
+              Teams
             </span>
             <div className="inline-flex mt-2 xs:mt-0">
               <button
-                className="rounded-md flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-subHeaderText bg-gray-800 hover:bg-gray-900   "
+                className="relative text-center inline-flex items-center justify-center p-1 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
                 onClick={() => {
                   setPageNum((prev) => {
                     return Math.max(prev - 1, 1);
                   });
                 }}
               >
-                <svg
-                  className="w-3.5 h-3.5 mr-2"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 10"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M13 5H1m0 0 4 4M1 5l4-4"
-                  />
-                </svg>
-                Prev
+                <span className="relative px-4 py-2 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
+                  <svg
+                    className="w-3.5 h-3.5 mr-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M13 5H1m0 0 4 4M1 5l4-4"
+                    />
+                  </svg>
+                  <span className={preahvihear.className}>Prev</span>
+                </span>
               </button>
 
               <button
-                className="rounded-md flex items-center justify-center px-4 h-10 text-base ml-1 font-medium text-white bg-subHeaderText bg-gray-800 border-0 border-gray-700  hover:bg-gray-900   "
+                className="relative text-center inline-flex items-center justify-center p-1 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
                 onClick={() => {
-                  setPageNum((prev) => {
+                  setPageNum((next) => {
                     return Math.min(
-                      prev + 1,
+                      next + 1,
                       Math.floor((count - 1) / limit) + 1
                     );
                   });
                 }}
               >
-                Next
-                <svg
-                  className="w-3.5 h-3.5 ml-2"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 10"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M1 5h12m0 0L9 1m4 4L9 9"
-                  />
-                </svg>
+                <span className="relative px-4 py-2 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
+                  <span className={preahvihear.className}>Next</span>
+                  <svg
+                    className="w-3.5 h-3.5 ml-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9"
+                    />
+                  </svg>
+                </span>
               </button>
             </div>
           </div>
