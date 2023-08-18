@@ -12,7 +12,7 @@ export async function GET(req) {
     const email = req.headers.get("Authorization");
     const user = await User.findOne({ email: email });
     const teamDetails = await Team.findOne({
-      $or: [{ leader: user._id }, { teamMember: user._id }],
+      $or: [{ leader: user?._id }, { teamMember: user?._id }],
     }).populate(["leader", "teamMember"]);
     if (!teamDetails) {
       return NextResponse.json({

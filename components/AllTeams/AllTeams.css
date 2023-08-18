@@ -1,22 +1,17 @@
 .allTeamTable {
-
-    margin: 0 5rem;
+  margin: 0 5rem;
 }
 
 .searchAllTeam {
-    margin: 0 5rem;
-
+  margin: 0 5rem;
 }
 
-@media only screen and (max-width:700px) {
+@media only screen and (max-width: 700px) {
+  .allTeamTable {
+    margin: 0 1rem !important;
+  }
 
-    .allTeamTable {
-        margin: 0 1rem !important;
-    }
-
-    .searchAllTeam {
-        margin: 0 1rem;
-
-    }
-
+  .searchAllTeam {
+    margin: 0 1rem;
+  }
 }
