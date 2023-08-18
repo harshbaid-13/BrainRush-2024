@@ -317,7 +317,7 @@ function Navbar() {
             </li>
             <li>
               <Link
-                href="#schedule"
+                href="/#schedule"
                 className="block py-2 pl-3 pr-4mx-2 font-bold text-xl text-headerText  navLinks"
               >
                 <span className={preahvihear.className}>Schedule</span>
@@ -333,7 +333,7 @@ function Navbar() {
             {/* </li> */}
             <li>
               <Link
-                href="#about"
+                href="/#about"
                 className="block py-2 pr-4 font-bold text-xl text-headerText  navLinks"
               >
                 <span className={preahvihear.className}>About Us</span>
