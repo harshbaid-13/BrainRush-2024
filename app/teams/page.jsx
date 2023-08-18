@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./page.css";
 import Link from "next/link";
 import { Preahvihear } from "next/font/google";
@@ -22,18 +22,7 @@ const Teams = () => {
     (state) => state.team
   );
   const user = useSelector((state) => state.user.user);
-  // const [qrData, setQrData] = useState();
   const [teamMemberEmail, setTeamMemberEmail] = useState("");
-  //team qr not working
-  // const getQr = async () => {
-  //   setLoading(true);
-  //   const response = await fetch(
-  //     `${process.env.NEXT_PUBLIC_BASE_URL}/api/test/${team?._id}`
-  //   );
-  //   const data = await response.json();
-  //   setQrData(data);
-  //   setLoading(false);
-  // };
   const handleDelete = async () => {
     try {
       setLoading(true);
@@ -126,8 +115,43 @@ const Teams = () => {
       setLoading(false);
     }, 4000);
   }, []);
+
+  /* SHOW QR STARTS */
+  const [isImageVisible, setImageVisible] = useState(false);
+  const handleQr = () => {
+    setImageVisible(true)
+  }
+  const posterRef = useRef(null);
+
+  const handleDocumentClick = (event) => {
+    if (
+      !posterRef.current?.contains(event.target) &&
+      (isImageVisible)
+    ) {
+      setImageVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleDocumentClick);
+
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, [posterRef, isImageVisible]);
+
+  /* SHOW QR ENDS */
   return (
     <>
+      {/* qr */}
+      {
+        <div className={`z-50 fixed inset-0 flex justify-center items-center transition-opacity duration-300 ${isImageVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'} backdrop-blur-md`}>
+          <div className="bg-white p-8 rounded-lg shadow-md w-auto">
+            <img src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${team?._id}`} alt="Centered Image" className="block mx-auto max-w-full" />
+          </div>
+        </div>
+      }
+      {/* qr ends */}
       {loading ? (
         <Loader />
       ) : (
@@ -295,6 +319,17 @@ const Teams = () => {
                             </span>
                           </button>
                         )}
+                      {team?.teamMemberConfirmation && <button
+                        onClick={handleQr}
+                        className="relative mt-5 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
+                      >
+                        <span className="relative px-5 py-2.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
+                          <span className={preahvihear.className}>
+                            Your QR
+                          </span>
+                        </span>
+                      </button>}
+
                       {/* delete team */}
                       {!team?.payment ? (
                         user?.id === team?.leader?._id ? (
