@@ -332,7 +332,7 @@ const Teams = () => {
             </section>
           ) : (
             <section className="text-gray-600  px-2 body-font mainTeamButton">
-              <div className="container px-5 py-24 mx-auto flex flex-wrap">
+              <div className="container px-5 py-24 mx-auto">
                 <div className="flex flex-wrap gap-8 items-center justify-center -m-4">
                   <div className="p-4 lg:w-1/3 md:w-full teamButton">
                     <div className="flex border-2 rounded-lg border-gray-200 teaminnerbutton border-opacity-50 p-8 sm:flex-row flex-col">
@@ -352,7 +352,7 @@ const Teams = () => {
                       <div className="flex-grow">
                         <h2
                           className="text-headerText text-4xl title-font font-2xl mb-3"
-                        // style={{ color: "#6f7bd9 !important" }}
+                          // style={{ color: "#6f7bd9 !important" }}
                         >
                           <span className={preahvihear.className}>
                             Join Team

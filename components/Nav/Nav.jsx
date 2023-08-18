@@ -58,15 +58,15 @@ function Navbar() {
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/team`
       );
       dispatch(setTeam(data.data === undefined ? null : data.data));
-      dispatch(setTeamRequest(data.request === undefined ? null : data.request));
+      dispatch(
+        setTeamRequest(data.request === undefined ? null : data.request)
+      );
     } catch (err) {
       console.log(err);
     }
-
   };
   const getProfileDetails = async () => {
     try {
-
       const { data } = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/user`
       );
@@ -169,8 +169,9 @@ function Navbar() {
               </button>
               {/* User toggle menu */}
               <div
-                className={`${isUserDropdownOpen ? "block" : "hidden"
-                  } absolute right-0 mt-2 text-base list-none bg-white divide-y rounded-lg shadowdivide-gray-600 z-20`}
+                className={`${
+                  isUserDropdownOpen ? "block" : "hidden"
+                } absolute right-0 mt-2 text-base list-none bg-white divide-y rounded-lg shadowdivide-gray-600 z-20`}
                 id="user-dropdown"
               >
                 <div className="px-4 py-3">
@@ -301,8 +302,9 @@ function Navbar() {
           </>
         )}
         <div
-          className={`items-center justify-between ${isMainMenuOpen ? "flex" : "hidden"
-            } w-full md:flex md:w-auto md:order-1`}
+          className={`items-center justify-between ${
+            isMainMenuOpen ? "flex" : "hidden"
+          } w-full md:flex md:w-auto md:order-1`}
           id="navbar-user"
         >
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 w-full md:bg-white ">
@@ -317,7 +319,7 @@ function Navbar() {
             </li>
             <li>
               <Link
-                href="#schedule"
+                href="/#schedule"
                 className="block py-2 pl-3 pr-4mx-2 font-bold text-xl text-headerText  navLinks"
               >
                 <span className={preahvihear.className}>Schedule</span>
@@ -333,7 +335,7 @@ function Navbar() {
             {/* </li> */}
             <li>
               <Link
-                href="#about"
+                href="/#about"
                 className="block py-2 pr-4 font-bold text-xl text-headerText  navLinks"
               >
                 <span className={preahvihear.className}>About Us</span>

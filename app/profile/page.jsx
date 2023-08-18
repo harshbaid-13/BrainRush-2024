@@ -44,13 +44,6 @@ const Profile = () => {
       alert("Fill the form completely!");
       return;
     }
-    const phoneNumberPattern = /^\d{10}$/; // Validates a 10-digit number
-    if (!phoneNumberPattern.test(contact))
-      return alert("Enter a valid phone number!");
-    if (department == "Select")
-      return alert("Select your department!");
-    if (year == "Select")
-      return alert("Select your batch!");
     setLoading(true);
     try {
       const { data } = await axios.put(
@@ -159,15 +152,15 @@ const Profile = () => {
                   </span>{" "}
                 </label>
                 <input
-                  type="text"
+                  type="tel"
                   id="phone"
                   name="phone"
-                  placeholder="1234567890"
+                  placeholder="123-456-7890"
                   maxLength={10}
                   minLength={10}
                   required
                   className="profileInput shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
-                  value={contact == "1234567890" ? "" : contact || ""}
+                  value={contact || ""}
                   onChange={(e) => {
                     setContact(e.target.value);
                   }}
@@ -194,7 +187,7 @@ const Profile = () => {
                   }}
                   required
                 >
-                  <option>Select</option>
+                  <option value="">Select</option>
                   <option value="CSE">CSE</option>
                   <option value="CSE-DS">CSE-DS</option>
                   <option value="CSE AIML">CSE AIML</option>
@@ -214,7 +207,7 @@ const Profile = () => {
                 >
                   <span className={preahvihear.className}>
                     {/* Your Name<span className="text-red text-2xl">*</span> */}
-                    Batch<span className="text-red text-2xl">*</span>
+                    Year<span className="text-red text-2xl">*</span>
                   </span>{" "}
                 </label>
 
@@ -228,8 +221,8 @@ const Profile = () => {
                   }}
                   required
                 >
-                  <option>Select</option>
-                  {/* <option value={2027}>1st</option> */}
+                  <option value="">Year</option>
+                  {/* <option value={2027}></option> */}
                   <option value={2024}>2020-24</option>
                   <option value={2025}>2021-25</option>
                   <option value={2026}>2022-26</option>
