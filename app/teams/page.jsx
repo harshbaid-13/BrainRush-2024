@@ -2,12 +2,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./page.css";
 import Link from "next/link";
-import { Preahvihear } from "next/font/google";
 import Loader from "@components/Loader/Loader";
 import { useSelector, useDispatch } from "react-redux";
 import { setTeam, setTeamRequest } from "@Reducers/features/team";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { Preahvihear } from "next/font/google";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
