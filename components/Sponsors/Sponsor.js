@@ -5,6 +5,7 @@ import Image from "next/image";
 import sponsor1 from "public/assets/images/ardent_logo.png";
 import sponsor2 from "public/assets/images/unit.png";
 import { Preahvihear } from "next/font/google";
+import Link from "next/link";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -20,17 +21,20 @@ const Sponsor = () => {
           <div className="w-full sm:px-4 md:px-0 lg:w-6/12">
             <div className=" flex flex-col md:flex gap-8 md:flex-row items-center sm:-mx-4">
               <div className=" md:px-0 sm:px-4 md:py-12 md:w-1/2 xl:w-1/2 ">
-                <a href="https://www.ardentcollaborations.com/" target="blank">
-                  <div className="sm:px-2 shadow-sm hover:shadow-2xl hover:shadow-gray-300  sm:py-2 px-5 md:py-0 mt-10 ">
-                    <Image
-                      src={sponsor1}
-                      alt=""
-                      className="w-full p-5 animate__animated animate__zoomIn animate__faster"
-                    />
-                    {/* <div className=" text-gray-700 text-center text-bold text-xl py-2 md:py-3 ">
+                <div className="sm:px-2 shadow-sm hover:shadow-2xl hover:shadow-gray-300  sm:py-2 px-5 md:py-0 mt-10 ">
+                  <Image
+                    src={sponsor1}
+                    alt=""
+                    className="w-full p-5 animate__animated animate__zoomIn animate__faster"
+                  />
+                  {/* <div className=" text-gray-700 text-center text-bold text-xl py-2 md:py-3 ">
                       {" "}
                       Sponsors since 2019
                     </div> */}
+                  <Link
+                    href="https://www.ardentcollaborations.com/"
+                    target="blank"
+                  >
                     <div className="text-center  py-3 md:py-3 ">
                       <button
                         type="submit"
@@ -43,21 +47,21 @@ const Sponsor = () => {
                         </span>
                       </button>
                     </div>
-                  </div>
-                </a>
+                  </Link>
+                </div>
               </div>
               <div className=" px-3 sm:px-4 md:w-1/2 xl:w-1/2">
-                <a href="https://www.uniterpacademy.com/" target="blank">
-                  <div className=" sm:px-2 md:py-4 shadow-sm hover:shadow-2xl hover:shadow-gray-300   sm:py-4 mt-10">
-                    <Image
-                      src={sponsor2}
-                      alt=""
-                      className="w-full px-3 mb-16 md:py-1 animate__animated animate__zoomIn animate__slow"
-                    />
-                    {/* <div className=" text-gray-700 text-center text-bold text-xl py-2 md:py-3 ">
+                <div className=" sm:px-2 md:py-4 shadow-sm hover:shadow-2xl hover:shadow-gray-300   sm:py-4 mt-10">
+                  <Image
+                    src={sponsor2}
+                    alt=""
+                    className="w-full px-3 mb-16 md:py-1 animate__animated animate__zoomIn animate__slow"
+                  />
+                  {/* <div className=" text-gray-700 text-center text-bold text-xl py-2 md:py-3 ">
                       {" "}
                       Sponsors since 2023
                     </div> */}
+                  <Link href="https://www.uniterpacademy.com/" target="blank">
                     <div className="text-center  py-3 md:py-3 ">
                       <button
                         type="submit"
@@ -70,8 +74,8 @@ const Sponsor = () => {
                         </span>
                       </button>
                     </div>
-                  </div>
-                </a>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
