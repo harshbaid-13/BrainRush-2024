@@ -143,9 +143,8 @@ const Teams = () => {
       {/* qr */}
       {
         <div
-          className={`z-50 fixed inset-0 flex justify-center items-center transition-opacity duration-300 ${
-            isImageVisible ? "opacity-100" : "opacity-0 pointer-events-none"
-          } backdrop-blur-md`}
+          className={`z-50 fixed inset-0 flex justify-center items-center transition-opacity duration-300 ${isImageVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+            } backdrop-blur-md`}
         >
           <div className="bg-white p-8 rounded-lg shadow-md w-auto">
             <img
@@ -394,7 +393,7 @@ const Teams = () => {
                       <div className="flex-grow">
                         <h2
                           className="text-headerText text-4xl title-font font-2xl mb-3"
-                          // style={{ color: "#6f7bd9 !important" }}
+                        // style={{ color: "#6f7bd9 !important" }}
                         >
                           <span className={preahvihear.className}>
                             Join Team

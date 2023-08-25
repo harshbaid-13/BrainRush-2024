@@ -169,9 +169,8 @@ function Navbar() {
               </button>
               {/* User toggle menu */}
               <div
-                className={`${
-                  isUserDropdownOpen ? "block" : "hidden"
-                } absolute right-0 mt-2 text-base list-none bg-white divide-y rounded-lg shadowdivide-gray-600 z-20`}
+                className={`${isUserDropdownOpen ? "block" : "hidden"
+                  } absolute right-0 mt-2 text-base list-none bg-white divide-y rounded-lg shadowdivide-gray-600 z-20`}
                 id="user-dropdown"
               >
                 <div className="px-4 py-3">
@@ -302,9 +301,8 @@ function Navbar() {
           </>
         )}
         <div
-          className={`items-center justify-between ${
-            isMainMenuOpen ? "flex" : "hidden"
-          } w-full md:flex md:w-auto md:order-1`}
+          className={`items-center justify-between ${isMainMenuOpen ? "flex" : "hidden"
+            } w-full md:flex md:w-auto md:order-1`}
           id="navbar-user"
         >
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 w-full md:bg-white ">
@@ -335,10 +333,10 @@ function Navbar() {
             </li>
             <li>
               <Link
-                href="/#about"
+                href="/teams/results"
                 className="block py-2 pr-4 font-bold text-xl text-headerText  navLinks"
               >
-                <span className={preahvihear.className}>About Us</span>
+                <span className={preahvihear.className}>Results</span>
               </Link>
             </li>
           </ul>
