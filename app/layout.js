@@ -1,4 +1,5 @@
 "use client";
+import { Analytics } from "@vercel/analytics/react";
 import Hero from "@components/HeroSection/Hero";
 import Provider from "@components/Provider";
 import "@styles/globals.css";
@@ -41,6 +42,7 @@ export default function RootLayout({ children }) {
                 <div className="relative z-10">
                   <Nav />
                   <div className="w-full h-auto mt-16">{children}</div>
+                  <Analytics />
                 </div>
               </>
             )}
