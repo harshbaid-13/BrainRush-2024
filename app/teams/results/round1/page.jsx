@@ -78,69 +78,78 @@ const Round1 = () => {
                             </div>
                         </div>
                         <div
-                            className="relative overflow-x-auto shadow-md sm:rounded-lg allTeamTable pb-5 z-[-1]"
+                            className="overflow-x-auto mx-4 md:mx-20 rounded-md"
                             style={{
                                 boxShadow:
-                                    " rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
+                                    "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
                             }}
                         >
-                            <table className="w-full h-10 text-sm text-left text-gray-500  rounded-md ">
-                                <thead
-                                    className="h-20 text-xs text-gray-50 uppercase  bg-headerText"
-                                >
-                                    <tr>
-                                        <th scope="col" className="px-6 py-3 ">
-                                            <span className={preahvihear.className}>Team Name</span>
-                                        </th>
-                                        <th scope="col" className="px-6 py-3">
-                                            <span className={preahvihear.className}>Team Leader</span>
-                                        </th>
-                                        <th scope="col" className="px-6 py-3">
-                                            <span className={preahvihear.className}>Team Member</span>
-                                        </th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {teams &&
-                                        teams.map((team) => (
-                                            <tr className=" border-b 0 " key={team?.team?._id}>
-                                                <td
-                                                    scope="row"
-                                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
-                                                >
+                            <div className="inline-block min-w-full align-middle">
+                                <div className="overflow-hidden shadow">
+                                    <table className="min-w-full divide-y table-fixed text-sm text-left text-gray-500">
+                                        <thead
+                                            className="h-20 text-xs text-gray-50 uppercase  bg-headerText"
+                                        >
+                                            <tr>
+                                                <th scope="col" className="px-6 py-3 ">
+                                                    <span className={preahvihear.className}>Team Name</span>
+                                                </th>
+                                                <th scope="col" className="px-6 py-3">
                                                     <span className={preahvihear.className}>
-                                                        {team?.team?.teamName}
+                                                        Team Leader
                                                     </span>
-                                                </td>
-                                                <td className="px-6 py-4 text-gray-300">
-                                                    <span className="text-gray-900">
-                                                        <span className={preahvihear.className}>
-                                                            {team?.team?.leader.name}
-                                                        </span>
-                                                    </span>
-                                                    <br />
+                                                </th>
+                                                <th scope="col" className="px-6 py-3">
                                                     <span className={preahvihear.className}>
-                                                        {team?.team?.leader?.email}
+                                                        Team Member
                                                     </span>
-                                                </td>
-                                                <td className="px-6 py-4 ">
-                                                    <span className="text-gray-900">
-                                                        <span className={preahvihear.className}>
-                                                            {team?.team?.teamMember?.name
-                                                                ? team?.team?.teamMember?.name
-                                                                : "Not Selected"}
-                                                        </span>
-                                                    </span>
-                                                    <br />
-                                                    <span className={preahvihear.className}>
-                                                        {team?.team?.teamMember?.name ? team?.team?.teamMember?.email : ""}
-                                                    </span>
-                                                </td>
+                                                </th>
                                             </tr>
-                                        ))}
-                                </tbody>
-                            </table>
+                                        </thead>
+                                        <tbody>
+                                            {teams &&
+                                                teams.map((team) => (
+                                                    <tr className=" border-b 0 " key={team?._id}>
+                                                        <td
+                                                            scope="row"
+                                                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                                                        >
+                                                            <span className={preahvihear.className}>
+                                                                {team?.team?.teamName}
+                                                            </span>
+                                                        </td>
+                                                        <td className="px-6 py-4 text-gray-300">
+                                                            <span className="text-gray-900">
+                                                                <span className={preahvihear.className}>
+                                                                    {team?.team?.leader?.name}
+                                                                </span>
+                                                            </span>
+                                                            <br />
+                                                            <span className={preahvihear.className}>
+                                                                {team?.team?.leader?.email}
+                                                            </span>
+                                                        </td>
+                                                        <td className="px-6 py-4 ">
+                                                            <span className="text-gray-900">
+                                                                <span className={preahvihear.className}>
+                                                                    {team?.team?.teamMember?.name
+                                                                        ? team?.team?.teamMember?.name
+                                                                        : "Not Selected"}
+                                                                </span>
+                                                            </span>
+                                                            <br />
+                                                            <span className={preahvihear.className}>
+                                                                {team?.team?.teamMember?.name
+                                                                    ? team?.team?.teamMember?.email
+                                                                    : ""}
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                         <div className="flex flex-col mt-4 items-center justify-center relative mb-10 right-0 bottom-0 mr-20">
                             <span className="text-sm text-gray-900  font-medium">

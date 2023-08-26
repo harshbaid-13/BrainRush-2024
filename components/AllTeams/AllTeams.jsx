@@ -74,17 +74,6 @@ const AllTeams = () => {
                     </span>
                   </button>
                 </div>
-                {/* <label className="flex my-2">
-              <input
-                className="mr-2 w-6 h-6"
-                type="checkbox"
-                name="notSelected"
-                onClick={() => {
-                  setNotSelected((prev) => (prev ? null : true));
-                }}
-              />
-              <span>Not Selected</span>
-            </label> */}
               </div>
             </div>
           </div>
@@ -100,7 +89,6 @@ const AllTeams = () => {
                 <table className="min-w-full divide-y table-fixed text-sm text-left text-gray-500">
                   <thead
                     className="h-20 text-xs text-gray-50 uppercase  bg-headerText"
-                    // style={{ background: "#6f7bd9" }}
                   >
                     <tr>
                       <th scope="col" className="px-6 py-3 ">
@@ -116,9 +104,6 @@ const AllTeams = () => {
                           Team Member
                         </span>
                       </th>
-                      {/* <th scope="col" className="px-6 py-3">
-              Payment Status
-            </th> */}
                     </tr>
                   </thead>
                   <tbody>
@@ -136,13 +121,11 @@ const AllTeams = () => {
                           <td className="px-6 py-4 text-gray-300">
                             <span className="text-gray-900">
                               <span className={preahvihear.className}>
-                                {/* {team.teamName} */}
                                 {team.leader.name}
                               </span>
                             </span>
                             <br />
                             <span className={preahvihear.className}>
-                              {/* {team.teamName} */}
                               {team.leader.email}
                             </span>
                           </td>
@@ -161,7 +144,6 @@ const AllTeams = () => {
                                 : ""}
                             </span>
                           </td>
-                          {/* <td className="px-6 py-4">{team?.payment ? "✅" : "❌"}</td> */}
                         </tr>
                       ))}
                   </tbody>
