@@ -11,7 +11,7 @@ export async function GET(request) {
   const search = searchParams.get("search") || "";
   const page = searchParams.get("page") || 1;
   const filter = searchParams.get("filter") || null;
-  const limit = 10;
+  const limit = 200;
   const skip = (page - 1) * limit;
 
   const queries = search
