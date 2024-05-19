@@ -5,7 +5,7 @@ import "./Loader.css";
 
 const UniversalLoader = () => {
   return (
-    <div className="h-screen w-auto flex justify-center items-center bg-black">
+    <div className="h-screen fixed top-0 left-0 w-full flex justify-center items-center bg-black">
       <Image className="" src={logo_loader} alt="logo" />
     </div>
   );

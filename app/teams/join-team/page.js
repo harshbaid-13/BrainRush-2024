@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { setRequest } from "@Reducers/features/requests";
 import axios from "axios";
 import Navbar from "@components/Nav/RegNav";
+import Button from "@components/Button";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -81,17 +82,17 @@ function page() {
           </h1>
         ) : (
           <>
-            <section className="text-gray-600  px-2 body-font">
+            <section className="text-white  px-2 body-font">
               <div className="containe mx-auto">
                 <div className="flex flex-col -m- w-full items-center justify-center">
                   {requests &&
                     requests.map((request, ind) => (
                       <div
                         key={ind}
-                        className="p-4 sm:w-full md:w-4/5 lg:w-2/3 teamButton mx-auto bg-white"
+                        className="p-4 sm:w-full md:w-4/5 lg:w-2/3 mx-auto bg-background"
                       >
-                        <div className="flex border-2 rounded-lg border-gray-200 border-opacity-50 sm:p-3 lg:p-8 sm:flex-row flex-row">
-                          <div className="w-16 h-16 sm:hidden lg:inline sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
+                        <div className="flex border-2 p-4 rounded-lg border-white  sm:p-3 lg:p-8 sm:flex-row flex-row items-center">
+                          <div className="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-white text-background text-indigo-500 flex-shrink-0 mr-3">
                             <svg
                               fill="none"
                               stroke="currentColor"
@@ -112,7 +113,7 @@ function page() {
                                 </span>
                                 {/* Team Name : Poogle */}
                               </h1>
-                              <p className="leading-relaxed text-base mb-5">
+                              <p className="leading-relaxed text-base">
                                 <span className={preahvihear.className}>
                                   Team Leader: {request.teamLeader.name}
                                 </span>
@@ -120,36 +121,22 @@ function page() {
                               </p>
                             </div>
 
-                            <div className="flex flex:wrap items-center justify-end">
+                            <div className="flex flex:wrap gap-3 items-center justify-end">
                               {/* <a className="mt-3 text-indigo-500 inline-flex me-2 items-center">
                     <Buttons title={"Cancel Request"} />
                   </a> */}
-                              <button
-                                type="submit"
+                              <Button
+                                text={"Confirm"}
                                 onClick={() => {
                                   handleAcceptTeam(request._id);
                                 }}
-                                className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
-                              >
-                                <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white text-gray-900 hover:text-gray-50  rounded-md group-hover:bg-opacity-0">
-                                  <span className={preahvihear.className}>
-                                    Confirm
-                                  </span>
-                                </span>
-                              </button>
-                              <button
-                                type="submit"
+                              />
+                              <Button
+                                text={"Ignore"}
                                 onClick={() => {
                                   handleRejectTeam(request._id);
                                 }}
-                                className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
-                              >
-                                <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white text-gray-900 hover:text-gray-50  rounded-md group-hover:bg-opacity-0">
-                                  <span className={preahvihear.className}>
-                                    Ignore
-                                  </span>
-                                </span>
-                              </button>
+                              />
                             </div>
 
                             {/* <a className="mt-3 text-indigo-500 inline-flex ms-2 items-center">
