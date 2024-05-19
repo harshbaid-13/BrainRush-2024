@@ -153,9 +153,8 @@ const Teams = () => {
     <>
       {
         <div
-          className={`z-50 fixed inset-0 flex justify-center items-center transition-opacity duration-300 ${
-            isImageVisible ? "opacity-100" : "opacity-0 pointer-events-none"
-          } backdrop-blur-md`}
+          className={`z-50 fixed inset-0 flex justify-center items-center transition-opacity duration-300 ${isImageVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+            } backdrop-blur-md`}
         >
           <div className="bg-white p-8 rounded-lg shadow-md w-auto">
             <img
@@ -217,7 +216,7 @@ const Teams = () => {
                           </p>
                           <p className="leading-relaxed text-base text-white mb-3">
                             <span className={`${preahvihear.className} mr-3`}>
-                              Team Member 2:
+                              Team Member 2:{" "}
                               {team?.members.length > 1
                                 ? team?.members[1]?.name
                                 : "Not Joined"}
@@ -271,14 +270,14 @@ const Teams = () => {
                           (team?.members?.length === 2
                             ? []
                             : team?.members?.length === 1
-                            ? sentRequestFromTheTeam.length == 0
-                              ? [1]
-                              : []
-                            : sentRequestFromTheTeam.length === 0
-                            ? [1, 2]
-                            : sentRequestFromTheTeam.length === 1
-                            ? [1]
-                            : []
+                              ? sentRequestFromTheTeam.length == 0
+                                ? [1]
+                                : []
+                              : sentRequestFromTheTeam.length === 0
+                                ? [1, 2]
+                                : sentRequestFromTheTeam.length === 1
+                                  ? [1]
+                                  : []
                           ).map((item) => (
                             <form className="space-y-8 mb-3" key={item}>
                               <div className="w-full flex flex-wrap items-center">
@@ -370,11 +369,11 @@ const Teams = () => {
                       {/* delete team */}
                       {!team?.payment
                         ? user?.id === team?.leader?._id && (
-                            <Button
-                              text={"Delete Team"}
-                              onClick={handleDelete}
-                                                          />
-                          )
+                          <Button
+                            text={"Delete Team"}
+                            onClick={handleDelete}
+                          />
+                        )
                         : null}
                     </div>
                   </div>
@@ -406,7 +405,7 @@ const Teams = () => {
                       <div className="flex-grow">
                         <h2
                           className="text-white text-4xl title-font font-2xl mb-3"
-                          // style={{ color: "#6f7bd9 !important" }}
+                        // style={{ color: "#6f7bd9 !important" }}
                         >
                           <span className={preahvihear.className}>
                             Join Team

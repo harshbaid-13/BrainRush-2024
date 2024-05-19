@@ -8,7 +8,7 @@ const page = () => {
     // if (user)
     //     router.push("/profile")
     return (
-        <div className='flex flex-col mx-5 gap-5 h-screen max-h-full items-center justify-center'>
+        <div className='flex flex-col mx-5 gap-5 mt-36 h-full items-center justify-center'>
             <LoginPage textSize={"4xl"} gap={"mb-5"} />
         </div >
     )

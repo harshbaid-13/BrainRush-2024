@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
   }, []);
   return (
     <html lang="en">
-      <title>Kodikas 2k23</title>
+      <title>BrainRush 2k24</title>
       <body>
         <Provider>
           <ReduxProvider store={store}>
@@ -43,9 +43,10 @@ export default function RootLayout({ children }) {
                 <div className="bg-background relative z-10">
                   {/* <Nav /> */}
                   <div className="w-full min-h-screen h-full">
-                    <Navbar/>
-                    
-                    {children}</div>
+                    <Navbar />
+
+                    {children}
+                  </div>
                   <Analytics />
                 </div>
               </>

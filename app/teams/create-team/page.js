@@ -104,7 +104,7 @@ const createTeam = () => {
               >
                 <span className={preahvihear.className}>
                   {/* Your Name<span className="text-red text-2xl">*</span> */}
-                  Your Leader Email<span className="text-red text-2xl">*</span>
+                  Team Leader Email<span className="text-red text-2xl">*</span>
                 </span>{" "}
               </label>
               <input
