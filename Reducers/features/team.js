@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   team: null,
   isAlreadyInTeam: false,
-  sentRequestFromTheTeam: null,
+  sentRequestFromTheTeam: [],
 };
 
 export const TeamSlice = createSlice({

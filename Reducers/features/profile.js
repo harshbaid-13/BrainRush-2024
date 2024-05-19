@@ -14,7 +14,7 @@ export const ProfileSlice = createSlice({
       // console.log(data);
       state.profile = action?.payload;
       if (data) {
-        if (data.year) {
+        if (data.year && data.department && data.phoneNumber) {
           state.isProfileCompleted = true;
         }
       }

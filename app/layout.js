@@ -10,6 +10,7 @@ import Nav from "@components/Nav/Nav";
 import { useEffect, useState } from "react";
 import Loader from "@components/Loader/Loader";
 import UniversalLoader from "@components/Loader/UniversalLoader";
+import Navbar from "@components/Nav/RegNav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -41,7 +42,10 @@ export default function RootLayout({ children }) {
               <>
                 <div className="bg-background relative z-10">
                   {/* <Nav /> */}
-                  <div className="w-full min-h-screen h-full">{children}</div>
+                  <div className="w-full min-h-screen h-full">
+                    <Navbar/>
+                    
+                    {children}</div>
                   <Analytics />
                 </div>
               </>

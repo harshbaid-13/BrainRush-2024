@@ -33,7 +33,7 @@ function page() {
 
       if (data.success) {
         dispatch(setTeam(data.data));
-        dispatch(setTeamRequest(null));
+        dispatch(setTeamRequest(data?.requests));
         router.push("/teams");
       } else {
         alert(data?.message);
@@ -72,7 +72,7 @@ function page() {
       <Loader />
     ) : (
       <>
-        <Navbar />
+        {/* <Navbar /> */}
         {requests?.length === 0 ? (
           <h1 className="h-auto mt-80 font-bold text-white text-4xl mx-auto text-center">
             <span className={preahvihear.className}>
@@ -88,7 +88,7 @@ function page() {
                     requests.map((request, ind) => (
                       <div
                         key={ind}
-                        className="p-4 sm:w-full md:w-4/5 lg:w-2/3 teamButton mx-auto"
+                        className="p-4 sm:w-full md:w-4/5 lg:w-2/3 teamButton mx-auto bg-white"
                       >
                         <div className="flex border-2 rounded-lg border-gray-200 border-opacity-50 sm:p-3 lg:p-8 sm:flex-row flex-row">
                           <div className="w-16 h-16 sm:hidden lg:inline sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">

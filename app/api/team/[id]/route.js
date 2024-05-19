@@ -4,9 +4,8 @@ import Team from "@models/team";
 import User from "@models/user";
 import ConfirmationRequest from "@models/confirmationRequest";
 import mongoose from "mongoose";
-import sendConfirmationEmail from "@utils/sendConfirmationEmail";
 
-//remove a member by the team leader
+//kick a member
 export async function PATCH(req, { params }) {
   try {
     await connectToDatabase();
@@ -16,15 +15,24 @@ export async function PATCH(req, { params }) {
     }
     const email = req.headers.get("Authorization");
     const user = await User.findOne({ email: email });
+    const { memberId } = await req.json();
+    const member = await User.findById(memberId);
+
     if (!user) {
       return NextResponse.json(
         { message: "Not a valid user" },
         { status: 400 }
       );
     }
+    if (!member) {
+      return NextResponse.json(
+        { message: "Not a valid member" },
+        { status: 400 }
+      );
+    }
     const team = await Team.findOne({
-      $and: [{ _id: id }, { leader: user._id }],
-    }).populate(["leader", "teamMember"]);
+      $and: [{ _id: id }, { leader: user._id }, { members: member._id }],
+    }).populate(["leader", "members"]);
     if (!team) {
       return NextResponse.json({ message: "You are not leader of the team" });
     }
@@ -34,18 +42,26 @@ export async function PATCH(req, { params }) {
         { status: 400 }
       );
     }
-
-    sendConfirmationEmail(user, team, team.teamMember.email, { event: 2 });
-
+    const updatedMembers= team.members.filter((memberItem)=>memberItem===member)
     const newTeam = await Team.findByIdAndUpdate(
       team._id,
-      { teamMember: null, teamMemberConfirmation: false },
+      {
+        members:updatedMembers,
+        $pull: {
+          memberEmails: { email: member.email },
+        },
+      },
       { new: true }
-    ).populate("leader");
+    )
+      .populate("leader")
+      .populate("members");
+ 
+    const requests= await ConfirmationRequest.find({team:newTeam})  
     return NextResponse.json({
       success: true,
       message: "Team member removed successfully",
       data: newTeam,
+      requests
     });
   } catch (error) {
     console.error("Error Updating team:", error);
@@ -57,52 +73,12 @@ export async function PATCH(req, { params }) {
 }
 
 //teamLeave By the team member
-export async function PUT(req, { params }) {
-  try {
-    await connectToDatabase();
-    const { id } = params;
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return NextResponse.json({ message: "Not a valid id" }, { status: 404 });
-    }
-    const email = req.headers.get("Authorization");
-    const user = await User.findOne({ email: email });
-    if (!user) {
-      return NextResponse.json(
-        { message: "Not a valid user" },
-        { status: 400 }
-      );
-    }
-    const team = await Team.findOne({
-      $and: [{ _id: id, teamMember: user?._id }],
-    }).populate("leader");
-    if (!team) {
-      return NextResponse.json(
-        { message: "Not a valid team id " },
-        { status: 404 }
-      );
-    }
-    if (team?.payment) {
-      return NextResponse.json(
-        { message: "You can not delete this team as payment done" },
-        { status: 400 }
-      );
-    }
 
-    const newTeam = await Team.findByIdAndUpdate(
-      team._id,
-      { teamMember: null, teamMemberConfirmation: false },
-      { new: true }
-    );
-    sendConfirmationEmail(user, team, team?.leader?.email, { event: 3 });
-    return NextResponse.json({
-      success: true,
-      message: "Team member removed successfully",
-    });
-  } catch (error) {
-    console.log(error);
-  }
-}
-//delete team by team leader
+
+
+
+//delete a team by team leader
+
 export async function DELETE(req, { params }) {
   try {
     await connectToDatabase();

@@ -1,26 +1,26 @@
 import { NextResponse } from "next/server";
-import { connectToDatabase } from "@utils/db";
 import User from "@models/user";
 import Team from "@models/team";
-import sendConfirmationEmail from "@utils/sendConfirmationEmail";
 import ConfirmationRequest from "@models/confirmationRequest";
+import { connectToDatabase } from "@utils/db";
 
-//get the details of a particuler team
+//get a particuler team details
+
 export async function GET(req) {
   try {
     await connectToDatabase();
     const email = req.headers.get("Authorization");
     const user = await User.findOne({ email: email });
     const teamDetails = await Team.findOne({
-      $or: [{ leader: user?._id }, { teamMember: user?._id }],
-    }).populate(["leader", "teamMember"]);
+      $or: [{ leader: user._id }, { members: user._id }],
+    }).populate(["leader", "members"]);
     if (!teamDetails) {
       return NextResponse.json({
         success: false,
         message: "Team not found",
       });
     }
-    const teamRequests = await ConfirmationRequest.findOne({
+    const teamRequests = await ConfirmationRequest.find({
       team: teamDetails?._id,
     });
     return NextResponse.json({
@@ -37,7 +37,7 @@ export async function GET(req) {
   }
 }
 
-// Create Team
+//create a new Team
 export async function POST(request) {
   try {
     await connectToDatabase();
@@ -47,19 +47,7 @@ export async function POST(request) {
       return NextResponse.json({ success: false, message: "User not found" });
     }
     const userId = user._id;
-    const { teamName, teamMemberEmail } = await request.json();
-    if (teamName.length > 30) {
-      return NextResponse.json({
-        success: false,
-        message: "Team name should be less than 30 characters",
-      });
-    }
-    if (teamMemberEmail.length > 50) {
-      return NextResponse.json({
-        success: false,
-        message: "Email should be less than 50 characters",
-      });
-    }
+    const { teamName, teamMemberEmails } = await request.json();
     //get the leader id
     // const teamLeader = await User.findById(userId);
     //check if the team name already exists
@@ -74,7 +62,7 @@ export async function POST(request) {
 
     //if the current user is already a member or a leader
     const team = await Team.findOne({
-      $or: [{ leader: userId }, { teamMember: userId }],
+      $or: [{ leader: userId }, { members: userId }],
     });
     //then can not create another team
     if (team) {
@@ -86,24 +74,36 @@ export async function POST(request) {
         { status: 400 }
       );
     }
-
-    if (teamMemberEmail === user.email) {
+    if (
+      teamMemberEmails[0] === user.email ||
+      teamMemberEmails[1] === user.email ||
+      teamMemberEmails[0] === teamMemberEmails[1]
+    ) {
       return NextResponse.json(
         { success: false, message: "You can't add yourself as a member" },
         { status: 400 }
       );
     }
-
+    const teamMembers = teamMemberEmails.map((email) => ({
+      email: email,
+      confirmation: false,
+    }));
     const newTeam = await Team.create({
       teamName: teamName,
       leader: user,
+      memberEmails: teamMembers,
     });
-    sendConfirmationEmail(user, newTeam, teamMemberEmail, { event: 0 });
+    // sendConfirmationEmail(user, newTeam, teamMemberEmail, { event: 0 });
 
-    const confirmationRequest = await ConfirmationRequest.create({
+    const confirmationRequest1 = await ConfirmationRequest.create({
       team: newTeam,
       teamLeader: user,
-      teamMemberEmail,
+      teamMemberEmail: teamMemberEmails[0],
+    });
+    const confirmationRequest2 = await ConfirmationRequest.create({
+      team: newTeam,
+      teamLeader: user,
+      teamMemberEmail: teamMemberEmails[1],
     });
 
     const teamId = newTeam._id;
@@ -113,7 +113,7 @@ export async function POST(request) {
       success: true,
       message: "Team Created Successfully",
       data: createdTeam,
-      confirmationRequest,
+      confirmationRequest: [confirmationRequest1, confirmationRequest2],
     });
   } catch (error) {
     console.error("Error ", error);

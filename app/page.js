@@ -13,13 +13,13 @@ import Team from "@/components/Team/Team";
 import Venue from "@/components/Venue/Venue";
 import { useDispatch, useSelector } from "react-redux";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
 import { setUser } from "@Reducers/features/user";
 import { setTeam } from "@Reducers/features/team";
 import { setProfile } from "@Reducers/features/profile";
 import Schedule from "@components/Schedule/Schedule";
 import Loader from "@components/Loader/Loader";
 import Sponsor from "@components/Sponsors/Sponsor";
+
 // import { logo_loader } from "@/assets/images/logo_loader.mp4";
 // import { useEffect, useState } from "react";
 

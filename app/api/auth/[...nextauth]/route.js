@@ -31,11 +31,10 @@ const handler = NextAuth({
           await User.create({
             email: profile.email,
             name: profile.name,
-            username: profile.name.replace(" ", "").toLowerCase(),
             image: profile.picture,
             department: "",
             year: "",
-            phoneNumber: "1234567890",
+            phoneNumber: "",
           });
         }
         return true;

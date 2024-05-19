@@ -1,12 +1,92 @@
 import Team from "@models/team";
 import User from "@models/user";
-import { connectToDatabase } from "@utils/db";
 import ConfirmationRequest from "@models/confirmationRequest";
+import { connectToDatabase } from "@utils/db";
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
-import sendConfirmationEmail from "@utils/sendConfirmationEmail";
 
-// Delete Invite Request
+//accept invite request
+export async function PUT(req, { params }) {
+  try {
+    await connectToDatabase();
+    const email = req.headers.get("Authorization");
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      return NextResponse.json({ success: false, message: "User not found" });
+    }
+    const userId = user._id;
+    const id = params.id;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return NextResponse.json({ message: "Invalid id" }, { status: 400 });
+    }
+    const confirmationRequest = await ConfirmationRequest.findOne({
+      $and: [{ teamMemberEmail: email }, { _id: id }],
+    })
+      .populate("teamLeader")
+      .populate("team");
+
+    if (!confirmationRequest) {
+      return NextResponse.json({
+        success: false,
+        message: "No response found",
+      });
+    }
+    const userTeamExist = await Team.findOne({
+      $or: [{ leader: userId }, { members: userId }],
+    });
+
+    if (userTeamExist) {
+      return NextResponse.json({
+        success: false,
+        status: 400,
+        message: "You have a team already",
+      });
+    }
+
+    const team = await Team.findByIdAndUpdate(
+      confirmationRequest?.team,
+      {
+        $push: { members: user },
+      },
+      {
+        new: true,
+      }
+    );
+
+    const memberEmails = team?.memberEmails?.map((item) =>
+      item.email === email ? { email: email, confirmation: true } : item
+    );
+    console.log(memberEmails);
+    const updatedTeam = await Team.findByIdAndUpdate(
+      confirmationRequest?.team,
+      {
+        memberEmails,
+      },
+      {
+        new: true,
+      }
+    ).populate("members").populate("leader");
+
+    await ConfirmationRequest.findByIdAndDelete(confirmationRequest._id);
+    const requests=await ConfirmationRequest.find({team:updatedTeam})
+
+    return NextResponse.json({
+      success: true,
+      status: 200,
+      message: "Team Request Accepted Successfully",
+      data: updatedTeam,
+      requests
+    });
+  } catch (error) {
+    console.error("Error ", error);
+    return NextResponse.json(
+      { message: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}
+
+//Delete Invite request by the leader
 export async function PATCH(req, { params }) {
   try {
     await connectToDatabase();
@@ -34,112 +114,28 @@ export async function PATCH(req, { params }) {
         message: "No request found",
       });
     }
-
-    await sentRequest.deleteOne();
-
-    return NextResponse.json({
-      success: true,
-      status: 200,
-      message: "Request Deleted Successfully",
-    });
-  } catch (error) {
-    console.error("Error ", error);
-    return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
-    );
-  }
-}
-
-// Accept Invite Request
-export async function PUT(req, { params }) {
-  try {
-    await connectToDatabase();
-    const email = req.headers.get("Authorization");
-    const user = await User.findOne({ email: email });
-    if (!user) {
-      return NextResponse.json({ success: false, message: "User not found" });
-    }
-    const userId = user._id;
-    const id = params.id;
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return NextResponse.json({ message: "Invalid id" }, { status: 400 });
-    }
-    const confirmationRequest = await ConfirmationRequest.findById(id)
-      .populate("teamLeader")
-      .populate("team");
-
-    const userTeamExist = await Team.findOne({
-      $or: [{ leader: userId }, { teamMember: userId }],
+    const team = await Team.findOne({
+      $and: [{ _id: sentRequest?.team }, { leader: user }],
     });
 
-    if (userTeamExist) {
-      return NextResponse.json({
-        success: false,
-        status: 400,
-        message: "You have a team already",
-      });
-    }
-
-    sendConfirmationEmail(
-      confirmationRequest?.teamLeader,
-      confirmationRequest?.team,
-      confirmationRequest?.teamLeader?.email,
-      { event: 1 }
+    const updatedMemberList = team.memberEmails?.filter(
+      (items) => items.email !== sentRequest.teamMemberEmail
     );
 
-    const team = await Team.findByIdAndUpdate(
-      confirmationRequest?.team,
-      { teamMember: userId, teamMemberConfirmation: true },
+    const updatedTeam = await Team.findByIdAndUpdate(
+      team._id,
+      { memberEmails: updatedMemberList },
       { new: true }
-    )
-      .populate("leader")
-      .populate("teamMember");
-
-    await confirmationRequest.deleteOne();
-
-    return NextResponse.json({
-      success: true,
-      status: 200,
-      message: "Team Request Accepted Successfully",
-      data: team,
-    });
-  } catch (error) {
-    console.error("Error ", error);
-    return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
     );
-  }
-}
-
-// Reject Invite Request
-export async function DELETE(req, { params }) {
-  try {
-    await connectToDatabase();
-    const email = req.headers.get("Authorization");
-    const user = await User.findOne({ email: email });
-    if (!user) {
-      return NextResponse.json({ success: false, message: "User not found" });
-    }
-    const id = params.id;
-    const confirmationRequest = await ConfirmationRequest.findById(id)
-      .populate("teamLeader")
-      .populate("team");
-    sendConfirmationEmail(
-      confirmationRequest?.teamLeader,
-      confirmationRequest.team,
-      confirmationRequest.teamLeader.email,
-      { event: 3 }
-    );
-
-    await confirmationRequest.deleteOne();
-    //need to notify the leader that other member has rejected the request
+    const requests = await ConfirmationRequest.find({ team: team._id });
+    await ConfirmationRequest.findByIdAndDelete(sentRequest._id);
 
     return NextResponse.json({
       success: true,
       status: 200,
       message: "Request Deleted Successfully",
+      data: updatedTeam,
+      requests,
     });
   } catch (error) {
     console.error("Error ", error);
