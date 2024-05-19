@@ -41,7 +41,11 @@ const LoginPage = ({ textSize, gap }) => {
             <span
               className={`relative px-3 text-2xl py-2 rounded-md ${textSize}`}
             >
-              <span className={preahvihear.className}>Enter the Arena</span>
+              <span className={preahvihear.className}>
+                {user
+                  ? "Form Your Team and Get ready to compete"
+                  : "Enter the Arena"}
+              </span>
             </span>
 
             <svg

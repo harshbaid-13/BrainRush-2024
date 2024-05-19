@@ -153,8 +153,9 @@ const Teams = () => {
     <>
       {
         <div
-          className={`z-50 fixed inset-0 flex justify-center items-center transition-opacity duration-300 ${isImageVisible ? "opacity-100" : "opacity-0 pointer-events-none"
-            } backdrop-blur-md`}
+          className={`z-50 fixed inset-0 flex justify-center items-center transition-opacity duration-300 ${
+            isImageVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+          } backdrop-blur-md`}
         >
           <div className="bg-white p-8 rounded-lg shadow-md w-auto">
             <img
@@ -178,7 +179,6 @@ const Teams = () => {
                 <div className="flex flex-wrap items-center justify-center md:w-full  lg:w-1/2 mainTeamButton">
                   <div className="p-2 lg:w-full md:w-full sm:w-full">
                     <div className="flex border-2 rounded-lg border-white teaminnerbutton border-opacity-50 p-8 sm:flex-row flex-col ">
-
                       <div className="flex-grow">
                         <h2 className="text-white text-4xl title-font font-2xl mb-6">
                           <span className={preahvihear.className}>My Team</span>
@@ -198,17 +198,21 @@ const Teams = () => {
                         <>
                           <p className="leading-relaxed text-base text-white mb-3">
                             <span className={`${preahvihear.className} mr-3`}>
-                              Team Member 1: {" "}
+                              Team Member 1:{" "}
                               {team?.members.length >= 1
                                 ? team?.members[0]?.name
                                 : "Not Joined"}
                             </span>
                             {user?.id === team?.leader?._id &&
                               !team.payment &&
-                              team?.members.length === 1 && (
-                                <Button text={"Kick Member"} onClick={() =>
-                                  handleRemoveMember(team?.members[0]?._id)
-                                } small={true} />
+                              team?.members.length >= 1 && (
+                                <Button
+                                  text={"Kick Member"}
+                                  onClick={() =>
+                                    handleRemoveMember(team?.members[0]?._id)
+                                  }
+                                  small={true}
+                                />
                               )}
                           </p>
                           <p className="leading-relaxed text-base text-white mb-3">
@@ -221,9 +225,13 @@ const Teams = () => {
                             {user?.id === team?.leader?._id &&
                               !team.payment &&
                               team?.members.length > 1 && (
-                                <Button text={"Kick Member"} onClick={() =>
-                                  handleRemoveMember(team?.members[1]?._id)
-                                } small={true} />
+                                <Button
+                                  text={"Kick Member"}
+                                  onClick={() =>
+                                    handleRemoveMember(team?.members[1]?._id)
+                                  }
+                                  small={true}
+                                />
                               )}
                           </p>
                         </>
@@ -247,9 +255,13 @@ const Teams = () => {
                                 </h1>
 
                                 {user.id === team?.leader?._id && (
-                                  <Button text={"Remove Request"} onClick={() =>
-                                    handleRemoveRequest(request?._id)
-                                  } small={true} />
+                                  <Button
+                                    text={"Remove Request"}
+                                    onClick={() =>
+                                      handleRemoveRequest(request?._id)
+                                    }
+                                    small={true}
+                                  />
                                 )}
                               </div>
                             ))}
@@ -259,14 +271,14 @@ const Teams = () => {
                           (team?.members?.length === 2
                             ? []
                             : team?.members?.length === 1
-                              ? sentRequestFromTheTeam.length == 0
-                                ? [1]
-                                : []
-                              : sentRequestFromTheTeam.length === 0
-                                ? [1, 2]
-                                : sentRequestFromTheTeam.length === 1
-                                  ? [1]
-                                  : []
+                            ? sentRequestFromTheTeam.length == 0
+                              ? [1]
+                              : []
+                            : sentRequestFromTheTeam.length === 0
+                            ? [1, 2]
+                            : sentRequestFromTheTeam.length === 1
+                            ? [1]
+                            : []
                           ).map((item) => (
                             <form className="space-y-8 mb-3" key={item}>
                               <div className="w-full flex flex-wrap items-center">
@@ -298,13 +310,17 @@ const Teams = () => {
                                     }}
                                   />
                                 </div>
-                                <Button text={"Send"} onClick={() =>
-                                  handleSendRequest(
-                                    item === 1
-                                      ? teamMemberEmail1
-                                      : teamMemberEmail2
-                                  )
-                                } small={true} />
+                                <Button
+                                  text={"Send"}
+                                  onClick={() =>
+                                    handleSendRequest(
+                                      item === 1
+                                        ? teamMemberEmail1
+                                        : teamMemberEmail2
+                                    )
+                                  }
+                                  small={true}
+                                />
                               </div>
                             </form>
                           ))}
@@ -321,7 +337,7 @@ const Teams = () => {
                     </div>
                     {/* {console.log(qrData)} */}
 
-                    <div className="flex flex-row justify-center items-center p-5">
+                    <div className="flex flex-row justify-center items-center p-5 gap-2">
                       {/* qr code ui */}
                       {/* {qrData && (
                         <img
@@ -347,19 +363,19 @@ const Teams = () => {
                         </button>
                       )} */}
 
-
                       {team?.members?.length === 2 && (
                         <Button text={"Team QR"} onClick={handleQr} />
-
                       )}
 
                       {/* delete team */}
-                      {!team?.payment ? (
-                        user?.id === team?.leader?._id && (
-                          <Button text={"Delete Team"} onClick={handleDelete} />
-
-                        )
-                      ) : null}
+                      {!team?.payment
+                        ? user?.id === team?.leader?._id && (
+                            <Button
+                              text={"Delete Team"}
+                              onClick={handleDelete}
+                                                          />
+                          )
+                        : null}
                     </div>
                   </div>
 
@@ -390,7 +406,7 @@ const Teams = () => {
                       <div className="flex-grow">
                         <h2
                           className="text-white text-4xl title-font font-2xl mb-3"
-                        // style={{ color: "#6f7bd9 !important" }}
+                          // style={{ color: "#6f7bd9 !important" }}
                         >
                           <span className={preahvihear.className}>
                             Join Team
