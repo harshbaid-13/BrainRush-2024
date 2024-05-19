@@ -6,8 +6,10 @@ import { Preahvihear } from "next/font/google";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { setTeam, setTeamRequest } from "@Reducers/features/team";
-import Loader from "@components/Loader/Loader";
+import Loader from "@components/Loader/UniversalLoader";
 import axios from "axios";
+import Button from "@components/Button";
+import Navbar from "@components/Nav/RegNav";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -17,9 +19,12 @@ const preahvihear = Preahvihear({
 const createTeam = () => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const profileData = useSelector((state) => state.profile.profile);
+  const email = profileData?.email;
   const [loading, setLoading] = useState(false);
   const [teamName, setTeamName] = useState("");
-  const [teamMemberEmail, setTeamMemberEmail] = useState("");
+  const [teamMember1Email, setTeamMember1Email] = useState("");
+  const [teamMember2Email, setTeamMember2Email] = useState("");
   const handleCreateTeamSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -53,13 +58,14 @@ const createTeam = () => {
     <Loader />
   ) : (
     <>
+      <Navbar />
       <section>
         <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-headerText ">
+          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-white ">
             <span className={preahvihear.className}>Create Your Team</span>
           </h2>
 
-          <p className="mb-8 lg:mb-16 font-medium text-center text-subHeaderText sm:text-xl">
+          <p className="mb-8 lg:mb-16 font-medium text-center text-bgGray sm:text-xl">
             <span className={preahvihear.className}>
               Create your own team by entering your team name and your team
               mate's email!
@@ -69,7 +75,7 @@ const createTeam = () => {
             <div>
               <label
                 htmlFor="subject"
-                className="block mb-2 text-gray-600 text-lg font-medium "
+                className="block mb-2 text-white text-lg font-medium "
               >
                 <span className={preahvihear.className}>
                   {/* Your Name<span className="text-red text-2xl">*</span> */}
@@ -79,7 +85,7 @@ const createTeam = () => {
               <input
                 type="text"
                 id="email"
-                className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 placeholder-gray-700"
+                className="profileInput shadow-sm bg-inputBgColor border-gray-300 text-white text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
                 placeholder="Team Name"
                 required
                 value={teamName}
@@ -91,36 +97,71 @@ const createTeam = () => {
             <div>
               <label
                 htmlFor="subject"
-                className="block mb-2 text-gray-600 text-xl font-medium "
+                className="block mb-2 text-sm text-white font-medium "
               >
                 <span className={preahvihear.className}>
                   {/* Your Name<span className="text-red text-2xl">*</span> */}
-                  Team Member Email<span className="text-red text-2xl">*</span>
+                  Your Leader Email<span className="text-red text-2xl">*</span>
                 </span>{" "}
               </label>
               <input
                 type="email"
                 id="email"
-                className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 placeholder-gray-700"
+                className="profileInput shadow-sm bg-inputBgColor border-gray-300 text-white text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
+                placeholder="Your Email ID"
+                required
+                disabled
+                value={email || ""}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="subject"
+                className="block mb-2 text-white text-xl font-medium "
+              >
+                <span className={preahvihear.className}>
+                  {/* Your Name<span className="text-red text-2xl">*</span> */}
+                  Team Member 1 Email
+                  <span className="text-red text-2xl">*</span>
+                </span>{" "}
+              </label>
+              <input
+                type="email"
+                id="email"
+                className="profileInput shadow-sm bg-inputBgColor border-gray-300 text-white text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
                 placeholder="Team Member Email"
                 required
-                value={teamMemberEmail}
+                value={teamMember1Email}
                 onChange={(e) => {
-                  setTeamMemberEmail(e.target.value);
+                  setTeamMember1Email(e.target.value);
+                }}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="subject"
+                className="block mb-2 text-white text-xl font-medium "
+              >
+                <span className={preahvihear.className}>
+                  {/* Your Name<span className="text-red text-2xl">*</span> */}
+                  Team Member 2 Email
+                  <span className="text-red text-2xl">*</span>
+                </span>{" "}
+              </label>
+              <input
+                type="email"
+                id="email"
+                className="profileInput shadow-sm bg-inputBgColor border-gray-300 text-white text-xl rounded-lg focus:ring-primary-500 focus:border-gray-50 block w-full p-2.5 "
+                placeholder="Team Member Email"
+                required
+                value={teamMember2Email}
+                onChange={(e) => {
+                  setTeamMember2Email(e.target.value);
                 }}
               />
             </div>
 
-            <button
-              type="submit"
-              className="relative mt-5 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
-            >
-              <span className="relative px-5 py-2.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
-                <span className={preahvihear.className}>Submit</span>
-              </span>
-            </button>
-
-            {/* <button type="button" className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200  font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Purple to Pink</button> */}
+            <Button text={"Submit"} />
           </form>
         </div>
         {/* {successSubmit()} */}

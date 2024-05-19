@@ -39,9 +39,9 @@ export default function RootLayout({ children }) {
               <UniversalLoader />
             ) : (
               <>
-                <div className="relative z-10">
-                  <Nav />
-                  <div className="w-full h-auto mt-16">{children}</div>
+                <div className="bg-background relative z-10">
+                  {/* <Nav /> */}
+                  <div className="w-full min-h-screen h-full">{children}</div>
                   <Analytics />
                 </div>
               </>

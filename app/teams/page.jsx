@@ -2,12 +2,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./page.css";
 import Link from "next/link";
-import Loader from "@components/Loader/Loader";
+import Loader from "@components/Loader/UniversalLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { setTeam, setTeamRequest } from "@Reducers/features/team";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Preahvihear } from "next/font/google";
+import Button from "@components/Button";
+import Navbar from "@components/Nav/RegNav";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -140,7 +142,6 @@ const Teams = () => {
   /* SHOW QR ENDS */
   return (
     <>
-      {/* qr */}
       {
         <div
           className={`z-50 fixed inset-0 flex justify-center items-center transition-opacity duration-300 ${isImageVisible ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -160,11 +161,13 @@ const Teams = () => {
         <Loader />
       ) : (
         <>
+          <Navbar />
+
           {isAlreadyInTeam ? (
             <section className="text-gray-600  body-font sm:mx-0 ">
               <div className="container py-24 mx-auto flex flex-wrap items-center justify-center w-screen">
                 <div className="flex flex-wrap items-center justify-center md:w-full  lg:w-1/2 mainTeamButton">
-                  <div className="p-2 lg:w-full md:w-full sm:w-full teamButton">
+                  <div className="p-2 lg:w-full md:w-full sm:w-full">
                     <div className="flex border-2 rounded-lg border-gray-200 teaminnerbutton border-opacity-50 p-8 sm:flex-row flex-col">
                       <div className="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
                         <svg
@@ -372,12 +375,12 @@ const Teams = () => {
               </div>
             </section>
           ) : (
-            <section className="text-gray-600  px-2 body-font mainTeamButton">
-              <div className="container px-5 py-24 mx-auto">
+            <section className="text-background max-h-full flex items-center px-2 body-font mainTeamButton">
+              <div className="container px-5 py-16 mx-auto">
                 <div className="flex flex-wrap gap-8 items-center justify-center -m-4">
-                  <div className="p-4 lg:w-1/3 md:w-full teamButton">
-                    <div className="flex border-2 rounded-lg border-gray-200 teaminnerbutton border-opacity-50 p-8 sm:flex-row flex-col">
-                      <div className="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
+                  <div className="p-4 lg:w-1/3 md:w-full">
+                    <div className="flex border-2 rounded-lg border-white teaminnerbutton border-opacity-50 p-8 sm:flex-row flex-col">
+                      <div className="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-white text-indigo-500 flex-shrink-0">
                         <svg
                           fill="none"
                           stroke="currentColor"
@@ -392,7 +395,7 @@ const Teams = () => {
                       </div>
                       <div className="flex-grow">
                         <h2
-                          className="text-headerText text-4xl title-font font-2xl mb-3"
+                          className="text-white text-4xl title-font font-2xl mb-3"
                         // style={{ color: "#6f7bd9 !important" }}
                         >
                           <span className={preahvihear.className}>
@@ -400,23 +403,14 @@ const Teams = () => {
                           </span>
                         </h2>
 
-                        <p className="leading-relaxed text-base mb-5">
+                        <p className="leading-relaxed text-base text-bgGray mb-5">
                           {/* Team Leader: {request.teamLeader.name} */}
                           <span className={preahvihear.className}>
                             Join a team made by a friend of yours!
                           </span>
                         </p>
                         <Link href="teams/join-team">
-                          <button
-                            type="submit"
-                            className="relative mt-5 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
-                          >
-                            <span className="relative px-5 py-2.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
-                              <span className={preahvihear.className}>
-                                Join Team
-                              </span>
-                            </span>
-                          </button>
+                          <Button text={"Join Team"} />
                         </Link>
                         {/* <a className="mt-3 text-indigo-500 inline-flex me-2 items-center">
                     <Buttons title={"Cancel Request"} />
@@ -428,9 +422,9 @@ const Teams = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="p-4 lg:w-1/3 md:w-full teamButton">
-                    <div className="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col">
-                      <div className="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
+                  <div className="p-4 lg:w-1/3 md:w-full">
+                    <div className="flex border-2 rounded-lg border-white border-opacity-50 p-8 sm:flex-row flex-col">
+                      <div className="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-white text-indigo-500 flex-shrink-0">
                         <svg
                           fill="none"
                           stroke="currentColor"
@@ -445,27 +439,18 @@ const Teams = () => {
                         </svg>
                       </div>
                       <div className="flex-grow">
-                        <h2 className="text-headerText text-3xl title-font font-2xl mb-3">
+                        <h2 className="text-white text-3xl title-font font-2xl mb-3">
                           <span className={preahvihear.className}>
                             Create Team
                           </span>
                         </h2>
-                        <p className="leading-relaxed text-base mb-5">
+                        <p className="leading-relaxed text-base text-bgGray mb-5">
                           <span className={preahvihear.className}>
                             Create your own team, and invite your friend!
                           </span>
                         </p>
                         <Link href="/teams/create-team">
-                          <button
-                            type="submit"
-                            className="relative mt-5 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
-                          >
-                            <span className="relative px-5 py-2.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
-                              <span className={preahvihear.className}>
-                                Create Team
-                              </span>
-                            </span>
-                          </button>
+                          <Button text={"Create Team"} />
                         </Link>
                       </div>
                     </div>

@@ -41,7 +41,7 @@ button {
 }
 
 .main:before {
-    background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fafafa 100%);
+    background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #610B0C 100%);
     position: absolute;
     content: "";
     z-index: 2;

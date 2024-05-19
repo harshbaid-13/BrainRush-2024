@@ -17,7 +17,8 @@ module.exports = {
     colors: {
       "primary-orange": "#FF5722",
       headerText: "rgb(9 64 94)",
-      background: "#0f172a",
+      background: "#610B0C",
+      bgGray: "#B5B5B5",
       subHeaderText: "#ed3d15",
       btnColor: "#f06141",
       btnColorDark: "#c21111",
@@ -27,6 +28,7 @@ module.exports = {
       purple: { 500: "rgb(24, 13, 238)", 800: "#fff" },
       pink: { 500: "#B2194A" },
       white: "#fff",
+      black: "#000",
       gray: {
         50: "#f9fafb",
         100: "#f3f4f6",

@@ -6,11 +6,12 @@ import React, { useEffect, useState } from "react";
 import { Preahvihear } from "next/font/google";
 import PreviousMap from "postcss/lib/previous-map";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "@components/Loader/Loader";
+import Loader from "@components/Loader/UniversalLoader";
 import { setTeam, setTeamRequest } from "@Reducers/features/team";
 import { useRouter } from "next/navigation";
 import { setRequest } from "@Reducers/features/requests";
 import axios from "axios";
+import Navbar from "@components/Nav/RegNav";
 
 const preahvihear = Preahvihear({
   subsets: ["latin"],
@@ -70,9 +71,10 @@ function page() {
     return loading ? (
       <Loader />
     ) : (
-      <div className="mt-30">
+      <>
+        <Navbar />
         {requests?.length === 0 ? (
-          <h1 className="h-auto mt-80 font-bold text-subHeaderText text-4xl mx-auto text-center">
+          <h1 className="h-auto mt-80 font-bold text-white text-4xl mx-auto text-center">
             <span className={preahvihear.className}>
               You don't have any team requests.
             </span>
@@ -162,7 +164,7 @@ function page() {
             </section>
           </>
         )}
-      </div>
+      </>
     );
   }
 
