@@ -61,7 +61,7 @@ function Navbar() {
             );
             dispatch(setTeam(data.data === undefined ? null : data.data));
             dispatch(
-                setTeamRequest(data.request === undefined ? null : data.request)
+                setTeamRequest(data.request === undefined ? [] : data.request)
             );
         } catch (err) {
             console.log(err);
@@ -144,7 +144,7 @@ function Navbar() {
                 </Link>
                 <div className="flex items-center gap-3 sm:gap-8 md:order-2">
                     <div className="relative">
-                        <Link href="/profile" className="flex items-center">
+                        {session &&<Link href="/profile" className="flex items-center">
                             <Image
                                 className="rounded-full cursor-pointer border-2 border-background"
                                 src={user?.image}
@@ -152,9 +152,9 @@ function Navbar() {
                                 height={55}
                                 width={55}
                             />
-                        </Link>
+                        </Link>}
                     </div>
-                    <Button text={"Exit"} small={true} onClick={() => { signOut("/login") }} />
+                    {session && <Button text={"Exit"} small={true} onClick={() => { signOut("/login") }} />}
                 </div>
             </div>
         </nav>

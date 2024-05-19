@@ -31,14 +31,17 @@ const createTeam = () => {
       setLoading(true);
       const { data } = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/team`,
-        { teamName, teamMemberEmail }
+        {
+          teamName: teamName.toLowerCase(),
+          teamMemberEmails: [teamMember1Email, teamMember2Email],
+        }
       );
 
       if (data.success) {
         dispatch(setTeam(data.data));
         dispatch(
           setTeamRequest(
-            data.confirmationRequest ? data.confirmationRequest : null
+            data.confirmationRequest ? data.confirmationRequest : []
           )
         );
         alert(
@@ -58,7 +61,7 @@ const createTeam = () => {
     <Loader />
   ) : (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <section>
         <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
           <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-white ">

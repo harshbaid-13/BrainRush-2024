@@ -2,7 +2,6 @@ import ConfirmationRequest from "@models/confirmationRequest";
 import Team from "@models/team";
 import User from "@models/user";
 import { connectToDatabase } from "@utils/db";
-import sendConfirmationEmail from "@utils/sendConfirmationEmail";
 import mongoose from "mongoose";
 
 const { NextResponse } = require("next/server");
@@ -17,12 +16,6 @@ export async function POST(req) {
       return NextResponse.json({ success: false, message: "User not found" });
     }
     const { teamMemberEmail } = await req.json();
-    if (teamMemberEmail.length > 50) {
-      return NextResponse.json({
-        success: false,
-        message: "Email should be less than 50 characters",
-      });
-    }
     if (teamMemberEmail === user.email) {
       return NextResponse.json(
         { success: false, message: "You can't add yourself as a member" },
@@ -30,26 +23,30 @@ export async function POST(req) {
       );
     }
     const teamLeaderId = user._id;
-    const requestSentAlready = await ConfirmationRequest.findOne({
-      teamLeader: teamLeaderId,
-    });
-    if (requestSentAlready) {
-      return NextResponse.json({
-        success: false,
-        status: 400,
-        message: "Delete Previous Request First to Send New Request",
-      });
-    }
     const team = await Team.findOne({ leader: teamLeaderId });
-    if (team.teamMemberConfirmation) {
+    if (team.members.length === 2) {
       return NextResponse.json({
         success: false,
         status: 400,
         message: "Team Full",
       });
     }
-
-    sendConfirmationEmail(user, team, teamMemberEmail, { event: 0 });
+    if (team.memberEmails.length>0 && team.memberEmails[0].email === teamMemberEmail) {
+      return NextResponse.json(
+        { success: false, message: "You can't add same a member" },
+        { status: 400 }
+      );
+    }
+    const requestSentAlready = await ConfirmationRequest.find({
+      team: team._id,
+    });
+    if (requestSentAlready.length == 2) {
+      return NextResponse.json({
+        success: false,
+        status: 400,
+        message: "Delete Previous Request First to Send New Request",
+      });
+    }
 
     const confirmationRequest = await ConfirmationRequest.create({
       team,
@@ -57,14 +54,29 @@ export async function POST(req) {
       teamMemberEmail,
     });
 
+    const updatedteam = await Team.findByIdAndUpdate(
+      team._id,
+      {
+        $push: {
+          memberEmails: { email: teamMemberEmail, confirmation: false },
+        },
+      },
+      { new: true }
+    );
+    console.log(updatedteam);
+    const allRequests = await ConfirmationRequest.find({
+      team: updatedteam,
+    });
+
     return NextResponse.json({
       success: true,
       status: 200,
       message: "Email Sent Successfully",
-      data: confirmationRequest,
+      data: allRequests,
+      team: updatedteam,
     });
   } catch (error) {
-    console.error("Error ", error);
+    console.error(error);
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 }

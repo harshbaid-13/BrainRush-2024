@@ -23,8 +23,10 @@ const Teams = () => {
   const { isAlreadyInTeam, team, sentRequestFromTheTeam } = useSelector(
     (state) => state.team
   );
+  console.log(team);
   const user = useSelector((state) => state.user.user);
-  const [teamMemberEmail, setTeamMemberEmail] = useState("");
+  const [teamMemberEmail1, setTeamMemberEmail1] = useState("");
+  const [teamMemberEmail2, setTeamMemberEmail2] = useState("");
   const handleDelete = async () => {
     try {
       setLoading(true);
@@ -37,19 +39,20 @@ const Teams = () => {
       } else {
         alert(data?.message);
       }
-      setLoading(false);
+      setTimeout(()=>setLoading(false), 3000);
     } catch (error) {
       console.log(error);
     }
   };
-  const handleRemoveRequest = async () => {
+  const handleRemoveRequest = async (id) => {
     try {
       setLoading(true);
       const { data } = await axios.patch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/confirm/${sentRequestFromTheTeam?._id}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/confirm/${id}`
       );
       if (data.success) {
-        dispatch(setTeamRequest(null));
+        dispatch(setTeamRequest(data?.requests));
+        dispatch(setTeam(data?.data));
       } else {
         alert(data?.message);
       }
@@ -58,14 +61,15 @@ const Teams = () => {
       console.log(error);
     }
   };
-  const handleRemoveMember = async () => {
+  const handleRemoveMember = async (memberId) => {
     try {
       setLoading(true);
       const { data } = await axios.patch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/${team?._id}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/${team?._id}`,
+        { memberId }
       );
       if (data?.success) {
-        dispatch(setTeamRequest(null));
+        dispatch(setTeamRequest(data?.requests));
         dispatch(setTeam(data.data));
       }
       setLoading(false);
@@ -73,23 +77,22 @@ const Teams = () => {
       console.log(error);
     }
   };
-  const handleLeaveTeam = async () => {
-    try {
-      setLoading(true);
-      const { data } = await axios.put(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/${team?._id}`
-      );
-      if (data?.success) {
-        dispatch(setTeam(null));
-        dispatch(setTeamRequest(null));
-      }
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const handleSendRequest = async (e) => {
-    e.preventDefault();
+  // const handleLeaveTeam = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const { data } = await axios.put(
+  //       `${process.env.NEXT_PUBLIC_BASE_URL}/api/team/${team?._id}`
+  //     );
+  //     if (data?.success) {
+  //       dispatch(setTeam(null));
+  //       dispatch(setTeamRequest(null));
+  //     }
+  //     setLoading(false);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  const handleSendRequest = async (teamMemberEmail) => {
     try {
       setLoading(true);
       const { data } = await axios.post(
@@ -98,9 +101,12 @@ const Teams = () => {
           teamMemberEmail,
         }
       );
+
       if (data.success) {
-        dispatch(setTeamRequest(data.data));
-        setTeamMemberEmail("");
+        dispatch(setTeamRequest(data?.data));
+        dispatch(setTeam(data?.team));
+        setTeamMemberEmail1("");
+        setTeamMemberEmail2("");
       } else {
         alert(data?.message);
       }
@@ -108,6 +114,9 @@ const Teams = () => {
       router.push("/teams");
     } catch (err) {
       console.log(err);
+      alert(err?.response?.data?.message);
+      setLoading(false);
+      router.push("/teams");
     }
   };
 
@@ -144,8 +153,9 @@ const Teams = () => {
     <>
       {
         <div
-          className={`z-50 fixed inset-0 flex justify-center items-center transition-opacity duration-300 ${isImageVisible ? "opacity-100" : "opacity-0 pointer-events-none"
-            } backdrop-blur-md`}
+          className={`z-50 fixed inset-0 flex justify-center items-center transition-opacity duration-300 ${
+            isImageVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+          } backdrop-blur-md`}
         >
           <div className="bg-white p-8 rounded-lg shadow-md w-auto">
             <img
@@ -161,14 +171,14 @@ const Teams = () => {
         <Loader />
       ) : (
         <>
-          <Navbar />
+          {/* <Navbar /> */}
 
           {isAlreadyInTeam ? (
             <section className="text-gray-600  body-font sm:mx-0 ">
-              <div className="container py-24 mx-auto flex flex-wrap items-center justify-center w-screen">
+              <div className="container py-15 mx-auto flex flex-wrap items-center justify-center w-screen">
                 <div className="flex flex-wrap items-center justify-center md:w-full  lg:w-1/2 mainTeamButton">
                   <div className="p-2 lg:w-full md:w-full sm:w-full">
-                    <div className="flex border-2 rounded-lg border-gray-200 teaminnerbutton border-opacity-50 p-8 sm:flex-row flex-col">
+                    <div className="flex border-2 rounded-lg border-gray-200 teaminnerbutton border-opacity-50 p-8 sm:flex-row flex-col bg-white ">
                       <div className="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
                         <svg
                           fill="none"
@@ -197,31 +207,108 @@ const Teams = () => {
                             Team Leader: {team?.leader?.name}
                           </span>
                         </p>
+
+                        <>
+                          <p className="leading-relaxed text-base text-gray-200 mb-3">
+                            <span className={preahvihear.className}>
+                              Team Member 1:{" "}
+                              {team?.members.length === 1
+                                ? team?.members[0]?.name
+                                : "Not Joined"}
+                            </span>{" "}
+                            {user?.id === team?.leader?._id &&
+                              !team.payment &&
+                              team?.members.length === 1 && (
+                                <button
+                                  onClick={() =>
+                                    handleRemoveMember(team?.members[0]?._id)
+                                  }
+                                  className="relative ml-2 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
+                                >
+                                  <span className="relative px-2 py-2 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
+                                    <span className={preahvihear.className}>
+                                      Kick Member
+                                    </span>
+                                  </span>
+                                </button>
+                              )}
+                          </p>
+                          <p className="leading-relaxed text-base text-gray-200 mb-3">
+                            <span className={preahvihear.className}>
+                              Team Member 2:
+                              {team?.members.length > 1
+                                ? team?.members[1]?.name
+                                : "Not Joined"}
+                            </span>{" "}
+                            {user?.id === team?.leader?._id &&
+                              !team.payment &&
+                              team?.members.length > 1 && (
+                                <button
+                                  onClick={() =>
+                                    handleRemoveMember(team?.members[1]?._id)
+                                  }
+                                  className="relative ml-2 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
+                                >
+                                  <span className="relative px-2 py-2 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
+                                    <span className={preahvihear.className}>
+                                      Kick Member
+                                    </span>
+                                  </span>
+                                </button>
+                              )}
+                          </p>
+                        </>
                         <p className="leading-relaxed text-base text-gray-200 mb-3">
                           <span className={preahvihear.className}>
                             Payment Status:{" "}
                             {team?.payment ? "Paid" : "Not Paid"}
                           </span>
                         </p>
-                        {team?.teamMemberConfirmation ? (
-                          <p className="leading-relaxed text-base text-gray-200 mb-3">
-                            <span className={preahvihear.className}>
-                              Team Member: {team?.teamMember.name}
-                            </span>{" "}
-                          </p>
-                        ) : (
-                          <p className="leading-relaxed text-base text-gray-200 mb-3">
-                            <span className={preahvihear.className}>
-                              Team Member: Not Joined
-                            </span>
-                          </p>
+
+                        {team?.members.length < 2 && (
+                          <>
+                            {sentRequestFromTheTeam.map((request) => (
+                              <div
+                                className="flex items-center mb-2"
+                                key={request._id}
+                              >
+                                <h1 className={preahvihear.className}>
+                                  Request1 sent to:{" "}
+                                  <strong>{request?.teamMemberEmail}</strong>
+                                </h1>
+
+                                {user.id === team?.leader?._id && (
+                                  <button
+                                    onClick={() =>
+                                      handleRemoveRequest(request._id)
+                                    }
+                                    className="relative text-center inline-flex items-center justify-center p-0.5 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
+                                  >
+                                    <span className="relative px-2 py-2 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
+                                      <span className={preahvihear.className}>
+                                        Remove Request
+                                      </span>
+                                    </span>
+                                  </button>
+                                )}
+                              </div>
+                            ))}
+                          </>
                         )}
-                        {!team?.teamMemberConfirmation &&
-                          !sentRequestFromTheTeam && (
-                            <form
-                              className="space-y-8 "
-                              onSubmit={handleSendRequest}
-                            >
+                        {user.id === team?.leader?._id &&
+                          (team?.members?.length === 2
+                            ? []
+                            : team?.members?.length === 1
+                            ? sentRequestFromTheTeam.length == 0
+                              ? [1]
+                              : []
+                            : sentRequestFromTheTeam.length === 0
+                            ? [1, 2]
+                            : sentRequestFromTheTeam.length === 1
+                            ? [1]
+                            : []
+                          ).map((item) => (
+                            <form className="space-y-8 mb-3" key={item}>
                               <div className="w-full flex flex-wrap items-center">
                                 <label
                                   htmlFor="email"
@@ -239,14 +326,26 @@ const Teams = () => {
                                     className="shadow-sm bg-inputBgColor border-gray-300 text-gray-900 text-md rounded-lg focus:ring-primary-500 focus:border-gray-50 block  p-1"
                                     placeholder="Team Member Email"
                                     required
-                                    value={teamMemberEmail}
+                                    value={
+                                      item === 1
+                                        ? teamMemberEmail1
+                                        : teamMemberEmail2
+                                    }
                                     onChange={(e) => {
-                                      setTeamMemberEmail(e.target.value);
+                                      item === 1
+                                        ? setTeamMemberEmail1(e.target.value)
+                                        : setTeamMemberEmail2(e.target.value);
                                     }}
                                   />
                                 </div>
                                 <button
-                                  type="submit"
+                                  onClick={() =>
+                                    handleSendRequest(
+                                      item === 1
+                                        ? teamMemberEmail1
+                                        : teamMemberEmail2
+                                    )
+                                  }
                                   className="mt-1 relative text-center inline-flex items-center justify-center p-0.5 ml-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor "
                                 >
                                   <span className="relative px-2.5 py-1.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
@@ -257,9 +356,8 @@ const Teams = () => {
                                 </button>
                               </div>
                             </form>
-                          )}
-
-                        {!team?.teamMemberConfirmation &&
+                          ))}
+                        {/* {!team?.members.length < 2 &&
                           sentRequestFromTheTeam && (
                             <h1 className={preahvihear.className}>
                               Request sent to:{" "}
@@ -267,7 +365,7 @@ const Teams = () => {
                                 {sentRequestFromTheTeam?.teamMemberEmail}
                               </strong>
                             </h1>
-                          )}
+                          )} */}
                       </div>
                     </div>
                     {/* {console.log(qrData)} */}
@@ -297,36 +395,9 @@ const Teams = () => {
                           </span>
                         </button>
                       )} */}
-                      {/* kick member */}
-                      {user?.id === team?.leader?._id &&
-                        !team.payment &&
-                        team?.teamMemberConfirmation && (
-                          <button
-                            onClick={handleRemoveMember}
-                            className="relative mt-5 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
-                          >
-                            <span className="relative px-5 py-2.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
-                              <span className={preahvihear.className}>
-                                Kick Member
-                              </span>
-                            </span>
-                          </button>
-                        )}
-                      {/* remove request */}
-                      {!team?.teamMemberConfirmation &&
-                        sentRequestFromTheTeam && (
-                          <button
-                            onClick={handleRemoveRequest}
-                            className="relative mt-5 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
-                          >
-                            <span className="relative px-5 py-2.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
-                              <span className={preahvihear.className}>
-                                Remove Request
-                              </span>
-                            </span>
-                          </button>
-                        )}
-                      {team?.teamMemberConfirmation && (
+
+
+                      {team?.members?.length===2 && (
                         <button
                           onClick={handleQr}
                           className="relative mt-5 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
@@ -341,7 +412,7 @@ const Teams = () => {
 
                       {/* delete team */}
                       {!team?.payment ? (
-                        user?.id === team?.leader?._id ? (
+                        user?.id === team?.leader?._id && (
                           <button
                             onClick={handleDelete}
                             className="relative mt-5 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
@@ -352,19 +423,7 @@ const Teams = () => {
                               </span>
                             </span>
                           </button>
-                        ) : (
-                          <button
-                            type="submit"
-                            onClick={handleLeaveTeam}
-                            className="relative mt-5 text-center inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-btnColorDark to-btnColor hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 "
-                          >
-                            <span className="relative px-5 py-2.5 transition-all ease-in bg-white text-gray-700 duration-75 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
-                              <span className={preahvihear.className}>
-                                Leave Team
-                              </span>
-                            </span>
-                          </button>
-                        )
+                        ) 
                       ) : null}
                     </div>
                   </div>
@@ -396,7 +455,7 @@ const Teams = () => {
                       <div className="flex-grow">
                         <h2
                           className="text-white text-4xl title-font font-2xl mb-3"
-                        // style={{ color: "#6f7bd9 !important" }}
+                          // style={{ color: "#6f7bd9 !important" }}
                         >
                           <span className={preahvihear.className}>
                             Join Team

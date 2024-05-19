@@ -20,6 +20,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const profileData = useSelector((state) => state.profile.profile);
+
   const user = useSelector((state) => state.user.user);
   const [name, setName] = useState(profileData?.name);
   const email = profileData?.email;
@@ -36,9 +37,11 @@ const Profile = () => {
   }, [profileData]);
   useEffect(() => {
     setLoading(true);
+   
     setTimeout(() => {
       setLoading(false);
     }, 2000);
+     
   }, []);
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -97,7 +100,7 @@ const Profile = () => {
           <Loader />
         ) : (
           <>
-            <Navbar />
+            {/* <Navbar /> */}
             <section className="">
               <div className="py-8 lg:py-16 px-4 mx-auto h-full max-w-screen-md">
                 <>
