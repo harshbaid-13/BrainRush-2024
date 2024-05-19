@@ -18,6 +18,7 @@ import { setTeam } from "@Reducers/features/team";
 import { setProfile } from "@Reducers/features/profile";
 import Schedule from "@components/Schedule/Schedule";
 import Loader from "@components/Loader/Loader";
+import { useRouter } from "next/navigation";
 import Sponsor from "@components/Sponsors/Sponsor";
 
 // import { logo_loader } from "@/assets/images/logo_loader.mp4";
@@ -29,6 +30,8 @@ import Sponsor from "@components/Sponsors/Sponsor";
 // import Details from "@/components/Details/Details";
 
 export default function Home() {
+  const router = useRouter();
+  router.push("/login");
   return (
     <>
       {/* <Loader />
@@ -36,13 +39,13 @@ export default function Home() {
         <Loader />
       ) : ( */}
       {/* <> */}
-      <Hero />
+      {/* <Hero />
       <About />
-      <Schedule />
+      <Schedule /> */}
       {/* <Details /> */}
       {/* <Proccess /> */}
-      <Sponsor />
-      <FAQ />
+      {/* <Sponsor />
+      <FAQ /> */}
       {/* </> */}
       {/* )} */}
     </>
