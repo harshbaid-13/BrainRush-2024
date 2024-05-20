@@ -108,7 +108,7 @@ const Profile = () => {
 
                 <p className="mb-8 lg:mb-16 text-center font-medium text-bgGray sm:text-xl">
                   <span className={preahvihear.className}>
-                    Build Your Profile and Shine in KODIKAS-2K23.
+                    Assemble your Profile and unleash your powers in BrainRush 2K24!
                   </span>
                 </p>
                 <form className="space-y-8" onSubmit={submitHandler}>
