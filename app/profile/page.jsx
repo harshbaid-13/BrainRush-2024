@@ -255,6 +255,9 @@ const Profile = () => {
                       <option value="ME" className="bg-inputBgColor text-black">
                         ME
                       </option>
+                      <option value="BVOC" className="bg-inputBgColor text-black">
+                        BVOC
+                      </option>
                     </select>
                   </div>
                   <div>
